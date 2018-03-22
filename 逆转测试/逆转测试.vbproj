@@ -247,6 +247,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Login.ulp" />
     <None Include="SQL\LINGTOSQL\DataClasses_PIECEDATASAVE.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataClasses_PIECEDATASAVE.designer.vb</LastGenOutput>
