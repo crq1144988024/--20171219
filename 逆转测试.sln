@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{2D7A4499-F94F-406E-A714-92A7BC84F2F8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "逆转测试", "逆转测试\逆转测试.vbproj", "{EA89EBFA-B397-46F2-8069-9B00D5C6D813}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WindowsApplication1", "WindowsApplication1\WindowsApplication1.vbproj", "{B2F0907B-7E2F-4F95-A2D2-F22547987C90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA89EBFA-B397-46F2-8069-9B00D5C6D813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA89EBFA-B397-46F2-8069-9B00D5C6D813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA89EBFA-B397-46F2-8069-9B00D5C6D813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA89EBFA-B397-46F2-8069-9B00D5C6D813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F0907B-7E2F-4F95-A2D2-F22547987C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F0907B-7E2F-4F95-A2D2-F22547987C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F0907B-7E2F-4F95-A2D2-F22547987C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F0907B-7E2F-4F95-A2D2-F22547987C90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2F0907B-7E2F-4F95-A2D2-F22547987C90} = {2D7A4499-F94F-406E-A714-92A7BC84F2F8}
+	EndGlobalSection
+EndGlobal

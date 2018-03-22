@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="datasave" Class="DataClasses_pieceparaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SQL\datasave.mdf;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasaveConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.piecepara" Member="piecepara">
+    <Type Name="piecepara">
+      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="反驱力最大值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力最大值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力最小值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力最小值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力波动量上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力波动量下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力平均值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力平均值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右波动量差值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右波动量差值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱动位移上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱动位移下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="齿条径向间隙上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="齿条径向间隙下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="齿条径向力上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="齿条径向力下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="间隙检测抽检间隔" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="测试速度" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="换向力" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="扫条码使能" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力标定" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力标定" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="位移标定" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="径向力标定" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="径向间隙标定" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="零点偏置" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力调整" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力调整" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="最大换向力" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="有效测试位移百分比" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="反驱力调整系数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="间隙检测调整系数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="零位判断基准电压" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="间隙检测位置" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右平均力差值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右平均力差值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="间隙下拉力补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="间隙上拉力补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="下拉间隙补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="上拉间隙补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="超时设置" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="回中补偿电压" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="图像滤波百分比" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="阈值补偿" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="是否滤波" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="量化点数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="中位记号笔使能" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱位移补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱位移补偿参数" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

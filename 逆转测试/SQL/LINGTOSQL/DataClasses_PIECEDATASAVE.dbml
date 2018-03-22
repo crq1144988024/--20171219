@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="datasave" Class="DataClasses_PIECEDATASAVEDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SQL\datasave.mdf;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasaveConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.piecedatasave" Member="piecedatasave">
+    <Type Name="piecedatasave">
+      <Column Name="编号" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="日期" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="条码" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="结果" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力最大值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力最小值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力波动量" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱力平均值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="右反驱动位移" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力最大值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力最小值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力波动量" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱力平均值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左反驱动位移" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右波动量差值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="上拉齿条径向间隙" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="上拉齿条径向力" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="下拉齿条径向间隙" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="下拉齿条径向力" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="左右反驱力平均值差值" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
