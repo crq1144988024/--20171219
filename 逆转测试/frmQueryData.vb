@@ -15,9 +15,9 @@ Public Class frmQueryData
     End Sub
 
     Private Sub frmQueryData_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        OleDbConnrecd.Close()
-        DelayS(0.5)
-        Myconn.Open(Connstringnew)
+        ' OleDbConnrecd.Close()
+        'DelayS(0.5)
+        ' Myconn.Open(Connstringnew)
         For i = 0 To 14
             dataRecord.Rows.Add()
         Next i
