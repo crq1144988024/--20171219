@@ -328,6 +328,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>datasave.mdf</DependentUpon>
     </Content>
+    <Content Include="Sys\B501.txt" />
+    <Content Include="Sys\count.txt" />
+    <Content Include="Sys\F101.txt" />
+    <Content Include="Sys\F102.txt" />
+    <Content Include="Sys\f33.txt" />
+    <Content Include="Sys\f4.txt" />
+    <Content Include="Sys\f50501.txt" />
+    <Content Include="Sys\f55.txt" />
+    <Content Include="Sys\f99.txt" />
+    <Content Include="Sys\piecetype.txt" />
+    <Content Include="Sys\v3.txt" />
+    <Content Include="Sys\V301.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -338,6 +350,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sys\recorddata\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
