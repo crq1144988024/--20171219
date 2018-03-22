@@ -247,6 +247,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="DLL\Login.ulp" />
     <None Include="Login.ulp" />
     <None Include="SQL\LINGTOSQL\DataClasses_PIECEDATASAVE.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -321,8 +322,18 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LdzCStation.dll" />
-    <Content Include="ListControls.dll" />
+    <Content Include="DLL\adodb.dll" />
+    <Content Include="DLL\AxInterop.DAQPILOTAXLib.dll" />
+    <Content Include="DLL\CCards.dll" />
+    <Content Include="DLL\DAQPilotAx.ocx" />
+    <Content Include="DLL\DMC2210.dll" />
+    <Content Include="DLL\exacttimer.dll" />
+    <Content Include="DLL\Interop.DAQPILOTAXLib.dll" />
+    <Content Include="DLL\LdzCStation.dll" />
+    <Content Include="DLL\ListControls.dll" />
+    <Content Include="DLL\Station.dll" />
+    <Content Include="DLL\TeeChart.DLL" />
+    <Content Include="DLL\TELib.dll" />
     <Content Include="oc2_mdoc.ico" />
     <Content Include="SQL\datasave.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
