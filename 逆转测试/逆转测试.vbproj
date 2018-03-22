@@ -321,6 +321,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LdzCStation.dll" />
+    <Content Include="ListControls.dll" />
     <Content Include="oc2_mdoc.ico" />
     <Content Include="SQL\datasave.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
