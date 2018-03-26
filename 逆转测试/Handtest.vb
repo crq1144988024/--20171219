@@ -181,4 +181,28 @@ Public Class Handtest
 
 
     End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+
+    End Sub
+
+    Private Sub Button15_MouseDown(sender As Object, e As MouseEventArgs) Handles Button15.MouseDown
+        bytessend(12) = 1
+    End Sub
+
+    Private Sub Button15_MouseUp(sender As Object, e As MouseEventArgs) Handles Button15.MouseUp
+        bytessend(12) = 0
+    End Sub
+
+    Private Sub Button16_MouseDown(sender As Object, e As MouseEventArgs) Handles Button16.MouseDown
+        bytessend(13) = 1
+    End Sub
+
+    Private Sub Button16_MouseUp(sender As Object, e As MouseEventArgs) Handles Button16.MouseUp
+        bytessend(13) = 0
+    End Sub
 End Class

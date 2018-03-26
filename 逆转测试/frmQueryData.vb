@@ -9,9 +9,9 @@ Public Class frmQueryData
     Dim testrange(18) As String
 
     Private Sub frmQueryData_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-        Myconn.Close()
-        DelayS(0.5)
-        OleDbConnrecd.Open()
+        'Myconn.Close()
+        'DelayS(0.5)
+        'OleDbConnrecd.Open()
     End Sub
 
     Private Sub frmQueryData_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

@@ -113,6 +113,12 @@ Public Class frmMain
         tcCurve.Axes.Bottom.Increment = 0.1
         tcCurve.Axes.Left.Title.Caption = "反驱力 (N)"
         tcCurve.Axes.Bottom.Title.Caption = "位移 (mm)"
+
+
+        tcCurve.Series(0).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(0).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(1).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(1).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
     End Sub
     Private Sub set_initialize_datagridview_now()
         For i = 0 To 14
@@ -142,52 +148,37 @@ Public Class frmMain
             End If
         Next i
     End Sub
-    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim i As Integer
+    Private Sub set_initialize_DMC2210()
         Dim n As Short
-        Dim filenam As String
-        Dim str As String
-        Dim mysr As System.IO.StreamReader
-        Dim strtemp(1) As String
-
-        bytessend(22) = 0 '间隙抽检只有两个状态——1,不做；2,做
-        'OleDbConnpara.Open() '打开数据库
-        'OleDbConnrecd.Open() '打卡数据库
-        set_chart() '调整图表控件
-
-        Me.Visible = False  '隐藏窗体
-        Login.ShowDialog()   '加载登录对话框
-
-        set_initialize_datagridview_now() '设置datagridview now图表显示
-        'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留
-        mypiecedata.initialize()
-        mypiecedata.datasaverec(1) = Now.ToString("yyyy-MM-dd")
-        Call OpenConn() '打开数据库连接
-        database.DataGridView1.DataSource = GlobalVariable.Datatable_para
-        ''database.DataGridView1.DataSource = MyDataSet.Tables(0) '绑定数据集当中的第一个表
-        countpiecepara = database.DataGridView1.RowCount - 1   '工件类别个数（从0开始）=表中行数减一
-        For i = 0 To countpiecepara - 1
-            typesel.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)  '把数据库中（表格控件中的）数值填入combox产品型号控件中
-        Next i
-        Call CloseConn() '关闭数据库连接
-        count1 = 1
         n = d2210_board_init()  '初始化运动控制卡
         If (n <= 0) Or (n > 8) Then '正常的卡数在1- 8之间
             MsgBox("初始化DMC2210卡失败！", vbOKOnly, "出错")
         End If
         m_UseAxis = 0 '默认选择X轴
-        tcCurve.Series(0).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(0).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(1).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(1).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        d2210_set_pulse_outmode(0, 5)
+        d2210_counter_config(0, 1)
+    End Sub
+    Private Sub set_initialize_Combox_piecepara()
+        countpiecepara = database.DataGridView1.RowCount - 1   '工件类别个数（从0开始）=表中行数减一
+        For i = 0 To countpiecepara - 1
+            typesel.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)  '把数据库中（表格控件中的）数值填入combox产品型号控件中
+        Next i
+    End Sub
+    Private Sub set_initialize_Time()
+        mypiecedata.initialize()
+
+        mypiecedata.datasaverec(1) = Now.ToString("yyyy-MM-dd")
         Call CreateFile() '按日期建立当天数据存放用的文件夹
         tooltime.Text = Now  '显示当前时间
 
+    End Sub
+    Private Sub set_piecepara_now()
+        Dim i As Integer
 
-        clearwy = DAQwy.Read '位移零位
-        clearfqlleft = DAQfqlleft.Read '左反驱零位
-        clearfqlright = DAQfqlright.Read '右反驱零位
-
+        Dim filenam As String
+        Dim str As String
+        Dim mysr As System.IO.StreamReader
+        Dim strtemp(1) As String
 
         filenam = Apppath & "\Sys\piecetype.txt"
         mysr = New System.IO.StreamReader(filenam, True)
@@ -202,6 +193,42 @@ Public Class frmMain
         If Val(strtemp(1)) = 1 Then ComboBox1.SelectedIndex = 1
         typesel.Text = str                       '产品型号读取
         mysr.Close()                             '关闭读取数据流
+    End Sub
+
+
+    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+
+        bytessend(22) = 0 '间隙抽检只有两个状态——1,不做；2,做
+        'OleDbConnpara.Open() '打开数据库
+        'OleDbConnrecd.Open() '打卡数据库
+
+        set_chart() '调整图表控件
+        Me.Visible = False  '隐藏窗体
+        Login.ShowDialog()   '加载登录对话框
+
+        set_initialize_datagridview_now() '设置datagridview now图表显示
+        'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留
+
+        set_initialize_Time() '初始化时间及读取当前时间
+
+
+        Call OpenConn() '刷新型号及产品参数数据库
+        database.DataGridView1.DataSource = GlobalVariable.Datatable_para '绑定数据库
+        set_initialize_Combox_piecepara() '初始化Combox型号控件
+        ''database.DataGridView1.DataSource = MyDataSet.Tables(0) '绑定数据集当中的第一个表
+        ' Call CloseConn() '关闭数据库连接
+        set_initialize_DMC2210() '初始化板卡
+
+
+        count1 = 1 '全程计数
+        clearwy = DAQwy.Read '位移零位
+        clearfqlleft = DAQfqlleft.Read '左反驱零位
+        clearfqlright = DAQfqlright.Read '右反驱零位
+
+        set_piecepara_now() '设置当前产品型号
+
+
         ComboBox1.Enabled = False                  '在线离线控件使能关闭
         t_com.Start()                              '通信线程开始
         PortOpen()                                  '打开串口
@@ -2189,7 +2216,16 @@ netlis:
     End Function
 
     Public Sub ComSnd(ByVal snd As String)
-        SerialPort1.Write(snd)
+        If SerialPort1.IsOpen Then
+
+            SerialPort1.Write(snd)
+        Else
+            SerialPort1.Open()
+            SerialPort1.Write(snd)
+            '  MsgBox("端口被关闭！")
+        End If
+
+
     End Sub
 
     Public Function readpos()
