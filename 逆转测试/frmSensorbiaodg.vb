@@ -20,10 +20,11 @@
         wyzerojizhun.Text = paranew(33) '零位判断基准电压
         leftfqlcoef.Text = paranew(21) '左反驱力标定系数
         rightfqlcoef.Text = paranew(22) '右反驱力标定系数
-        wycoef.Text = paranew(23)
-        jxlicoef.Text = paranew(24)
-        jxjxcoef.Text = paranew(25)
-        frmMain.Timlvbof.Enabled = False
+        wycoef.Text = paranew(23) '位移标定系数
+        jxlicoef.Text = paranew(24) '径向力标定系数
+        jxjxcoef.Text = paranew(25) '’径向间隙标定系数
+        '
+        ' frmMain.Timlvbof.Enabled = False
         jxcount = 0
         Timerbd.Enabled = True
     End Sub
@@ -57,6 +58,34 @@
         Textwy.Text = Format(tempwy, "0.0000")
         tempjxli = frmMain.DAQjxl.Read - jxliclear
         Textjxli.Text = Format(tempjxli, "0.0000")
+
+        '新传感器采用串口模块，直接读数字量
+        If tempjxli > 1 Then
+            tempjxli -= 1
+            Textjxli_N.Text = Format(Val(tempjxli * Val(paranew(24)) + 20), "0.00")
+        Else
+            Textjxli_N.Text = Format(Val(tempjxli * 26), "0.00")
+        End If
+
+        Dim temppos As Double
+        Dim temp_pos As Double
+
+        TextBox1.Text = ""
+        temppos = frmMain.readpos
+        If temppos < 0 Or temppos > 100 Then
+            temppos = 0
+        End If
+        Textjxjx.Text = temppos
+        temp_pos = Format(temppos - jxjxclear, "0.000")
+        TextBox1.Text = temp_pos
+
+        Textfqll_N.Text = Val(Format(tempfqll * Val(leftfqlcoef.Text), "0.00"))
+        Textfqlr_N.Text = Val(Format(tempfqlr * Val(rightfqlcoef.Text), "0.00"))
+        Textwy_mm.Text = Val(Format(tempwy * Val(wycoef.Text), "0.00"))
+        Textjxli_N.Text = Val(Format(tempjxli * Val(jxlicoef.Text), "0.00"))
+        Textjxjx.Text = Val(Format(temp_pos * Val(jxjxcoef.Text), "0.00"))
+
+
         'tempjxjx = frmMain.DAQjxjx.Read - jxjxclear
         'Textjxjx.Text = Format(tempjxjx, "0.0000")
         '原来间隙位移传感器，线性不好，分段标定数
@@ -83,19 +112,7 @@
         ''新换传感器，按线性对待
         'TextBox1.Text = Format(Val(tempjxjx * Val(paranew(25))), "0.000")
 
-        '新传感器采用串口模块，直接读数字量
-        If tempjxli > 1 Then
-            tempjxli -= 1
-            TextBox2.Text = Format(Val(tempjxli * Val(paranew(24)) + 20), "0.00")
-        Else
-            TextBox2.Text = Format(Val(tempjxli * 26), "0.00")
-        End If
 
-        Dim temppos As Double
-
-        TextBox1.Text = ""
-        temppos = frmMain.readpos
-        TextBox1.Text = Format(temppos - jxjxclear, "0.000")
 
     End Sub
 
@@ -115,7 +132,7 @@
         jxli.Text = Textjxli.Text
     End Sub
 
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         jxjx.Text = Textjxjx.Text
     End Sub
 
@@ -208,5 +225,14 @@
 
     Private Sub posrun_MouseUp(sender As Object, e As MouseEventArgs) Handles posrun.MouseUp
         d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+    End Sub
+
+    Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
+        Dim temppos As Double
+
+
+        temppos = frmMain.readpos
+
+        jxjx.Text = Format(temppos, "0.000")
     End Sub
 End Class

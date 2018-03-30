@@ -2271,6 +2271,9 @@ netlis:
     Public Function ComRec() As String
         Dim Rxstr As String
         Try
+            ComSnd("SR,00,002" + vbCrLf)
+            ' Return postemp
+            DelayS(0.01)
             Rxstr = SerialPort1.ReadLine
             'Application.DoEvents()
             glo_Rxstr = Rxstr
@@ -2301,9 +2304,7 @@ netlis:
         Dim Rxstr As String
         Dim postemp As Double
 
-        ComSnd("SR,00,002" + vbCrLf)
-        ' Return postemp
-        DelayS(0.01)
+
         Rxstr = glo_Rxstr
         postemp = Val(Mid(Rxstr, 11, 9))
 
