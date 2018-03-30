@@ -69,6 +69,11 @@ Public Class frmMain
     End Sub
 
     Private Sub ToolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton6.Click
+        s.Close()   ' socket 通信关闭
+        PortClose()  '串口关闭
+        ThreadCom.Abort() '\通信线程关闭
+        ThreadCom_displacement.Abort() '\通信线程关闭
+        ThreadAcq.Abort() '\通信线程关闭
         Me.Close()
     End Sub
 
@@ -105,10 +110,10 @@ Public Class frmMain
         ThreadCom.Abort() '\通信线程关闭
         ThreadCom_displacement.Abort() '\通信线程关闭
         ThreadAcq.Abort() '\通信线程关闭
-        OleDbConnpara.Close()  '关闭数据库
-        OleDbConnpara.Dispose() '释放资源
-        OleDbConnrecd.Close()
-        OleDbConnrecd.Dispose()
+        ' OleDbConnpara.Close()  '关闭数据库
+        ' OleDbConnpara.Dispose() '释放资源
+        ' OleDbConnrecd.Close()
+        ' OleDbConnrecd.Dispose()
         End
     End Sub
     Private Sub set_chart()
