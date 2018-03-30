@@ -22,60 +22,59 @@ Partial Class frmSensorbiaodg
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.Textfqll = New System.Windows.Forms.TextBox
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.leftfqlclr = New System.Windows.Forms.Button
-        Me.leftfqlcoef = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.leftfql = New System.Windows.Forms.TextBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.rightfql = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.rightfqlcoef = New System.Windows.Forms.TextBox
-        Me.rightfqlclr = New System.Windows.Forms.Button
-        Me.Button3 = New System.Windows.Forms.Button
-        Me.Textfqlr = New System.Windows.Forms.TextBox
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.wy = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.wycoef = New System.Windows.Forms.TextBox
-        Me.wyclr = New System.Windows.Forms.Button
-        Me.Button4 = New System.Windows.Forms.Button
-        Me.Textwy = New System.Windows.Forms.TextBox
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.jxjx = New System.Windows.Forms.TextBox
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.jxjxcoef = New System.Windows.Forms.TextBox
-        Me.jxjxclr = New System.Windows.Forms.Button
-        Me.Button7 = New System.Windows.Forms.Button
-        Me.Textjxjx = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.jxli = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.jxlicoef = New System.Windows.Forms.TextBox
-        Me.jxliclr = New System.Windows.Forms.Button
-        Me.Button5 = New System.Windows.Forms.Button
-        Me.Textjxli = New System.Windows.Forms.TextBox
-        Me.posrun = New System.Windows.Forms.Button
-        Me.negrun = New System.Windows.Forms.Button
-        Me.runstop = New System.Windows.Forms.Button
-        Me.speedxs = New System.Windows.Forms.TextBox
+        Me.components = New System.ComponentModel.Container()
+        Me.Textfqll = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.leftfqlclr = New System.Windows.Forms.Button()
+        Me.leftfqlcoef = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.leftfql = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.rightfql = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.rightfqlcoef = New System.Windows.Forms.TextBox()
+        Me.rightfqlclr = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Textfqlr = New System.Windows.Forms.TextBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.wy = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.wycoef = New System.Windows.Forms.TextBox()
+        Me.wyclr = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Textwy = New System.Windows.Forms.TextBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.jxjx = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.jxjxcoef = New System.Windows.Forms.TextBox()
+        Me.jxjxclr = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Textjxjx = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.jxli = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.jxlicoef = New System.Windows.Forms.TextBox()
+        Me.jxliclr = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Textjxli = New System.Windows.Forms.TextBox()
+        Me.posrun = New System.Windows.Forms.Button()
+        Me.negrun = New System.Windows.Forms.Button()
+        Me.speedxs = New System.Windows.Forms.TextBox()
         Me.Timerbd = New System.Windows.Forms.Timer(Me.components)
-        Me.wyzerojizhun = New System.Windows.Forms.TextBox
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.Button6 = New System.Windows.Forms.Button
+        Me.wyzerojizhun = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -350,6 +349,16 @@ Partial Class frmSensorbiaodg
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "径向间隙检测标定"
         '
+        'Button6
+        '
+        Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button6.Location = New System.Drawing.Point(434, 67)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(108, 58)
+        Me.Button6.TabIndex = 40
+        Me.Button6.Text = "读取当前间隙位移值"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'Label14
         '
         Me.Label14.AutoSize = True
@@ -523,7 +532,7 @@ Partial Class frmSensorbiaodg
         'posrun
         '
         Me.posrun.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.posrun.Location = New System.Drawing.Point(657, 316)
+        Me.posrun.Location = New System.Drawing.Point(797, 349)
         Me.posrun.Name = "posrun"
         Me.posrun.Size = New System.Drawing.Size(97, 39)
         Me.posrun.TabIndex = 33
@@ -533,22 +542,12 @@ Partial Class frmSensorbiaodg
         'negrun
         '
         Me.negrun.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.negrun.Location = New System.Drawing.Point(767, 316)
+        Me.negrun.Location = New System.Drawing.Point(623, 349)
         Me.negrun.Name = "negrun"
         Me.negrun.Size = New System.Drawing.Size(97, 39)
         Me.negrun.TabIndex = 34
         Me.negrun.Text = "左 移"
         Me.negrun.UseVisualStyleBackColor = True
-        '
-        'runstop
-        '
-        Me.runstop.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.runstop.Location = New System.Drawing.Point(702, 382)
-        Me.runstop.Name = "runstop"
-        Me.runstop.Size = New System.Drawing.Size(97, 39)
-        Me.runstop.TabIndex = 35
-        Me.runstop.Text = "停  止"
-        Me.runstop.UseVisualStyleBackColor = True
         '
         'speedxs
         '
@@ -599,16 +598,6 @@ Partial Class frmSensorbiaodg
         Me.Button2.Text = "保  存"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button6
-        '
-        Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button6.Location = New System.Drawing.Point(434, 67)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(108, 58)
-        Me.Button6.TabIndex = 40
-        Me.Button6.Text = "读取当前间隙位移值"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
         'frmSensorbiaodg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -619,7 +608,6 @@ Partial Class frmSensorbiaodg
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.wyzerojizhun)
         Me.Controls.Add(Me.speedxs)
-        Me.Controls.Add(Me.runstop)
         Me.Controls.Add(Me.negrun)
         Me.Controls.Add(Me.posrun)
         Me.Controls.Add(Me.GroupBox4)
@@ -682,7 +670,6 @@ Partial Class frmSensorbiaodg
     Friend WithEvents Textjxli As System.Windows.Forms.TextBox
     Friend WithEvents posrun As System.Windows.Forms.Button
     Friend WithEvents negrun As System.Windows.Forms.Button
-    Friend WithEvents runstop As System.Windows.Forms.Button
     Friend WithEvents speedxs As System.Windows.Forms.TextBox
     Friend WithEvents Timerbd As System.Windows.Forms.Timer
     Friend WithEvents wyzerojizhun As System.Windows.Forms.TextBox

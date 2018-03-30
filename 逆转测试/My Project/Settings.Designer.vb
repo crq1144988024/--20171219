@@ -75,6 +75,26 @@ Namespace My
                 Return CType(Me("datasaveConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CRQ-PC\WINCC;Initial Catalog=datasave;Integrated Security=True")>  _
+        Public ReadOnly Property datasaveConnectionString1() As String
+            Get
+                Return CType(Me("datasaveConnectionString1"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave;Integrated Security=True")>  _
+        Public ReadOnly Property datasaveConnectionString2() As String
+            Get
+                Return CType(Me("datasaveConnectionString2"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

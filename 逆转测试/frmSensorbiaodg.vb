@@ -12,14 +12,14 @@
 
     Private Sub frmSensorbiaodg_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Timerbd.Enabled = False
-        frmMain.ToolStripButton5.Visible = False
-        frmMain.Timlvbof.Enabled = True
+        'frmMain.ToolStripButton5.Visible = False’标定按钮
+        ' frmMain.Timlvbof.Enabled = True
     End Sub
 
     Private Sub frmSensorbiaodg_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        wyzerojizhun.Text = paranew(33)
-        leftfqlcoef.Text = paranew(21)
-        rightfqlcoef.Text = paranew(22)
+        wyzerojizhun.Text = paranew(33) '零位判断基准电压
+        leftfqlcoef.Text = paranew(21) '左反驱力标定系数
+        rightfqlcoef.Text = paranew(22) '右反驱力标定系数
         wycoef.Text = paranew(23)
         jxlicoef.Text = paranew(24)
         jxjxcoef.Text = paranew(25)
@@ -129,7 +129,7 @@
         Call move_start()
     End Sub
 
-    Private Sub runstop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles runstop.Click
+    Private Sub runstop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         d2210_decel_stop(m_UseAxis, 0.1) '停止运动
     End Sub
 
@@ -148,7 +148,7 @@
             GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
 
             Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara
-                              Where cust.工件类别 = frmMain.typesel.Items(i)).ToList()(0)
+                              Where cust.工件类别 = frmMain.typesel.Items(i).ToString()).ToList()(0)
             updateCust.左反驱力标定 = paranew(21)
             updateCust.右反驱力标定 = paranew(22)
             updateCust.位移标定 = paranew(33)
@@ -176,7 +176,7 @@
         '  MyOledbCommand.ExecuteNonQuery()
 
         CloseConn()
-        frmMain.ToolStripButton5.Visible = False
+        ' frmMain.ToolStripButton5.Visible = False
         Me.Close()
     End Sub
 
@@ -190,5 +190,23 @@
         TextBox1.Text = ""
         temppos = frmMain.readpos
         TextBox1.Text = Format(temppos, "0.000")
+    End Sub
+
+    Private Sub negrun_MouseDown(sender As Object, e As MouseEventArgs) Handles negrun.MouseDown
+        Dir1 = 0 '逆转
+        Call move_start()
+    End Sub
+
+    Private Sub negrun_MouseUp(sender As Object, e As MouseEventArgs) Handles negrun.MouseUp
+        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+    End Sub
+
+    Private Sub posrun_MouseDown(sender As Object, e As MouseEventArgs) Handles posrun.MouseDown
+        Dir1 = 1 '右移
+        Call move_start()
+    End Sub
+
+    Private Sub posrun_MouseUp(sender As Object, e As MouseEventArgs) Handles posrun.MouseUp
+        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
     End Sub
 End Class

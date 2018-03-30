@@ -183,7 +183,7 @@ Module mVariblesForUI
         Dim huituend1 As Long
 
         Public Sub initialize()
-            ReDim datasaverec(20)
+            ReDim datasaverec(20)  '当声明一个数组没有说明具体的维数或元素个数时，例如dim datasaverec() as string,这时如果想使用这个数组，则要使用redim重新定义这个数组，但这时注意要加上数组的维数或元素个数
         End Sub
     End Structure
 

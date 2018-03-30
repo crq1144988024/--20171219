@@ -33,8 +33,8 @@ Partial Class frmMain
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tooluser = New System.Windows.Forms.ToolStripStatusLabel()
         Me.toolstate = New System.Windows.Forms.ToolStripStatusLabel()
@@ -120,7 +120,7 @@ Partial Class frmMain
         '
         Me.ToolStrip1.BackColor = System.Drawing.SystemColors.MenuBar
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(50, 50)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton5, Me.ToolStripButton6})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton5})
         resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
         Me.ToolStrip1.Name = "ToolStrip1"
         '
@@ -170,18 +170,18 @@ Partial Class frmMain
         resources.ApplyResources(Me.ToolStripButton7, "ToolStripButton7")
         Me.ToolStripButton7.Name = "ToolStripButton7"
         '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        '
         'ToolStripButton6
         '
         Me.ToolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         resources.ApplyResources(Me.ToolStripButton6, "ToolStripButton6")
         Me.ToolStripButton6.Name = "ToolStripButton6"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
+        Me.ToolStripButton5.Name = "ToolStripButton5"
         '
         'StatusStrip1
         '
@@ -829,6 +829,7 @@ Partial Class frmMain
         'SerialPort1
         '
         Me.SerialPort1.BaudRate = 19200
+        Me.SerialPort1.PortName = "COM8"
         Me.SerialPort1.ReadBufferSize = 500
         '
         'frmMain

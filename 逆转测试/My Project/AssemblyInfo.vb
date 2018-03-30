@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' 查看程序集属性的值
 
 <Assembly: AssemblyTitle("逆转测试")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("微软中国")> 
-<Assembly: AssemblyProduct("逆转测试")> 
-<Assembly: AssemblyCopyright("Copyright © 微软中国 2015")> 
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("RCC")>
+<Assembly: AssemblyProduct("逆转测试")>
+<Assembly: AssemblyCopyright("Copyright © RCC 2015")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>

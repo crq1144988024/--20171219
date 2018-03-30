@@ -20,22 +20,27 @@ Public Class Handtest
     Private Sub Handtest_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         jxjxclear = frmMain.DAQjxjx.Read
         jxliclear = frmMain.DAQjxl.Read
+        Application.DoEvents()
+
         frmMain.Timhand.Enabled = True
+
+
+
+
         Timer1.Enabled = True
+        Application.DoEvents()
     End Sub
 
     Private Sub postiverun_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles postiverun.Click
-        Dir1 = 1 '右移
-        Call move_start()
+
     End Sub
 
     Private Sub negativerun_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles negativerun.Click
-        Dir1 = 0 '逆转
-        Call move_start()
+
     End Sub
 
-    Private Sub runstop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles runstop.Click
-        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+    Private Sub runstop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
     End Sub
 
     Private Sub Button1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Button1.MouseDown
@@ -135,6 +140,7 @@ Public Class Handtest
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+
         tempjxli = Abs(frmMain.DAQjxl.Read - jxliclear)
 
         If bytessend(7) = 1 Then
@@ -154,9 +160,12 @@ Public Class Handtest
         End If
 
         Dim temppos As Double
+        Application.DoEvents()
 
         TextBox1.Text = ""
         temppos = frmMain.readpos
+        'Application.DoEvents()
+        ' Return
         TextBox1.Text = Format(temppos - jxjxclear, "0.000")
 
     End Sub
@@ -180,5 +189,47 @@ Public Class Handtest
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
 
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+
+    End Sub
+
+    Private Sub Button15_MouseDown(sender As Object, e As MouseEventArgs) Handles Button15.MouseDown
+        bytessend(12) = 1
+    End Sub
+
+    Private Sub Button15_MouseUp(sender As Object, e As MouseEventArgs) Handles Button15.MouseUp
+        bytessend(12) = 0
+    End Sub
+
+    Private Sub Button16_MouseDown(sender As Object, e As MouseEventArgs) Handles Button16.MouseDown
+        bytessend(13) = 1
+    End Sub
+
+    Private Sub Button16_MouseUp(sender As Object, e As MouseEventArgs) Handles Button16.MouseUp
+        bytessend(13) = 0
+    End Sub
+
+    Private Sub postiverun_MouseDown(sender As Object, e As MouseEventArgs) Handles postiverun.MouseDown
+        Dir1 = 1 '右移
+        Call move_start()
+    End Sub
+
+    Private Sub postiverun_MouseUp(sender As Object, e As MouseEventArgs) Handles postiverun.MouseUp
+        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+    End Sub
+
+    Private Sub negativerun_MouseDown(sender As Object, e As MouseEventArgs) Handles negativerun.MouseDown
+        Dir1 = 0 '逆转
+        Call move_start()
+    End Sub
+
+    Private Sub negativerun_MouseUp(sender As Object, e As MouseEventArgs) Handles negativerun.MouseUp
+        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
     End Sub
 End Class

@@ -31,7 +31,11 @@ Public Class frmMain
     Private backcolorR As Integer
     Private backcolorG As Integer
     Private backcolorB As Integer
-    Dim t_com As New Thread(AddressOf WaitData) '通讯线程
+    Dim ThreadCom As New Thread(AddressOf WaitData) '通讯线程
+
+    Dim ThreadAcq As New Thread(AddressOf AcqAndJudge) '通讯线程
+    Dim ThreadCom_displacement As New Thread(AddressOf Waitrs232Data) 'com位移传感器线程
+    Private Delegate Sub voiddelegate()
     Dim s As Socket = Nothing
     Dim barcode(27) As Byte '读取条码
     Dim barcodestr As String '条码
@@ -44,6 +48,11 @@ Public Class frmMain
     Dim moveleft As Integer
     Dim zerored1 As Integer
     Dim zerored2 As Integer
+    Public Sub AcqAndJudge()
+        While True
+            Me.Invoke(New voiddelegate(AddressOf ShowAcqAndJudge))
+        End While
+    End Sub
 
     Private Sub 添加用户ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles 添加用户ToolStripMenuItem.Click
         AddUser.ShowDialog()
@@ -93,7 +102,9 @@ Public Class frmMain
         database.Close()
         s.Close()   ' socket 通信关闭
         PortClose()  '串口关闭
-        t_com.Abort() '\通信线程关闭
+        ThreadCom.Abort() '\通信线程关闭
+        ThreadCom_displacement.Abort() '\通信线程关闭
+        ThreadAcq.Abort() '\通信线程关闭
         OleDbConnpara.Close()  '关闭数据库
         OleDbConnpara.Dispose() '释放资源
         OleDbConnrecd.Close()
@@ -113,6 +124,12 @@ Public Class frmMain
         tcCurve.Axes.Bottom.Increment = 0.1
         tcCurve.Axes.Left.Title.Caption = "反驱力 (N)"
         tcCurve.Axes.Bottom.Title.Caption = "位移 (mm)"
+
+
+        tcCurve.Series(0).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(0).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(1).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        tcCurve.Series(1).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
     End Sub
     Private Sub set_initialize_datagridview_now()
         For i = 0 To 14
@@ -142,52 +159,37 @@ Public Class frmMain
             End If
         Next i
     End Sub
-    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim i As Integer
+    Private Sub set_initialize_DMC2210()
         Dim n As Short
-        Dim filenam As String
-        Dim str As String
-        Dim mysr As System.IO.StreamReader
-        Dim strtemp(1) As String
-
-        bytessend(22) = 0 '间隙抽检只有两个状态——1,不做；2,做
-        'OleDbConnpara.Open() '打开数据库
-        'OleDbConnrecd.Open() '打卡数据库
-        set_chart() '调整图表控件
-
-        Me.Visible = False  '隐藏窗体
-        Login.ShowDialog()   '加载登录对话框
-
-        set_initialize_datagridview_now() '设置datagridview now图表显示
-        'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留
-        mypiecedata.initialize()
-        mypiecedata.datasaverec(1) = Now.ToString("yyyy-MM-dd")
-        Call OpenConn() '打开数据库连接
-        database.DataGridView1.DataSource = GlobalVariable.Datatable_para
-        ''database.DataGridView1.DataSource = MyDataSet.Tables(0) '绑定数据集当中的第一个表
-        countpiecepara = database.DataGridView1.RowCount - 1   '工件类别个数（从0开始）=表中行数减一
-        For i = 0 To countpiecepara - 1
-            typesel.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)  '把数据库中（表格控件中的）数值填入combox产品型号控件中
-        Next i
-        Call CloseConn() '关闭数据库连接
-        count1 = 1
         n = d2210_board_init()  '初始化运动控制卡
         If (n <= 0) Or (n > 8) Then '正常的卡数在1- 8之间
             MsgBox("初始化DMC2210卡失败！", vbOKOnly, "出错")
         End If
         m_UseAxis = 0 '默认选择X轴
-        tcCurve.Series(0).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(0).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(1).XValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
-        tcCurve.Series(1).YValues.Order = Steema.TeeChart.Styles.ValueListOrder.None
+        d2210_set_pulse_outmode(0, 5)
+        d2210_counter_config(0, 1)
+    End Sub
+    Private Sub set_initialize_Combox_piecepara()
+        countpiecepara = database.DataGridView1.RowCount - 1   '工件类别个数（从0开始）=表中行数减一
+        For i = 0 To countpiecepara - 1
+            typesel.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)  '把数据库中（表格控件中的）数值填入combox产品型号控件中
+        Next i
+    End Sub
+    Private Sub set_initialize_Time()
+        mypiecedata.initialize()
+
+        mypiecedata.datasaverec(1) = Now.ToString("yyyy-MM-dd")
         Call CreateFile() '按日期建立当天数据存放用的文件夹
         tooltime.Text = Now  '显示当前时间
 
+    End Sub
+    Private Sub set_piecepara_now()
+        Dim i As Integer
 
-        clearwy = DAQwy.Read '位移零位
-        clearfqlleft = DAQfqlleft.Read '左反驱零位
-        clearfqlright = DAQfqlright.Read '右反驱零位
-
+        Dim filenam As String
+        Dim str As String
+        Dim mysr As System.IO.StreamReader
+        Dim strtemp(1) As String
 
         filenam = Apppath & "\Sys\piecetype.txt"
         mysr = New System.IO.StreamReader(filenam, True)
@@ -202,12 +204,52 @@ Public Class frmMain
         If Val(strtemp(1)) = 1 Then ComboBox1.SelectedIndex = 1
         typesel.Text = str                       '产品型号读取
         mysr.Close()                             '关闭读取数据流
+    End Sub
+
+
+    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+
+        bytessend(22) = 0 '间隙抽检只有两个状态——1,不做；2,做
+        'OleDbConnpara.Open() '打开数据库
+        'OleDbConnrecd.Open() '打卡数据库
+
+        set_chart() '调整图表控件
+        '  Me.Visible = False  '隐藏窗体
+        '  Login.ShowDialog()   '加载登录对话框
+
+        set_initialize_datagridview_now() '设置datagridview now图表显示
+        'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留
+
+        set_initialize_Time() '初始化时间及读取当前时间
+
+
+        Call OpenConn() '刷新型号及产品参数数据库
+        database.DataGridView1.DataSource = GlobalVariable.Datatable_para '绑定数据库
+        set_initialize_Combox_piecepara() '初始化Combox型号控件
+        ''database.DataGridView1.DataSource = MyDataSet.Tables(0) '绑定数据集当中的第一个表
+        ' Call CloseConn() '关闭数据库连接
+
+        set_initialize_DMC2210() '初始化板卡
+
+
+        count1 = 1 '全程计数
+        clearwy = DAQwy.Read '位移零位
+        clearfqlleft = DAQfqlleft.Read '左反驱零位
+        clearfqlright = DAQfqlright.Read '右反驱零位
+
+        set_piecepara_now() '设置当前产品型号
+
+        ' Return
         ComboBox1.Enabled = False                  '在线离线控件使能关闭
-        t_com.Start()                              '通信线程开始
+
+        ThreadCom.Start() '通信线程开始
+        ThreadAcq.Start() '通信线程开始
+        ThreadCom_displacement.Start() '通信线程开始
         PortOpen()                                  '打开串口
         FastLine1.Clear()                           'treechart1清除
         FastLine2.Clear()
-        Timlvbof.Enabled = True                         '定时器使能
+        ' Timlvbof.Enabled = True                         '定时器使能
     End Sub
 
     Private Sub countclr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles countclr.Click
@@ -403,6 +445,20 @@ Public Class frmMain
             MkDir(sPath + "\" + yy + "\" + mm + "\" + dd)
         End If
     End Sub
+    Public Sub Waitrs232Data()
+        While True
+            Try
+                ComRec()
+
+                'Me.Invoke(New fanqu(AddressOf DataProcess))
+
+            Catch ex As Exception
+
+            End Try
+        End While
+
+    End Sub
+
 
     '通信线程
     Public Sub WaitData()
@@ -410,7 +466,7 @@ Public Class frmMain
 
 
         s = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-        Dim localEndPoint As New IPEndPoint(IPAddress.Parse("127.0.0.1"), 3000)
+        Dim localEndPoint As New IPEndPoint(IPAddress.Parse("192.168.20.101"), 3000)
         s.Bind(localEndPoint)
         s.Listen(100)
         Dim ss As Socket
@@ -461,6 +517,102 @@ netlis:
         'End If
 
         '原滤波方法, 应该没有实际意义
+
+    End Sub
+
+    Private Sub Timtest_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timtest.Tick
+        On Error Resume Next
+
+
+    End Sub
+    ''' <summary>
+    ''' 复位所有数据
+    ''' </summary>
+    Public Sub reset()
+        If bytesrecd(44) = 1 Then '复位
+            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+            runflag = False
+            ' Timtest.Enabled = False
+            moveflag = -1
+            bytessend(697) = 0
+            bytessend(690) = 0
+            If cotjianxi >= jianxicheckinte Then cotjianxi = 0
+            zeromoveflag = 0
+            moveleft = 0
+            moveright = 0
+            backzero = 0
+            zerored1 = 0
+            zerored2 = 0
+            handstop = 1
+            lblresult.Text = "Result"
+            lblresult.BackColor = Color.Yellow
+            lblfqlleft.Text = "0"
+            lblfqlright.Text = "0"
+            lblwy.Text = "0"
+            For i = 0 To 15
+                okorngflag(i) = True
+                datatest.Rows(i).Cells(3).Value = ""
+                datatest.Rows(i).Cells(3).Style.BackColor = Color.White
+            Next
+            FastLine1.Clear()
+            FastLine2.Clear()
+            For i = 100 To 143
+                bytessend(i) = 0
+            Next
+            bytessend(22) = 0
+            moveflag = 0
+            countAflag = 0
+            count1 = 1
+            count2 = 0
+            countA = 0
+            count3 = 0
+            count4 = 0
+            ngflag = 0
+            maxwy2 = 0
+            maxwy3 = 0
+            maxwy4 = 0
+            eftcot1 = 0
+            eftcot2 = 0
+            ordersend2 = 0
+            ordersend3 = 0
+            ordersend5 = 0
+            ordersend6 = 0
+            ordersend8 = 0
+            ordersend9 = 0
+            ordersend11 = 0
+            ordersend12 = 0
+            ordersend13 = 0
+            ordersend14 = 0
+            ordersend15 = 0
+            ordersend16 = 0
+            ordersend17 = 0
+            ordersend18 = 0
+            ordersend19 = 0
+            ordersend20 = 0
+            ordersend21 = 0
+            ordersend22 = 0
+            ordersend23 = 0
+            ordersend24 = 0
+            ordersend25 = 0
+            sst1 = 0
+            sst2 = 0
+            sst3 = 0
+            sst4 = 0
+            sst5 = 0
+            sst6 = 0
+            countzero = 0
+            checkzeroflag = False
+            checkdownflag = False
+            checkupflag = False
+            begintest = False
+            movetestflag = 0
+            ' Timlvbof.Enabled = True
+            If fqjianxiexp = True Then fqjianxiexp = False
+        End If
+    End Sub
+
+
+    Public Sub monitor_left_right()
         lvboleft(10) = DAQfqlleft.Read - clearfqlleft
         svel = 0
         For i = 9 To 0 Step -1
@@ -483,7 +635,7 @@ netlis:
             If ordersend25 = 0 Then
                 d2210_decel_stop(m_UseAxis, 0) '停止运动
                 moveflag = -1
-                Timlvbof.Enabled = False
+                ' Timlvbof.Enabled = False
                 ordersend25 = 1
                 '报警信息应该只显示文字部分，具体电压值为临时监视用
                 MsgBox("反驱力超过最大换向力，请手动恢复机器于初始位置重新实验(" & clearfqlleft & "/" & vdatafqlleft & "/" & clearfqlright & "/" & vdatafqlright & ")", vbOKOnly, "反驱力超范围")
@@ -495,10 +647,77 @@ netlis:
             plccomsstate.BackColor = Color.Red
         End If
     End Sub
+    Public Sub monitor_emergency_stop()
+        If bytesrecd(45) = 1 Then '急停
+            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+            runflag = False
+            moveflag = -1
+            '  Timtest.Enabled = False
+        End If
+        If bytesrecd(40) = 1 Then '运转准备
 
-    Private Sub Timtest_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timtest.Tick
-        On Error Resume Next
+            If bytesrecd(42) = 1 Then '手动
+                typesel.Enabled = True
+                countclr.Enabled = True
+                ' Timtest.Enabled = False
+                ToolStripButton3.Enabled = True
+                ToolStripButton4.Enabled = True
+                ToolStripButton7.Enabled = True
+                ToolStripButton5.Enabled = True
+                runflag = False
+                moveflag = -1
+                If handstop = 1 Then ' 自动切换到手动时应停止动作
+                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+                    'DelayS(0.1)
+                    handstop = 0
+                End If
+            End If
+            If bytesrecd(43) = 1 Then '自动
+                typesel.Enabled = False
+                countclr.Enabled = False
+                ToolStripButton3.Enabled = False
+                ToolStripButton4.Enabled = False
+                ToolStripButton7.Enabled = False
+                ToolStripButton5.Enabled = False
+                If bytesrecd(39) = 1 Then '光栅报警
+                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+                    'DelayS(0.1)
+                    runflag = False
+                    moveflag = -1
+                End If
+            End If
+            If bytesrecd(46) = 0 Then
+                movetestflag = 0
+                bytessend(21) = 0
+                bytessend(19) = 0
+                bytessend(27) = 0
+                bytessend(28) = 0
+                bytessend(29) = 0
+                bytessend(22) = 0
+                ' Timtest.Enabled = False
+            End If
+            If bytesrecd(46) = 1 And movetestflag = 0 Then '此处若加扫码完成标识，必须复位信号并且复位界面显示信息，报警标识未用，现场确定哪些信号
+                ' Timlvbof.Enabled = True
+                ' Timtest.Enabled = True
+            End If
 
+        End If
+        If bytesrecd(41) = 1 Then
+            d2210_decel_stop(m_UseAxis, 0)
+            toolstate.Text = "系统处于待机状态"
+        End If
+    End Sub
+
+    Private Delegate Sub fanqu()
+
+    ''' <summary>
+    ''' 线程监控  传感器数据及流程步 以及相关安全动作
+    ''' </summary>
+    Public Sub ShowAcqAndJudge()
+        monitor_emergency_stop() '紧急情况监控
+        monitor_left_right() '左右监控以及  PLC链接状态监控
+
+        Return
         datasensorfqlleft = Val(Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '加上零点偏置
         datasensorfqlright = Val(Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")) + Val(paranew(26))
         vdatawy = DAQwy.Read - clearwy ''位移电压= 读取的值-位移零位
@@ -1009,13 +1228,25 @@ netlis:
                     okorngflag(i) = True
                 Next
                 If fqjianxiexp = True Then fqjianxiexp = False
-                Timtest.Enabled = False
+                'Timtest.Enabled = False
         End Select
         count1 += 1
+
+
+
+        ThreadCount = ThreadCount + 1
+        TestEnd = timeGetTime()
+        If (TestEnd - TestStart) >= 1000 Then
+            TestStart = TestEnd
+            'ToolStripStatusLabel9.Text = ThreadCount
+            ThreadCount = 0
+        End If
+
+        reset() '复位数据
+
+
+
     End Sub
-
-    Private Delegate Sub fanqu()
-
     '数据处理 另开线程一直监控
     Private Sub DataProcess()
         On Error Resume Next
@@ -1038,144 +1269,7 @@ netlis:
             tiaoma.Text = ""
         End If
 
-        If bytesrecd(44) = 1 Then '复位
-            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-            runflag = False
-            Timtest.Enabled = False
-            moveflag = -1
-            bytessend(697) = 0
-            bytessend(690) = 0
-            If cotjianxi >= jianxicheckinte Then cotjianxi = 0
-            zeromoveflag = 0
-            moveleft = 0
-            moveright = 0
-            backzero = 0
-            zerored1 = 0
-            zerored2 = 0
-            handstop = 1
-            lblresult.Text = "Result"
-            lblresult.BackColor = Color.Yellow
-            lblfqlleft.Text = "0"
-            lblfqlright.Text = "0"
-            lblwy.Text = "0"
-            For i = 0 To 15
-                okorngflag(i) = True
-                datatest.Rows(i).Cells(3).Value = ""
-                datatest.Rows(i).Cells(3).Style.BackColor = Color.White
-            Next
-            FastLine1.Clear()
-            FastLine2.Clear()
-            For i = 100 To 143
-                bytessend(i) = 0
-            Next
-            bytessend(22) = 0
-            moveflag = 0
-            countAflag = 0
-            count1 = 1
-            count2 = 0
-            countA = 0
-            count3 = 0
-            count4 = 0
-            ngflag = 0
-            maxwy2 = 0
-            maxwy3 = 0
-            maxwy4 = 0
-            eftcot1 = 0
-            eftcot2 = 0
-            ordersend2 = 0
-            ordersend3 = 0
-            ordersend5 = 0
-            ordersend6 = 0
-            ordersend8 = 0
-            ordersend9 = 0
-            ordersend11 = 0
-            ordersend12 = 0
-            ordersend13 = 0
-            ordersend14 = 0
-            ordersend15 = 0
-            ordersend16 = 0
-            ordersend17 = 0
-            ordersend18 = 0
-            ordersend19 = 0
-            ordersend20 = 0
-            ordersend21 = 0
-            ordersend22 = 0
-            ordersend23 = 0
-            ordersend24 = 0
-            ordersend25 = 0
-            sst1 = 0
-            sst2 = 0
-            sst3 = 0
-            sst4 = 0
-            sst5 = 0
-            sst6 = 0
-            countzero = 0
-            checkzeroflag = False
-            checkdownflag = False
-            checkupflag = False
-            begintest = False
-            movetestflag = 0
-            Timlvbof.Enabled = True
-            If fqjianxiexp = True Then fqjianxiexp = False
-        End If
-        If bytesrecd(45) = 1 Then '急停
-            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-            runflag = False
-            moveflag = -1
-            Timtest.Enabled = False
-        End If
-        If bytesrecd(40) = 1 Then '运转准备
 
-            If bytesrecd(42) = 1 Then '手动
-                typesel.Enabled = True
-                countclr.Enabled = True
-                Timtest.Enabled = False
-                ToolStripButton3.Enabled = True
-                ToolStripButton4.Enabled = True
-                ToolStripButton7.Enabled = True
-                ToolStripButton5.Enabled = True
-                runflag = False
-                moveflag = -1
-                If handstop = 1 Then ' 自动切换到手动时应停止动作
-                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-                    'DelayS(0.1)
-                    handstop = 0
-                End If
-            End If
-            If bytesrecd(43) = 1 Then '自动
-                typesel.Enabled = False
-                countclr.Enabled = False
-                ToolStripButton3.Enabled = False
-                ToolStripButton4.Enabled = False
-                ToolStripButton7.Enabled = False
-                ToolStripButton5.Enabled = False
-                If bytesrecd(39) = 1 Then '光栅报警
-                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-                    'DelayS(0.1)
-                    runflag = False
-                    moveflag = -1
-                End If
-            End If
-            If bytesrecd(46) = 0 Then
-                movetestflag = 0
-                bytessend(21) = 0
-                bytessend(19) = 0
-                bytessend(27) = 0
-                bytessend(28) = 0
-                bytessend(29) = 0
-                bytessend(22) = 0
-                Timtest.Enabled = False
-            End If
-            If bytesrecd(46) = 1 And movetestflag = 0 Then '此处若加扫码完成标识，必须复位信号并且复位界面显示信息，报警标识未用，现场确定哪些信号
-                Timlvbof.Enabled = True
-                Timtest.Enabled = True
-            End If
-
-        End If
-        If bytesrecd(41) = 1 Then
-            d2210_decel_stop(m_UseAxis, 0)
-            toolstate.Text = "系统处于待机状态"
-        End If
         tooltime.Text = Now
         Select Case bytesrecd(0) '状态显示
             Case 0
@@ -2047,7 +2141,7 @@ netlis:
                 d2210_set_profile(0, 50, 20000, 0.5, 0.1)
                 d2210_t_vmove(0, 0)
             End If
-            If bytesrecd(61) = 1 And zeromoveflag = 1 Then '归零位  61 电缸右限位(归零位)
+            If bytesrecd(61) = 1 And zeromoveflag = 1 Then '归零位  61 电缸左限位(归零位)
 
                 zeromoveflag = 2
                 d2210_decel_stop(m_UseAxis, 0) '停止运动
@@ -2179,17 +2273,28 @@ netlis:
         Try
             Rxstr = SerialPort1.ReadLine
             'Application.DoEvents()
+            glo_Rxstr = Rxstr
             Return Rxstr
 
         Catch ex As TimeoutException
             Rxstr = SerialPort1.ReadExisting
             'Application.DoEvents()
+            glo_Rxstr = "null"
             Return Rxstr
         End Try
     End Function
 
     Public Sub ComSnd(ByVal snd As String)
-        SerialPort1.Write(snd)
+        If SerialPort1.IsOpen Then
+
+            SerialPort1.Write(snd)
+        Else
+            SerialPort1.Open()
+            SerialPort1.Write(snd)
+            '  MsgBox("端口被关闭！")
+        End If
+
+
     End Sub
 
     Public Function readpos()
@@ -2197,9 +2302,12 @@ netlis:
         Dim postemp As Double
 
         ComSnd("SR,00,002" + vbCrLf)
+        ' Return postemp
         DelayS(0.01)
-        Rxstr = ComRec()
+        Rxstr = glo_Rxstr
         postemp = Val(Mid(Rxstr, 11, 9))
+
+
         Return postemp
     End Function
 

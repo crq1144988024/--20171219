@@ -29,7 +29,6 @@ Partial Class Handtest
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.runstop = New System.Windows.Forms.Button()
         Me.negativerun = New System.Windows.Forms.Button()
         Me.postiverun = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
@@ -52,58 +51,61 @@ Partial Class Handtest
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Button15 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button5
         '
         Me.Button5.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button5.Location = New System.Drawing.Point(350, 134)
+        Me.Button5.Location = New System.Drawing.Point(495, 119)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(111, 54)
+        Me.Button5.Size = New System.Drawing.Size(180, 55)
         Me.Button5.TabIndex = 14
-        Me.Button5.Text = "施力气缸  上升"
+        Me.Button5.Text = "加载气缸 上升"
         Me.Button5.UseVisualStyleBackColor = True
         '
         'Button6
         '
         Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button6.Location = New System.Drawing.Point(32, 134)
+        Me.Button6.Location = New System.Drawing.Point(20, 119)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(111, 54)
+        Me.Button6.Size = New System.Drawing.Size(180, 55)
         Me.Button6.TabIndex = 13
-        Me.Button6.Text = "  传感器    下降"
+        Me.Button6.Text = "间隙检测压下气缸下降"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button3.Location = New System.Drawing.Point(32, 233)
+        Me.Button3.Location = New System.Drawing.Point(20, 218)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(111, 54)
+        Me.Button3.Size = New System.Drawing.Size(180, 55)
         Me.Button3.TabIndex = 12
-        Me.Button3.Text = "平衡中位缸上升"
+        Me.Button3.Text = "加载下限位导杆缸上升"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4
         '
         Me.Button4.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button4.Location = New System.Drawing.Point(350, 31)
+        Me.Button4.Location = New System.Drawing.Point(495, 19)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(111, 54)
+        Me.Button4.Size = New System.Drawing.Size(180, 55)
         Me.Button4.TabIndex = 11
-        Me.Button4.Text = "检测机构  前进"
+        Me.Button4.Text = "间隙检测横移气缸前进"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button2.Location = New System.Drawing.Point(176, 31)
+        Me.Button2.Location = New System.Drawing.Point(257, 20)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(111, 54)
+        Me.Button2.Size = New System.Drawing.Size(180, 55)
         Me.Button2.TabIndex = 10
-        Me.Button2.Text = "壳体松开"
+        Me.Button2.Text = "壳体夹紧气缸松开"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
@@ -111,25 +113,15 @@ Partial Class Handtest
         Me.Button1.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Button1.Location = New System.Drawing.Point(32, 31)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(111, 54)
+        Me.Button1.Size = New System.Drawing.Size(180, 55)
         Me.Button1.TabIndex = 9
-        Me.Button1.Text = "壳体夹紧"
+        Me.Button1.Text = "壳体夹紧气缸夹紧"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'runstop
-        '
-        Me.runstop.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.runstop.Location = New System.Drawing.Point(338, 55)
-        Me.runstop.Name = "runstop"
-        Me.runstop.Size = New System.Drawing.Size(111, 54)
-        Me.runstop.TabIndex = 17
-        Me.runstop.Text = "停  止"
-        Me.runstop.UseVisualStyleBackColor = True
         '
         'negativerun
         '
         Me.negativerun.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.negativerun.Location = New System.Drawing.Point(211, 55)
+        Me.negativerun.Location = New System.Drawing.Point(48, 71)
         Me.negativerun.Name = "negativerun"
         Me.negativerun.Size = New System.Drawing.Size(111, 54)
         Me.negativerun.TabIndex = 16
@@ -139,7 +131,7 @@ Partial Class Handtest
         'postiverun
         '
         Me.postiverun.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.postiverun.Location = New System.Drawing.Point(64, 55)
+        Me.postiverun.Location = New System.Drawing.Point(261, 74)
         Me.postiverun.Name = "postiverun"
         Me.postiverun.Size = New System.Drawing.Size(111, 54)
         Me.postiverun.TabIndex = 15
@@ -149,61 +141,61 @@ Partial Class Handtest
         'Button7
         '
         Me.Button7.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button7.Location = New System.Drawing.Point(350, 233)
+        Me.Button7.Location = New System.Drawing.Point(495, 218)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(111, 54)
+        Me.Button7.Size = New System.Drawing.Size(180, 55)
         Me.Button7.TabIndex = 18
-        Me.Button7.Text = "施力机构  前进"
+        Me.Button7.Text = "加载横移气缸  前进"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
         Me.Button8.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button8.Location = New System.Drawing.Point(494, 233)
+        Me.Button8.Location = New System.Drawing.Point(719, 219)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(111, 54)
+        Me.Button8.Size = New System.Drawing.Size(180, 55)
         Me.Button8.TabIndex = 23
-        Me.Button8.Text = "施力机构  后退"
+        Me.Button8.Text = "加载横移气缸  后退"
         Me.Button8.UseVisualStyleBackColor = True
         '
         'Button9
         '
         Me.Button9.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button9.Location = New System.Drawing.Point(494, 134)
+        Me.Button9.Location = New System.Drawing.Point(719, 120)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(111, 54)
+        Me.Button9.Size = New System.Drawing.Size(180, 55)
         Me.Button9.TabIndex = 22
-        Me.Button9.Text = "施力气缸  下降"
+        Me.Button9.Text = "加载气缸  下降"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'Button10
         '
         Me.Button10.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button10.Location = New System.Drawing.Point(176, 134)
+        Me.Button10.Location = New System.Drawing.Point(257, 119)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(111, 54)
+        Me.Button10.Size = New System.Drawing.Size(180, 55)
         Me.Button10.TabIndex = 21
-        Me.Button10.Text = "  传感器    上升"
+        Me.Button10.Text = "间隙检测压下气缸上升"
         Me.Button10.UseVisualStyleBackColor = True
         '
         'Button11
         '
         Me.Button11.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button11.Location = New System.Drawing.Point(176, 233)
+        Me.Button11.Location = New System.Drawing.Point(257, 218)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(111, 54)
+        Me.Button11.Size = New System.Drawing.Size(180, 55)
         Me.Button11.TabIndex = 20
-        Me.Button11.Text = "平衡中位缸下降"
+        Me.Button11.Text = "加载下限位导杆缸下降"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'Button12
         '
         Me.Button12.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button12.Location = New System.Drawing.Point(494, 31)
+        Me.Button12.Location = New System.Drawing.Point(719, 20)
         Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(111, 54)
+        Me.Button12.Size = New System.Drawing.Size(180, 55)
         Me.Button12.TabIndex = 19
-        Me.Button12.Text = "检测机构  后退"
+        Me.Button12.Text = "间隙检测横移气缸后退"
         Me.Button12.UseVisualStyleBackColor = True
         '
         'Label1
@@ -273,8 +265,7 @@ Partial Class Handtest
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.postiverun)
         Me.GroupBox1.Controls.Add(Me.negativerun)
-        Me.GroupBox1.Controls.Add(Me.runstop)
-        Me.GroupBox1.Location = New System.Drawing.Point(679, 485)
+        Me.GroupBox1.Location = New System.Drawing.Point(479, 485)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(476, 224)
         Me.GroupBox1.TabIndex = 47
@@ -283,7 +274,7 @@ Partial Class Handtest
         '
         'TextBox_motor_target
         '
-        Me.TextBox_motor_target.Location = New System.Drawing.Point(215, 130)
+        Me.TextBox_motor_target.Location = New System.Drawing.Point(199, 160)
         Me.TextBox_motor_target.Name = "TextBox_motor_target"
         Me.TextBox_motor_target.Size = New System.Drawing.Size(173, 21)
         Me.TextBox_motor_target.TabIndex = 20
@@ -299,7 +290,7 @@ Partial Class Handtest
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("宋体", 12.0!)
-        Me.Label8.Location = New System.Drawing.Point(77, 130)
+        Me.Label8.Location = New System.Drawing.Point(47, 160)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(112, 16)
         Me.Label8.TabIndex = 18
@@ -332,31 +323,53 @@ Partial Class Handtest
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Button16)
+        Me.GroupBox3.Controls.Add(Me.Button8)
+        Me.GroupBox3.Controls.Add(Me.Button15)
+        Me.GroupBox3.Controls.Add(Me.Button7)
+        Me.GroupBox3.Controls.Add(Me.Button2)
+        Me.GroupBox3.Controls.Add(Me.Button4)
+        Me.GroupBox3.Controls.Add(Me.Button12)
+        Me.GroupBox3.Controls.Add(Me.Button9)
+        Me.GroupBox3.Controls.Add(Me.Button5)
+        Me.GroupBox3.Controls.Add(Me.Button11)
+        Me.GroupBox3.Controls.Add(Me.Button10)
+        Me.GroupBox3.Controls.Add(Me.Button3)
+        Me.GroupBox3.Controls.Add(Me.Button6)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1124, 450)
+        Me.GroupBox3.Size = New System.Drawing.Size(943, 450)
         Me.GroupBox3.TabIndex = 49
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "气缸手动"
+        '
+        'Button16
+        '
+        Me.Button16.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button16.Location = New System.Drawing.Point(257, 337)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(180, 55)
+        Me.Button16.TabIndex = 23
+        Me.Button16.Text = "壳体夹紧气缸二 松开"
+        Me.Button16.UseVisualStyleBackColor = True
+        '
+        'Button15
+        '
+        Me.Button15.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button15.Location = New System.Drawing.Point(20, 337)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(180, 55)
+        Me.Button15.TabIndex = 18
+        Me.Button15.Text = "壳体夹紧气缸二  夹紧"
+        Me.Button15.UseVisualStyleBackColor = True
         '
         'Handtest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1167, 721)
+        Me.ClientSize = New System.Drawing.Size(967, 721)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button11)
-        Me.Controls.Add(Me.Button12)
-        Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox3)
         Me.Name = "Handtest"
@@ -366,6 +379,7 @@ Partial Class Handtest
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -375,7 +389,6 @@ Partial Class Handtest
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents runstop As System.Windows.Forms.Button
     Friend WithEvents negativerun As System.Windows.Forms.Button
     Friend WithEvents postiverun As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
@@ -398,4 +411,6 @@ Partial Class Handtest
     Friend WithEvents Label7 As Label
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Button16 As Button
+    Friend WithEvents Button15 As Button
 End Class
