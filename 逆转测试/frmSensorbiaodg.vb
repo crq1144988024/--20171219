@@ -230,7 +230,9 @@
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
         Dim temppos As Double
 
-
+        If temppos < 0 Or temppos > 100 Then
+            temppos = 0
+        End If
         temppos = frmMain.readpos
 
         jxjx.Text = Format(temppos, "0.000")

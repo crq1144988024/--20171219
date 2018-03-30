@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="datasave" Class="DataClasses_pieceparaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SQL\datasave.mdf;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasaveConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasaveConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.piecepara" Member="piecepara">
     <Type Name="piecepara">
-      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="反驱力最大值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="反驱力最大值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="反驱力最小值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
