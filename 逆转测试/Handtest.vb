@@ -18,6 +18,7 @@ Public Class Handtest
     End Sub
 
     Private Sub Handtest_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         jxjxclear = frmMain.DAQjxjx.Read
         jxliclear = frmMain.DAQjxl.Read
         Application.DoEvents()

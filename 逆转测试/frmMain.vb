@@ -31,6 +31,23 @@ Public Class frmMain
     Private backcolorR As Integer
     Private backcolorG As Integer
     Private backcolorB As Integer
+    ''' <summary>
+    ''' 间隙测试使能
+    ''' </summary>
+    Public TestTickenable As Boolean
+    ''' <summary>
+    ''' '滤波处理使能
+    ''' </summary>
+    Public TimlvbofTickenable As Boolean
+    ''' <summary>
+    '''  '手动触发使能
+    ''' </summary>
+    Public TimHandTickenable As Boolean
+    ''' <summary>
+    ''' '回零使能
+    ''' </summary>
+    Public TimgohomezeroTickeanble As Boolean
+
     Dim ThreadCom As New Thread(AddressOf WaitData) '通讯线程
 
     Dim ThreadAcq As New Thread(AddressOf AcqAndJudge) '通讯线程
@@ -254,6 +271,7 @@ Public Class frmMain
         PortOpen()                                  '打开串口
         FastLine1.Clear()                           'treechart1清除
         FastLine2.Clear()
+        TimlvbofTickenable = True
         ' Timlvbof.Enabled = True                         '定时器使能
     End Sub
 
@@ -637,7 +655,7 @@ netlis:
         sensorfqlleft = Val(Format(lvboleft(10) * Val(paranew(21)), "0.00"))  '与标定数据相乘
         sensorfqlright = Val(Format(lvboright(10) * Val(paranew(22)), "0.00"))
         If Abs(sensorfqlleft) >= Val(paranew(29)) Or Abs(sensorfqlright) >= Val(paranew(29)) Then '大于最大换向力停止动作
-            If ordersend25 = 0 Then
+            If ordersend25 = 0 Then  '保证停止函数执行一次
                 d2210_decel_stop(m_UseAxis, 0) '停止运动
                 moveflag = -1
                 ' Timlvbof.Enabled = False
@@ -646,7 +664,7 @@ netlis:
                 MsgBox("反驱力超过最大换向力，请手动恢复机器于初始位置重新实验(" & clearfqlleft & "/" & vdatafqlleft & "/" & clearfqlright & "/" & vdatafqlright & ")", vbOKOnly, "反驱力超范围")
             End If
         End If
-        If plccoms = 1 Then
+        If plccoms = 1 Then '通讯状态
             plccomsstate.BackColor = Color.Green
         Else
             plccomsstate.BackColor = Color.Red
@@ -659,7 +677,7 @@ netlis:
             moveflag = -1
             '  Timtest.Enabled = False
         End If
-        If bytesrecd(40) = 1 Then '运转准备
+        If bytesrecd(40) = 1 Then '运转准备 控制开
 
             If bytesrecd(42) = 1 Then '手动
                 typesel.Enabled = True
@@ -669,7 +687,7 @@ netlis:
                 ToolStripButton4.Enabled = True
                 ToolStripButton7.Enabled = True
                 ToolStripButton5.Enabled = True
-                runflag = False
+                runflag = False '在手动条件下  禁止显示数值传感器
                 moveflag = -1
                 If handstop = 1 Then ' 自动切换到手动时应停止动作
                     d2210_decel_stop(m_UseAxis, 0.1) '停止运动
@@ -693,12 +711,13 @@ netlis:
             End If
             If bytesrecd(46) = 0 Then
                 movetestflag = 0
-                bytessend(21) = 0
-                bytessend(19) = 0
-                bytessend(27) = 0
-                bytessend(28) = 0
-                bytessend(29) = 0
-                bytessend(22) = 0
+                bytessend(19) = 0 '实验结果 1合格 2不合格
+                bytessend(21) = 0 '反驱结束
+                bytessend(22) = 0 '测点使能
+                bytessend(27) = 0 '上拉间隙结束
+                bytessend(28) = 0 '下拉间隙结束
+                bytessend(29) = 0 '0点采集完毕
+
                 ' Timtest.Enabled = False
             End If
             If bytesrecd(46) = 1 And movetestflag = 0 Then '此处若加扫码完成标识，必须复位信号并且复位界面显示信息，报警标识未用，现场确定哪些信号
@@ -720,395 +739,402 @@ netlis:
     ''' </summary>
     Public Sub ShowAcqAndJudge()
         monitor_emergency_stop() '紧急情况监控
-        monitor_left_right() '左右监控以及  PLC链接状态监控
-
-        Return
-        datasensorfqlleft = Val(Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '加上零点偏置
-        datasensorfqlright = Val(Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")) + Val(paranew(26))
-        vdatawy = DAQwy.Read - clearwy ''位移电压= 读取的值-位移零位
-        If vdatawy >= 0 Then
-            If vdatawy >= 0.2859 Then '位移分段，10mm为分段界限
-                vdatawy -= 0.2859
-                datasensorwy = Format(Val(vdatawy) * Val(paranew(23)) + 10, "0.00")  'paranew(23)位移标定
-            Else
-                datasensorwy = Format(Val(vdatawy) * 34.977, "0.00")
-            End If
-        Else
-            If vdatawy <= -0.2859 Then
-                vdatawy += 0.2859
-                datasensorwy = Format(Val(vdatawy) * Val(paranew(23)) - 10, "0.00")
-            Else
-                datasensorwy = Format(Val(vdatawy) * 34.977, "0.00")
-            End If
+        If TimlvbofTickenable Then
+            monitor_left_right() '左右监控以及  PLC链接状态监控
         End If
 
-
-
-        If begintest = False Then '自动测试开始——保证只调用一次主测试函数及状态设置
-            bytessend(697) = 1 '自动实验后光栅使能
-            bytessend(690) = 0
-            If paranew(47) = 1 Then '中位记号笔使能
-                bytessend(680) = 1
+        If TestTickenable Then
+            datasensorfqlleft = Val(Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '加上零点偏置
+            datasensorfqlright = Val(Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")) + Val(paranew(26))
+            vdatawy = DAQwy.Read - clearwy ''位移电压= 读取的值-位移零位
+            If vdatawy >= 0 Then
+                If vdatawy >= 0.2859 Then '位移分段，10mm为分段界限
+                    vdatawy -= 0.2859
+                    datasensorwy = Format(Val(vdatawy) * Val(paranew(23)) + 10, "0.00")  'paranew(23)位移标定
+                Else
+                    datasensorwy = Format(Val(vdatawy) * 34.977, "0.00")
+                End If
             Else
-                bytessend(680) = 0
+                If vdatawy <= -0.2859 Then
+                    vdatawy += 0.2859
+                    datasensorwy = Format(Val(vdatawy) * Val(paranew(23)) - 10, "0.00")
+                Else
+                    datasensorwy = Format(Val(vdatawy) * 34.977, "0.00")
+                End If
             End If
-            handstop = 1  '手动动作
-            lblresult.Text = "Result"
-            lblresult.BackColor = Color.Yellow
-            lblfqlleft.Text = "0"
-            lblfqlright.Text = "0"
-            lblwy.Text = "0"
-            For i = 0 To 15
-                okorngflag(i) = True '各测试项判断结果以及超时判断
-                datatest.Rows(i).Cells(3).Value = ""
-                datatest.Rows(i).Cells(3).Style.BackColor = Color.White
-            Next
-            FastLine1.Clear()
-            FastLine2.Clear()
-            For i = 100 To 143
-                bytessend(i) = 0
-            Next
-            bytessend(22) = 0 '实验结果(合格1 不合格2)
-            cotjianxi += 1    '间隙检测计数，测试后复位重新计数
-            TStart = GetTimeCount() / 1000
-            moveflag = 1    '正反转控制
-            runflag = True  '自动动作标识
-            begintest = True  '自动测试调用结束置位——保证只调用一次主测试函数及状态设置
-        End If
-        If runflag = True Then
-            Ttotal = GetTimeCount() / 1000 - TStart  '一次实验总时间
-            If Ttotal > Val(paranew(41)) Then  '超时设置
-                bytessend(690) = 1    '设备超时
 
-            Else
-                bytessend(690) = 0    '设备未超时
-            End If
-            lbltime.Text = Format(Ttotal, "0.00") '显示时间
-            lblwy.Text = datasensorwy           '显示位移
-            lblfqlleft.Text = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '左反驱力调整
-            lblfqlright.Text = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
-            mypiecedata.mcountdata = count1 '全程计数
-            datawy(count1) = datasensorwy '数组采集数据  一共5000组
-        End If
-        Select Case moveflag
 
-            Case 1 '中位向右
-                Dir1 = 1 '转逆转方向
-                Call move_start()
-                ordersend25 = 0
-                moveflag = 2 '步骤
-            Case 2 '右第一次到达
-                datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
-                If datasensor(count1) <= (-1) * Val(paranew(19)) Then
-                    d2210_decel_stop(m_UseAxis, 0) '停止运动
-                    If ordersend12 = 0 Then
-                        count2 = count1 - 2
-                        maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
-                        ordersend18 = 1
-                        ordersend12 = 1
-                    End If
+
+            If begintest = False Then '自动测试开始——保证只调用一次主测试函数及状态设置
+
+                bytessend(697) = 1 '自动实验后光栅使能
+                bytessend(690) = 0
+                If paranew(47) = 1 Then '中位记号笔使能
+                    bytessend(680) = 1
+                Else
+                    bytessend(680) = 0
                 End If
-                If ordersend18 = 1 Then
-                    If sst1 = 2 Then
-                        moveflag = 3
-                    End If
-                    sst1 += 1   '循环两次加一
-                End If
-            Case 3 '右向左
-                If ordersend2 = 0 Then '只执行一次就完事
-                    Dir1 = 0
-                    Call move_start()
-                    ordersend2 = 1
-                End If
-                datasensor(count1) = Val(lblfqlright.Text) '31为反驱力调整系数
-                If Val(lblfqlright.Text) >= 30 Then
-                    If ordersend3 = 0 Then
-                        eftcot1 = count1 + 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
-                        ordersend3 = 1
-                    End If
-                    If Val(lblfqlright.Text) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
-                    'If Val(lblfqlright.Text) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
-                    If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
-                        If ordersend13 = 0 Then
-                            count3 = count1 - 2
-                            maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
-                            ordersend13 = 1
-                            ordersend17 = 1
-                        End If
-                        zerowybc = maxwy2 - (maxwy2 - maxwy3) / 2 '回中位移  右是+  左是-
-                    End If
-                End If
-                If ordersend17 = 1 Then
-                    If sst2 = 2 Then
-                        moveflag = 4
-                    End If
-                    sst2 += 1
-                End If
-            Case 4 '左第一次到达后换向，即左向右动
-                If ordersend5 = 0 Then
-                    Dir1 = 1
-                    Call move_start()
-                    ordersend5 = 1
-                End If
-                datasensor(count1) = -Val(lblfqlleft.Text)
-                If Val(lblfqlleft.Text) >= 30 Then
-                    If ordersend6 = 0 Then
-                        eftcot2 = count1 + 3 '？？？？？？？？？？？？？？？？？？？？？？
-                        ordersend6 = 1
-                    End If
-                    If Val(lblfqlleft.Text) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
-                    'If Val(lblfqlleft.Text) < 198 Then FastLine2.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
-                    If datasensor(count1) <= (-1) * Val(paranew(19)) Then
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
-                        If ordersend14 = 0 Then
-                            count4 = count1 - 2
-                            maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
-                            ordersend19 = 1
-                            ordersend14 = 1
-                        End If
-                    End If
-                End If
-                If ordersend19 = 1 Then
-                    If sst3 = 2 Then
-                        moveflag = 13
-                    End If
-                    sst3 += 1
-                End If
-            Case 13 '计算有效位移对应的采样点
-                For i = eftcot1 To count3
-                    If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then '百分比，所以要除以100，转换为小数  paranew(30)有效测试位移百分比
-                        eftcot1 = i
-                        Exit For
-                    End If
+                handstop = 1  '手动动作
+                lblresult.Text = "Result"
+                lblresult.BackColor = Color.Yellow
+                lblfqlleft.Text = "0"
+                lblfqlright.Text = "0"
+                lblwy.Text = "0"
+                For i = 0 To 15
+                    okorngflag(i) = True '各测试项判断结果以及超时判断
+                    datatest.Rows(i).Cells(3).Value = ""
+                    datatest.Rows(i).Cells(3).Style.BackColor = Color.White
                 Next
-                For i = count3 To eftcot1 Step -1
-                    If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
-                        count3 = i
-                        Exit For
-                    End If
-                Next
-                For i = eftcot2 To count4
-                    If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
-                        eftcot2 = i
-                        Exit For
-                    End If
-                Next
-                For i = count4 To eftcot2 Step -1
-                    If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then
-                        count4 = i
-                        Exit For
-                    End If
-                Next
-                mypiecedata.huitustart = eftcot1
-                mypiecedata.huituend1 = count3
-                mypiecedata.huitustart1 = eftcot2
-                mypiecedata.huituend = count4
-                Call avgfqlR() '右反驱力平均值
-                Call avgfqlL() '左反驱力平均值
-                pdavgfqlL = Format(pdavgfqlL, "0.00")
-                pdavgfqlR = Format(pdavgfqlR, "0.00")
-                '重新画曲线
                 FastLine1.Clear()
                 FastLine2.Clear()
-                If paranew(45) = 1 Then '1-滤波处理；0-不处理
-                    lvbortemp1 = pdavgfqlR - (pdavgfqlR - (Val(paranew(4)) - Val(paranew(44)))) * (100 - Val(paranew(43))) / 100  '4反驱力最小值下限   44阈值补偿  43图像滤波百分比
-                    lvbortemp2 = pdavgfqlR + ((Val(paranew(1)) + Val(paranew(44))) - pdavgfqlR) * (100 - Val(paranew(43))) / 100
-                    For i = mypiecedata.huitustart To mypiecedata.huituend1
-                        If datasensor(i) >= (paranew(4) - paranew(44)) And datasensor(i) <= (paranew(1) + paranew(44)) Then
-                            If datasensor(i) >= lvbortemp1 And datasensor(i) <= lvbortemp2 Then
+                For i = 100 To 143
+                    bytessend(i) = 0
+                Next
+                bytessend(22) = 0 '实验结果(合格1 不合格2)
+                cotjianxi += 1    '间隙检测计数，测试后复位重新计数
+                TStart = GetTimeCount() / 1000
+                moveflag = 1    '正反转控制
+                runflag = True  '自动动作标识
+                begintest = True  '自动测试调用结束置位——保证只调用一次主测试函数及状态设置
 
-                            Else
-                                datasensor(i) = (datasensor(i) + (Val(paranew(46) - 1)) * pdavgfqlR) / Val(paranew(46)) 'paranew(46)  量化点数
-                            End If
-                        End If
-                        FastLine1.Add(datawy(i) - zerowybc, datasensor(i))
-                    Next
+            End If
+            If runflag = True Then
+                lblwy.Text = datasensorwy           '显示位移
 
-                    lvboltemp1 = pdavgfqlL - (pdavgfqlL + (Val(paranew(1)) + Val(paranew(44)))) * (100 - Val(paranew(43))) / 100
-                    lvboltemp2 = pdavgfqlL + (Abs(pdavgfqlL) - (Val(paranew(4)) - Val(paranew(44)))) * (100 - Val(paranew(43))) / 100
-                    For i = mypiecedata.huitustart1 To mypiecedata.huituend
-                        If datasensor(i) <= -(paranew(4) - paranew(44)) And datasensor(i) >= -(paranew(1) + paranew(44)) Then
-                            If datasensor(i) >= lvboltemp1 And datasensor(i) <= lvboltemp2 Then
+                ' Ttotal = GetTimeCount() / 1000 - TStart  '一次实验总时间
+                If Ttotal > Val(paranew(41)) Then  '超时设置
+                    bytessend(690) = 1    '设备超时
 
-                            Else
-                                datasensor(i) = (datasensor(i) + (Val(paranew(46) - 1)) * pdavgfqlL) / Val(paranew(46))
-                            End If
-                        End If
-                        FastLine2.Add(datawy(i) - zerowybc, datasensor(i))
-                    Next
-                Else        ' 不进行滤波处理
-                    For i = mypiecedata.huitustart To mypiecedata.huituend1
-                        FastLine1.Add(datawy(i) - zerowybc, datasensor(i))
-                    Next
-                    For i = mypiecedata.huitustart1 To mypiecedata.huituend
-                        FastLine2.Add(datawy(i) - zerowybc, datasensor(i))
-                    Next
-                End If
-                moveflag = 5
-            Case 5 '右第二次到达，需要判断是否间隙抽检。出于安全，先向左运动一点，保证左侧反驱力等于零且齿条还在可以检测的位置，再判断是否满足抽检条件
-                If ordersend8 = 0 Then
-                    Dir1 = 0
-                    Call move_start2()
-                    ordersend8 = 1
-                End If
-                If Val(lblfqlleft.Text) <= 30 And ordersend9 = 0 Then
-                    d2210_decel_stop(m_UseAxis, 0) '停止运动
-                    If sst4 = 2 Then
-                        ordersend9 = 1
-                    End If
-                    sst4 += 1
-                End If
-                If ordersend9 = 1 Then
-                    Call OkOrNg() '各项检测调用
-                    For i = 0 To 11
-                        If okorngflag(i) = False Then '各测试项判断结果以及超时判断
-                            flagok = False   'OK/NG判断标识
-                            Exit For
-                        Else
-                            flagok = True
-                        End If
-                    Next
-                    jianxilizero = DAQjxl.Read   '起始间隙力电压——零位
-                    moveflag = 6
-                End If
-            Case 6 '判断是否满足抽检条件
-                If cotjianxi = jianxicheckinte And flagok = True Then '满足抽检
-                    bytessend(22) = 2     '测点使能（1不做  2做）
-                    If bytesrecd(49) = 1 Then '传感器0点
-
-                        If checkzeroflag = False Then '原位，保证值只采集一次
-                            jianxizero = readpos()
-                            checkzeroflag = True
-                        End If
-                        bytessend(29) = 1 '0点采集完毕
-                    End If
-                    If bytesrecd(48) = 1 Then
-                        If checkdownflag = False Then '下拉
-                            vdatajingxi = readpos()  '串口数据
-                            pdjingxjianxidown = jianxizero - vdatajingxi '间隙后的差值
-
-                            vdatajingxli = Abs(DAQjxl.Read - jianxilizero)
-                            If vdatajingxli > 1 Then
-                                vdatajingxli -= 1
-                                pdjingxlidown = Format(Val(vdatajingxli * Val(paranew(24)) + 20 + 18), "0.00") '18N为工装自身重力，下拉需补偿
-                            Else
-                                pdjingxlidown = Format(Val(vdatajingxli * 26 + 18), "0.00")
-                            End If
-                            pdjingxlidown = pdjingxlidown + Val(paranew(37))
-                            checkdownflag = True
-                            checkzeroflag = False
-                            bytessend(29) = 0 '0点采集完毕
-                            jianxizero = 0 '间隙检测时气缸刚接触工件时的位移
-                        End If
-                        bytessend(28) = 1 '下拉测间隙结束
-
-                    End If
-                    If bytesrecd(47) = 1 Then
-                        If checkupflag = False Then '上拉
-                            vdatajingxi = readpos() '串口数据
-                            pdjingxjianxiup = vdatajingxi - jianxizero  '间隙后的差值
-
-                            vdatajingxli = Abs(DAQjxl.Read - jianxilizero)
-                            If vdatajingxli > 1 Then
-                                vdatajingxli -= 1
-                                pdjingxliup = Format(Val(vdatajingxli * Val(paranew(24)) + 20), "0.00") '24 径向力标定
-                            Else
-                                pdjingxliup = Format(Val(vdatajingxli * 26), "0.00")
-                            End If
-                            pdjingxliup = pdjingxliup + Val(paranew(38)) '38间隙上拉力补偿参数
-                            checkupflag = True '上拉检测完成标识
-                            checkzeroflag = False '原位采集完成标识
-                            bytessend(29) = 0 '0点采集完毕
-                            jianxizero = 0 '间隙检测时气缸刚接触工件时的位移
-                        End If
-                        bytessend(27) = 1 '上拉测间隙结束
-                    End If
-                    If checkupflag = True AndAlso checkdownflag = True Then '保证实验完成(原位、上拉、下拉)
-                        Call PdOkOrNg(Abs(pdjingxjianxiup) + Val(paranew(40)), 13, 16, 12) '上拉间隙 (判定数据，判定上下限，存储位置，显示行数)
-                        Call PdOkOrNg(Abs(pdjingxliup), 15, 17, 13) '上拉力
-                        Call PdOkOrNg(Abs(pdjingxjianxidown) + Val(paranew(39)), 13, 18, 14) '下拉间隙
-                        Call PdOkOrNg(Abs(pdjingxlidown), 15, 19, 15) '下拉力
-                        If okorngflag(12) = True AndAlso okorngflag(13) = True AndAlso okorngflag(15) = True AndAlso okorngflag(14) = True AndAlso flagok = True Then
-                            flagok = True
-                            moveflag = 7
-                        Else
-                            flagok = False
-                            moveflag = 14
-                        End If
-                        fqjianxiexp = True '检测执行标识——保存数据用
-                        cotjianxi = 0 '若时序真存在问题，此处可能出现不清零的情况
-                        bytessend(22) = 0 '测点使能（1不做  2做）
-                    End If
                 Else
-                    bytessend(22) = 1 '测点使能（1不做  2做）
-                    If cotjianxi <> jianxicheckinte Then
-                        moveflag = 8
-                    Else
-                        If flagok = False Then
-                            cotjianxi = 0
-                            moveflag = 8
+                    bytessend(690) = 0    '设备未超时
+                End If
+                lbltime.Text = Format(Ttotal, "0.00") '显示时间
+                lblwy.Text = datasensorwy           '显示位移
+                lblfqlleft.Text = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '左反驱力调整
+                lblfqlright.Text = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
+                mypiecedata.mcountdata = count1 '全程计数
+                datawy(count1) = datasensorwy '数组采集数据  一共5000组
+            End If
+            Return
+            Select Case moveflag
+
+                Case 1 '中位向右
+                    Dir1 = 1 '转逆转方向
+                    Call move_start()
+                    ordersend25 = 0
+                    moveflag = 2 '步骤
+                Case 2 '右第一次到达
+                    datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
+                    If datasensor(count1) <= (-1) * Val(paranew(19)) Then
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        If ordersend12 = 0 Then
+                            count2 = count1 - 2
+                            maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
+                            ordersend18 = 1
+                            ordersend12 = 1
                         End If
                     End If
-                End If
-            Case 7 '抽检合格
-                If bytesrecd(50) = 1 Then '齿条可以回中信号
-                    Dir1 = 0
-                    Call move_start()
-                    moveflag = 9
-                End If
-            Case 14
-                If bytesrecd(50) = 1 Then '抽检不合格，等待回中信号 ’齿条可以回中
-                    Dir1 = 0
-                    Call move_start()
-                    moveflag = 9
-                End If
-            Case 8 '不满足抽检条件
-                Dir1 = 0
-                Call move_start()
-                moveflag = 9
-            Case 9
-                If (vdatawy + clearwy) < Val(paranew(33)) + 0.5 And ordersend24 = 0 Then '33零位判断基准电压
-                    Call changespeed() '回中速度改变
-                    ordersend24 = 1
-                End If
-                If (vdatawy + clearwy) <= (Val(paranew(33)) - Val(paranew(42))) And ordersend21 = 0 Then '33零位判断基准电压
-                    d2210_decel_stop(m_UseAxis, 0) '停止运动
-                    ordersend21 = 1
-                End If
-                If ordersend21 = 1 Then
-                    ordersend22 += 1
-                End If
-                If ordersend22 = 3 Then moveflag = 20
-            Case 20
-                Dir1 = 1
-                Call move_return() '回零
-                moveflag = 23
-            Case 21 '未用
-                If (vdatawy + clearwy) >= (Val(paranew(33)) + Val(paranew(42))) And ordersend21 = 0 Then '42回中补偿电压
-                    d2210_decel_stop(m_UseAxis, 0) '停止运动
-                    ordersend21 = 1
-                End If
-                If ordersend21 = 1 Then
-                    ordersend22 += 1
-                End If
-                If ordersend22 = 3 Then moveflag = 22
-            Case 22  '未用
-                Dir1 = 0
-                Call move_return()  '回零
-                moveflag = 23
-            Case 23
-                If vdatawy + clearwy >= Val(paranew(33)) Then
-                    d2210_decel_stop(m_UseAxis, 0) '停止运动
-                    runflag = False '自动动作标识
-                    ordersend15 = 1
-                End If
-                If ordersend15 = 1 Then
-                    If sst6 = 2 Then
-                        moveflag = 12
+                    If ordersend18 = 1 Then
+                        If sst1 = 2 Then
+                            moveflag = 3
+                        End If
+                        sst1 += 1   '循环两次加一
                     End If
-                    sst6 += 1
-                End If
+                Case 3 '右向左
+                    If ordersend2 = 0 Then '只执行一次就完事
+                        Dir1 = 0
+                        Call move_start()
+                        ordersend2 = 1
+                    End If
+                    datasensor(count1) = Val(lblfqlright.Text) '31为反驱力调整系数
+                    If Val(lblfqlright.Text) >= 30 Then
+                        If ordersend3 = 0 Then
+                            eftcot1 = count1 + 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
+                            ordersend3 = 1
+                        End If
+                        If Val(lblfqlright.Text) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
+                        'If Val(lblfqlright.Text) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
+                        If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
+                            d2210_decel_stop(m_UseAxis, 0) '停止运动
+                            If ordersend13 = 0 Then
+                                count3 = count1 - 2
+                                maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
+                                ordersend13 = 1
+                                ordersend17 = 1
+                            End If
+                            zerowybc = maxwy2 - (maxwy2 - maxwy3) / 2 '回中位移  右是+  左是-
+                        End If
+                    End If
+                    If ordersend17 = 1 Then
+                        If sst2 = 2 Then
+                            moveflag = 4
+                        End If
+                        sst2 += 1
+                    End If
+                Case 4 '左第一次到达后换向，即左向右动
+                    If ordersend5 = 0 Then
+                        Dir1 = 1
+                        Call move_start()
+                        ordersend5 = 1
+                    End If
+                    datasensor(count1) = -Val(lblfqlleft.Text)
+                    If Val(lblfqlleft.Text) >= 30 Then
+                        If ordersend6 = 0 Then
+                            eftcot2 = count1 + 3 '？？？？？？？？？？？？？？？？？？？？？？
+                            ordersend6 = 1
+                        End If
+                        If Val(lblfqlleft.Text) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
+                        'If Val(lblfqlleft.Text) < 198 Then FastLine2.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
+                        If datasensor(count1) <= (-1) * Val(paranew(19)) Then
+                            d2210_decel_stop(m_UseAxis, 0) '停止运动
+                            If ordersend14 = 0 Then
+                                count4 = count1 - 2
+                                maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
+                                ordersend19 = 1
+                                ordersend14 = 1
+                            End If
+                        End If
+                    End If
+                    If ordersend19 = 1 Then
+                        If sst3 = 2 Then
+                            moveflag = 13
+                        End If
+                        sst3 += 1
+                    End If
+                Case 13 '计算有效位移对应的采样点
+                    For i = eftcot1 To count3
+                        If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then '百分比，所以要除以100，转换为小数  paranew(30)有效测试位移百分比
+                            eftcot1 = i
+                            Exit For
+                        End If
+                    Next
+                    For i = count3 To eftcot1 Step -1
+                        If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
+                            count3 = i
+                            Exit For
+                        End If
+                    Next
+                    For i = eftcot2 To count4
+                        If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
+                            eftcot2 = i
+                            Exit For
+                        End If
+                    Next
+                    For i = count4 To eftcot2 Step -1
+                        If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then
+                            count4 = i
+                            Exit For
+                        End If
+                    Next
+                    mypiecedata.huitustart = eftcot1
+                    mypiecedata.huituend1 = count3
+                    mypiecedata.huitustart1 = eftcot2
+                    mypiecedata.huituend = count4
+                    Call avgfqlR() '右反驱力平均值
+                    Call avgfqlL() '左反驱力平均值
+                    pdavgfqlL = Format(pdavgfqlL, "0.00")
+                    pdavgfqlR = Format(pdavgfqlR, "0.00")
+                    '重新画曲线
+                    FastLine1.Clear()
+                    FastLine2.Clear()
+                    If paranew(45) = 1 Then '1-滤波处理；0-不处理
+                        lvbortemp1 = pdavgfqlR - (pdavgfqlR - (Val(paranew(4)) - Val(paranew(44)))) * (100 - Val(paranew(43))) / 100  '4反驱力最小值下限   44阈值补偿  43图像滤波百分比
+                        lvbortemp2 = pdavgfqlR + ((Val(paranew(1)) + Val(paranew(44))) - pdavgfqlR) * (100 - Val(paranew(43))) / 100
+                        For i = mypiecedata.huitustart To mypiecedata.huituend1
+                            If datasensor(i) >= (paranew(4) - paranew(44)) And datasensor(i) <= (paranew(1) + paranew(44)) Then
+                                If datasensor(i) >= lvbortemp1 And datasensor(i) <= lvbortemp2 Then
+
+                                Else
+                                    datasensor(i) = (datasensor(i) + (Val(paranew(46) - 1)) * pdavgfqlR) / Val(paranew(46)) 'paranew(46)  量化点数
+                                End If
+                            End If
+                            FastLine1.Add(datawy(i) - zerowybc, datasensor(i))
+                        Next
+
+                        lvboltemp1 = pdavgfqlL - (pdavgfqlL + (Val(paranew(1)) + Val(paranew(44)))) * (100 - Val(paranew(43))) / 100
+                        lvboltemp2 = pdavgfqlL + (Abs(pdavgfqlL) - (Val(paranew(4)) - Val(paranew(44)))) * (100 - Val(paranew(43))) / 100
+                        For i = mypiecedata.huitustart1 To mypiecedata.huituend
+                            If datasensor(i) <= -(paranew(4) - paranew(44)) And datasensor(i) >= -(paranew(1) + paranew(44)) Then
+                                If datasensor(i) >= lvboltemp1 And datasensor(i) <= lvboltemp2 Then
+
+                                Else
+                                    datasensor(i) = (datasensor(i) + (Val(paranew(46) - 1)) * pdavgfqlL) / Val(paranew(46))
+                                End If
+                            End If
+                            FastLine2.Add(datawy(i) - zerowybc, datasensor(i))
+                        Next
+                    Else        ' 不进行滤波处理
+                        For i = mypiecedata.huitustart To mypiecedata.huituend1
+                            FastLine1.Add(datawy(i) - zerowybc, datasensor(i))
+                        Next
+                        For i = mypiecedata.huitustart1 To mypiecedata.huituend
+                            FastLine2.Add(datawy(i) - zerowybc, datasensor(i))
+                        Next
+                    End If
+                    moveflag = 5
+                Case 5 '右第二次到达，需要判断是否间隙抽检。出于安全，先向左运动一点，保证左侧反驱力等于零且齿条还在可以检测的位置，再判断是否满足抽检条件
+                    If ordersend8 = 0 Then
+                        Dir1 = 0
+                        Call move_start2()
+                        ordersend8 = 1
+                    End If
+                    If Val(lblfqlleft.Text) <= 30 And ordersend9 = 0 Then
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        If sst4 = 2 Then
+                            ordersend9 = 1
+                        End If
+                        sst4 += 1
+                    End If
+                    If ordersend9 = 1 Then
+                        Call OkOrNg() '各项检测调用
+                        For i = 0 To 11
+                            If okorngflag(i) = False Then '各测试项判断结果以及超时判断
+                                flagok = False   'OK/NG判断标识
+                                Exit For
+                            Else
+                                flagok = True
+                            End If
+                        Next
+                        jianxilizero = DAQjxl.Read   '起始间隙力电压——零位
+                        moveflag = 6
+                    End If
+                Case 6 '判断是否满足抽检条件
+                    If cotjianxi = jianxicheckinte And flagok = True Then '满足抽检
+                        bytessend(22) = 2     '测点使能（1不做  2做）
+                        If bytesrecd(49) = 1 Then '传感器0点
+
+                            If checkzeroflag = False Then '原位，保证值只采集一次
+                                jianxizero = readpos()
+                                checkzeroflag = True
+                            End If
+                            bytessend(29) = 1 '0点采集完毕
+                        End If
+                        If bytesrecd(48) = 1 Then
+                            If checkdownflag = False Then '下拉
+                                vdatajingxi = readpos()  '串口数据
+                                pdjingxjianxidown = jianxizero - vdatajingxi '间隙后的差值
+
+                                vdatajingxli = Abs(DAQjxl.Read - jianxilizero)
+                                If vdatajingxli > 1 Then
+                                    vdatajingxli -= 1
+                                    pdjingxlidown = Format(Val(vdatajingxli * Val(paranew(24)) + 20 + 18), "0.00") '18N为工装自身重力，下拉需补偿
+                                Else
+                                    pdjingxlidown = Format(Val(vdatajingxli * 26 + 18), "0.00")
+                                End If
+                                pdjingxlidown = pdjingxlidown + Val(paranew(37))
+                                checkdownflag = True
+                                checkzeroflag = False
+                                bytessend(29) = 0 '0点采集完毕
+                                jianxizero = 0 '间隙检测时气缸刚接触工件时的位移
+                            End If
+                            bytessend(28) = 1 '下拉测间隙结束
+
+                        End If
+                        If bytesrecd(47) = 1 Then
+                            If checkupflag = False Then '上拉
+                                vdatajingxi = readpos() '串口数据
+                                pdjingxjianxiup = vdatajingxi - jianxizero  '间隙后的差值
+
+                                vdatajingxli = Abs(DAQjxl.Read - jianxilizero)
+                                If vdatajingxli > 1 Then
+                                    vdatajingxli -= 1
+                                    pdjingxliup = Format(Val(vdatajingxli * Val(paranew(24)) + 20), "0.00") '24 径向力标定
+                                Else
+                                    pdjingxliup = Format(Val(vdatajingxli * 26), "0.00")
+                                End If
+                                pdjingxliup = pdjingxliup + Val(paranew(38)) '38间隙上拉力补偿参数
+                                checkupflag = True '上拉检测完成标识
+                                checkzeroflag = False '原位采集完成标识
+                                bytessend(29) = 0 '0点采集完毕
+                                jianxizero = 0 '间隙检测时气缸刚接触工件时的位移
+                            End If
+                            bytessend(27) = 1 '上拉测间隙结束
+                        End If
+                        If checkupflag = True AndAlso checkdownflag = True Then '保证实验完成(原位、上拉、下拉)
+                            Call PdOkOrNg(Abs(pdjingxjianxiup) + Val(paranew(40)), 13, 16, 12) '上拉间隙 (判定数据，判定上下限，存储位置，显示行数)
+                            Call PdOkOrNg(Abs(pdjingxliup), 15, 17, 13) '上拉力
+                            Call PdOkOrNg(Abs(pdjingxjianxidown) + Val(paranew(39)), 13, 18, 14) '下拉间隙
+                            Call PdOkOrNg(Abs(pdjingxlidown), 15, 19, 15) '下拉力
+                            If okorngflag(12) = True AndAlso okorngflag(13) = True AndAlso okorngflag(15) = True AndAlso okorngflag(14) = True AndAlso flagok = True Then
+                                flagok = True
+                                moveflag = 7
+                            Else
+                                flagok = False
+                                moveflag = 14
+                            End If
+                            fqjianxiexp = True '检测执行标识——保存数据用
+                            cotjianxi = 0 '若时序真存在问题，此处可能出现不清零的情况
+                            bytessend(22) = 0 '测点使能（1不做  2做）
+                        End If
+                    Else
+                        bytessend(22) = 1 '测点使能（1不做  2做）
+                        If cotjianxi <> jianxicheckinte Then
+                            moveflag = 8
+                        Else
+                            If flagok = False Then
+                                cotjianxi = 0
+                                moveflag = 8
+                            End If
+                        End If
+                    End If
+                Case 7 '抽检合格
+                    If bytesrecd(50) = 1 Then '齿条可以回中信号
+                        Dir1 = 0
+                        Call move_start()
+                        moveflag = 9
+                    End If
+                Case 14
+                    If bytesrecd(50) = 1 Then '抽检不合格，等待回中信号 ’齿条可以回中
+                        Dir1 = 0
+                        Call move_start()
+                        moveflag = 9
+                    End If
+                Case 8 '不满足抽检条件
+                    Dir1 = 0
+                    Call move_start()
+                    moveflag = 9
+                Case 9
+                    If (vdatawy + clearwy) < Val(paranew(33)) + 0.5 And ordersend24 = 0 Then '33零位判断基准电压
+                        Call changespeed() '回中速度改变
+                        ordersend24 = 1
+                    End If
+                    If (vdatawy + clearwy) <= (Val(paranew(33)) - Val(paranew(42))) And ordersend21 = 0 Then '33零位判断基准电压
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        ordersend21 = 1
+                    End If
+                    If ordersend21 = 1 Then
+                        ordersend22 += 1
+                    End If
+                    If ordersend22 = 3 Then moveflag = 20
+                Case 20
+                    Dir1 = 1
+                    Call move_return() '回零
+                    moveflag = 23
+                Case 21 '未用
+                    If (vdatawy + clearwy) >= (Val(paranew(33)) + Val(paranew(42))) And ordersend21 = 0 Then '42回中补偿电压
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        ordersend21 = 1
+                    End If
+                    If ordersend21 = 1 Then
+                        ordersend22 += 1
+                    End If
+                    If ordersend22 = 3 Then moveflag = 22
+                Case 22  '未用
+                    Dir1 = 0
+                    Call move_return()  '回零
+                    moveflag = 23
+                Case 23
+                    If vdatawy + clearwy >= Val(paranew(33)) Then
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        runflag = False '自动动作标识
+                        ordersend15 = 1
+                    End If
+                    If ordersend15 = 1 Then
+                        If sst6 = 2 Then
+                            moveflag = 12
+                        End If
+                        sst6 += 1
+                    End If
                 'Case 10 '回中后，右侧工装仍接触工件，需向右运动部分
                 '    Dir1 = 1
                 '    Call move_return()
@@ -1125,128 +1151,128 @@ netlis:
                 '        End If
                 '        sst6 += 1
                 '    End If
-            Case 12
-                If flagok = True Then
-                    ngflag = 0
-                    lblresult.BackColor = Color.Lime
-                    lblresult.Text = "OK"
-                    lblok.Text = Val(lblok.Text) + 1
-                    countpiece = Val(lblok.Text)
-                    mypiecedata.datasaverec(4) = "OK"
-                    lblall.Text = Val(lblok.Text) + Val(lblng.Text)
-                    moveflag = 122
-                    Call datasave(countpiece)
-                Else
-                    ngflag = 1
-                    lblresult.BackColor = Color.Red
-                    lblresult.Text = "NG"
-                    lblng.Text = Val(lblng.Text) + 1
-                    countpieceng = Val(lblng.Text)
-                    mypiecedata.datasaverec(4) = "NG"
-                    lblall.Text = Val(lblok.Text) + Val(lblng.Text)
-                    moveflag = 122
-                    Call datasave(countpieceng)
-                End If
-                counter = 0
-                Call setparamain()  '赋值操作-主界面
+                Case 12
+                    If flagok = True Then
+                        ngflag = 0
+                        lblresult.BackColor = Color.Lime
+                        lblresult.Text = "OK"
+                        lblok.Text = Val(lblok.Text) + 1
+                        countpiece = Val(lblok.Text)
+                        mypiecedata.datasaverec(4) = "OK"
+                        lblall.Text = Val(lblok.Text) + Val(lblng.Text)
+                        moveflag = 122
+                        Call datasave(countpiece)
+                    Else
+                        ngflag = 1
+                        lblresult.BackColor = Color.Red
+                        lblresult.Text = "NG"
+                        lblng.Text = Val(lblng.Text) + 1
+                        countpieceng = Val(lblng.Text)
+                        mypiecedata.datasaverec(4) = "NG"
+                        lblall.Text = Val(lblok.Text) + Val(lblng.Text)
+                        moveflag = 122
+                        Call datasave(countpieceng)
+                    End If
+                    counter = 0
+                    Call setparamain()  '赋值操作-主界面
 
                 'moveflag = 122
-            Case 122
-                counter += 1
-                If counter >= 10 Then
-                    moveflag = 121
-                End If
-            Case 121
-                Call maincapture() '保存曲线截图到本地
-                '上传实验结果到PLC, 进而到追溯系统, OK / NG后发, 防止信息丢失
-                Call singletobin(mypiecedata.datasaverec(5), 100, 101, 102, 103)
-                Call singletobin(mypiecedata.datasaverec(6), 104, 105, 106, 107)
-                Call singletobin(mypiecedata.datasaverec(7), 108, 109, 110, 111)
-                Call singletobin(mypiecedata.datasaverec(8), 112, 113, 114, 115)
-                Call singletobin(mypiecedata.datasaverec(9), 116, 117, 118, 119)
-                Call singletobin(mypiecedata.datasaverec(10), 120, 121, 122, 123)
-                Call singletobin(mypiecedata.datasaverec(11), 124, 125, 126, 127)
-                Call singletobin(mypiecedata.datasaverec(12), 128, 129, 130, 131)
-                Call singletobin(mypiecedata.datasaverec(13), 132, 133, 134, 135)
-                Call singletobin(mypiecedata.datasaverec(14), 136, 137, 138, 139)
-                Call singletobin(mypiecedata.datasaverec(15), 140, 141, 142, 143)
-                Call singletobin(mypiecedata.datasaverec(20), 144, 145, 146, 147)
-                If fqjianxiexp = True Then '检测执行标识——保存数据用
-                    Call singletobin(mypiecedata.datasaverec(16), 148, 149, 150, 151)
-                    Call singletobin(mypiecedata.datasaverec(17), 152, 153, 154, 155)
-                    Call singletobin(mypiecedata.datasaverec(18), 156, 157, 158, 159)
-                    Call singletobin(mypiecedata.datasaverec(19), 160, 161, 162, 163)
-                End If
+                Case 122
+                    counter += 1
+                    If counter >= 10 Then
+                        moveflag = 121
+                    End If
+                Case 121
+                    Call maincapture() '保存曲线截图到本地
+                    '上传实验结果到PLC, 进而到追溯系统, OK / NG后发, 防止信息丢失
+                    Call singletobin(mypiecedata.datasaverec(5), 100, 101, 102, 103)
+                    Call singletobin(mypiecedata.datasaverec(6), 104, 105, 106, 107)
+                    Call singletobin(mypiecedata.datasaverec(7), 108, 109, 110, 111)
+                    Call singletobin(mypiecedata.datasaverec(8), 112, 113, 114, 115)
+                    Call singletobin(mypiecedata.datasaverec(9), 116, 117, 118, 119)
+                    Call singletobin(mypiecedata.datasaverec(10), 120, 121, 122, 123)
+                    Call singletobin(mypiecedata.datasaverec(11), 124, 125, 126, 127)
+                    Call singletobin(mypiecedata.datasaverec(12), 128, 129, 130, 131)
+                    Call singletobin(mypiecedata.datasaverec(13), 132, 133, 134, 135)
+                    Call singletobin(mypiecedata.datasaverec(14), 136, 137, 138, 139)
+                    Call singletobin(mypiecedata.datasaverec(15), 140, 141, 142, 143)
+                    Call singletobin(mypiecedata.datasaverec(20), 144, 145, 146, 147)
+                    If fqjianxiexp = True Then '检测执行标识——保存数据用
+                        Call singletobin(mypiecedata.datasaverec(16), 148, 149, 150, 151)
+                        Call singletobin(mypiecedata.datasaverec(17), 152, 153, 154, 155)
+                        Call singletobin(mypiecedata.datasaverec(18), 156, 157, 158, 159)
+                        Call singletobin(mypiecedata.datasaverec(19), 160, 161, 162, 163)
+                    End If
 
-                If mypiecedata.datasaverec(4) = "OK" Then bytessend(19) = 1
-                If mypiecedata.datasaverec(4) = "NG" Then bytessend(19) = 2
-                bytessend(21) = 1 '反驱结束，需复位
-                movetestflag = 1
+                    If mypiecedata.datasaverec(4) = "OK" Then bytessend(19) = 1
+                    If mypiecedata.datasaverec(4) = "NG" Then bytessend(19) = 2
+                    bytessend(21) = 1 '反驱结束，需复位
+                    movetestflag = 1
 
-                moveflag = 0
-                bytessend(697) = 0
-                countAflag = 0
-                count1 = 1
-                count2 = 0
-                countA = 0
-                count3 = 0
-                count4 = 0
-                countzero = 0
-                ngflag = 0
-                maxwy2 = 0
-                maxwy3 = 0
-                maxwy4 = 0
-                eftcot1 = 0
-                eftcot2 = 0
-                ordersend2 = 0
-                ordersend3 = 0
-                ordersend5 = 0
-                ordersend6 = 0
-                ordersend8 = 0
-                ordersend9 = 0
-                ordersend11 = 0
-                ordersend12 = 0
-                ordersend13 = 0
-                ordersend14 = 0
-                ordersend15 = 0
-                ordersend16 = 0
-                ordersend17 = 0
-                ordersend18 = 0
-                ordersend19 = 0
-                ordersend20 = 0
-                ordersend21 = 0
-                ordersend22 = 0
-                ordersend23 = 0
-                ordersend24 = 0
-                ordersend25 = 0
-                sst1 = 0
-                sst2 = 0
-                sst3 = 0
-                sst4 = 0
-                sst5 = 0
-                sst6 = 0
-                checkzeroflag = False
-                checkdownflag = False
-                checkupflag = False
-                begintest = False
-                For i = 0 To 15
-                    okorngflag(i) = True
-                Next
-                If fqjianxiexp = True Then fqjianxiexp = False
-                'Timtest.Enabled = False
-        End Select
-        count1 += 1
+                    moveflag = 0
+                    bytessend(697) = 0
+                    countAflag = 0
+                    count1 = 1
+                    count2 = 0
+                    countA = 0
+                    count3 = 0
+                    count4 = 0
+                    countzero = 0
+                    ngflag = 0
+                    maxwy2 = 0
+                    maxwy3 = 0
+                    maxwy4 = 0
+                    eftcot1 = 0
+                    eftcot2 = 0
+                    ordersend2 = 0
+                    ordersend3 = 0
+                    ordersend5 = 0
+                    ordersend6 = 0
+                    ordersend8 = 0
+                    ordersend9 = 0
+                    ordersend11 = 0
+                    ordersend12 = 0
+                    ordersend13 = 0
+                    ordersend14 = 0
+                    ordersend15 = 0
+                    ordersend16 = 0
+                    ordersend17 = 0
+                    ordersend18 = 0
+                    ordersend19 = 0
+                    ordersend20 = 0
+                    ordersend21 = 0
+                    ordersend22 = 0
+                    ordersend23 = 0
+                    ordersend24 = 0
+                    ordersend25 = 0
+                    sst1 = 0
+                    sst2 = 0
+                    sst3 = 0
+                    sst4 = 0
+                    sst5 = 0
+                    sst6 = 0
+                    checkzeroflag = False
+                    checkdownflag = False
+                    checkupflag = False
+                    begintest = False
+                    For i = 0 To 15
+                        okorngflag(i) = True
+                    Next
+                    If fqjianxiexp = True Then fqjianxiexp = False
+                    'Timtest.Enabled = False
+            End Select
+            count1 += 1
 
 
 
-        ThreadCount = ThreadCount + 1
-        TestEnd = timeGetTime()
-        If (TestEnd - TestStart) >= 1000 Then
-            TestStart = TestEnd
-            'ToolStripStatusLabel9.Text = ThreadCount
-            ThreadCount = 0
+            ThreadCount = ThreadCount + 1
+            TestEnd = timeGetTime()
+            If (TestEnd - TestStart) >= 1000 Then
+                TestStart = TestEnd
+                'ToolStripStatusLabel9.Text = ThreadCount
+                ThreadCount = 0
+            End If
         End If
-
         reset() '复位数据
 
 
@@ -1790,8 +1816,9 @@ netlis:
         Next
         mysw.Close()
     End Sub
-
-    '采集当前反驱力以及位移
+    ''' <summary>
+    '''   '采集当前反驱力以及位移
+    ''' </summary>
     Public Sub acqcurrentdata()
         'Dim i As Integer
         On Error Resume Next

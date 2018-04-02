@@ -53,10 +53,6 @@ Partial Class frmMain
         Me.bianhao = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.trouble = New System.Windows.Forms.TextBox()
-        Me.state = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.tiaoma = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -101,6 +97,11 @@ Partial Class frmMain
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.trouble = New System.Windows.Forms.TextBox()
+        Me.state = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -114,6 +115,7 @@ Partial Class frmMain
         CType(Me.Pic1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datatest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -213,12 +215,14 @@ Partial Class frmMain
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.GroupBox1)
+        Me.Panel1.Controls.Add(Me.GroupBox3)
         Me.Panel1.Controls.Add(Me.DAQjxl)
         Me.Panel1.Controls.Add(Me.DAQjxjx)
         Me.Panel1.Controls.Add(Me.DAQwy)
+        Me.Panel1.Controls.Add(Me.Pic1)
         Me.Panel1.Controls.Add(Me.DAQfqlright)
         Me.Panel1.Controls.Add(Me.DAQfqlleft)
-        Me.Panel1.Controls.Add(Me.GroupBox3)
         Me.Panel1.Controls.Add(Me.GroupBox2)
         Me.Panel1.Controls.Add(Me.datatest)
         resources.ApplyResources(Me.Panel1, "Panel1")
@@ -263,10 +267,6 @@ Partial Class frmMain
         Me.GroupBox3.Controls.Add(Me.bianhao)
         Me.GroupBox3.Controls.Add(Me.Label1)
         Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Controls.Add(Me.trouble)
-        Me.GroupBox3.Controls.Add(Me.state)
-        Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.Label18)
         Me.GroupBox3.Controls.Add(Me.tiaoma)
         Me.GroupBox3.Controls.Add(Me.Label17)
         Me.GroupBox3.ForeColor = System.Drawing.Color.Black
@@ -312,28 +312,6 @@ Partial Class frmMain
         Me.Label20.ForeColor = System.Drawing.Color.Black
         Me.Label20.Name = "Label20"
         '
-        'trouble
-        '
-        resources.ApplyResources(Me.trouble, "trouble")
-        Me.trouble.Name = "trouble"
-        '
-        'state
-        '
-        resources.ApplyResources(Me.state, "state")
-        Me.state.Name = "state"
-        '
-        'Label19
-        '
-        resources.ApplyResources(Me.Label19, "Label19")
-        Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Name = "Label19"
-        '
-        'Label18
-        '
-        resources.ApplyResources(Me.Label18, "Label18")
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Name = "Label18"
-        '
         'tiaoma
         '
         resources.ApplyResources(Me.tiaoma, "tiaoma")
@@ -350,7 +328,6 @@ Partial Class frmMain
         Me.GroupBox2.Controls.Add(Me.Label36)
         Me.GroupBox2.Controls.Add(Me.Label37)
         Me.GroupBox2.Controls.Add(Me.lblfqlright)
-        Me.GroupBox2.Controls.Add(Me.Pic1)
         Me.GroupBox2.Controls.Add(Me.Label16)
         Me.GroupBox2.Controls.Add(Me.countclr)
         Me.GroupBox2.Controls.Add(Me.countchag)
@@ -832,6 +809,38 @@ Partial Class frmMain
         Me.SerialPort1.PortName = "COM8"
         Me.SerialPort1.ReadBufferSize = 500
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.trouble)
+        Me.GroupBox1.Controls.Add(Me.state)
+        Me.GroupBox1.Controls.Add(Me.Label19)
+        Me.GroupBox1.Controls.Add(Me.Label18)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.TabStop = False
+        '
+        'trouble
+        '
+        resources.ApplyResources(Me.trouble, "trouble")
+        Me.trouble.Name = "trouble"
+        '
+        'state
+        '
+        resources.ApplyResources(Me.state, "state")
+        Me.state.Name = "state"
+        '
+        'Label19
+        '
+        resources.ApplyResources(Me.Label19, "Label19")
+        Me.Label19.ForeColor = System.Drawing.Color.Black
+        Me.Label19.Name = "Label19"
+        '
+        'Label18
+        '
+        resources.ApplyResources(Me.Label18, "Label18")
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Name = "Label18"
+        '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
@@ -859,6 +868,8 @@ Partial Class frmMain
         CType(Me.Pic1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.datatest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -884,10 +895,6 @@ Partial Class frmMain
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents bianhao As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents trouble As System.Windows.Forms.TextBox
-    Friend WithEvents state As System.Windows.Forms.TextBox
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents tiaoma As System.Windows.Forms.TextBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
@@ -940,4 +947,9 @@ Partial Class frmMain
     Friend WithEvents Timlvbof As System.Windows.Forms.Timer
     Friend WithEvents Timtest As System.Windows.Forms.Timer
     Friend WithEvents SerialPort1 As System.IO.Ports.SerialPort
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents trouble As TextBox
+    Friend WithEvents state As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label18 As Label
 End Class
