@@ -13,6 +13,7 @@
     Private Sub frmSensorbiaodg_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Timerbd.Enabled = False
         'frmMain.ToolStripButton5.Visible = False’标定按钮
+        frmMain.TimlvbofTickenable = True
         ' frmMain.Timlvbof.Enabled = True
     End Sub
 
@@ -23,7 +24,7 @@
         wycoef.Text = paranew(23) '位移标定系数
         jxlicoef.Text = paranew(24) '径向力标定系数
         jxjxcoef.Text = paranew(25) '’径向间隙标定系数
-        '
+        frmMain.TimlvbofTickenable = True
         ' frmMain.Timlvbof.Enabled = False
         jxcount = 0
         Timerbd.Enabled = True

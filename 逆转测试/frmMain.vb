@@ -272,6 +272,7 @@ Public Class frmMain
         FastLine1.Clear()                           'treechart1清除
         FastLine2.Clear()
         TimlvbofTickenable = True
+        TimlvbofTickenable = True
         ' Timlvbof.Enabled = True                         '定时器使能
     End Sub
 
@@ -555,6 +556,7 @@ netlis:
         If bytesrecd(44) = 1 Then '复位
             d2210_decel_stop(m_UseAxis, 0.1) '停止运动
             runflag = False
+            TestTickenable = False
             ' Timtest.Enabled = False
             moveflag = -1
             bytessend(697) = 0
@@ -629,6 +631,8 @@ netlis:
             checkupflag = False
             begintest = False
             movetestflag = 0
+            TimlvbofTickenable = True
+            TimlvbofTickenable = True
             ' Timlvbof.Enabled = True
             If fqjianxiexp = True Then fqjianxiexp = False
         End If
@@ -658,6 +662,7 @@ netlis:
             If ordersend25 = 0 Then  '保证停止函数执行一次
                 d2210_decel_stop(m_UseAxis, 0) '停止运动
                 moveflag = -1
+                TimlvbofTickenable = True
                 ' Timlvbof.Enabled = False
                 ordersend25 = 1
                 '报警信息应该只显示文字部分，具体电压值为临时监视用
@@ -675,6 +680,7 @@ netlis:
             d2210_decel_stop(m_UseAxis, 0.1) '停止运动
             runflag = False
             moveflag = -1
+            TestTickenable = False
             '  Timtest.Enabled = False
         End If
         If bytesrecd(40) = 1 Then '运转准备 控制开
@@ -682,6 +688,7 @@ netlis:
             If bytesrecd(42) = 1 Then '手动
                 typesel.Enabled = True
                 countclr.Enabled = True
+                TestTickenable = False
                 ' Timtest.Enabled = False
                 ToolStripButton3.Enabled = True
                 ToolStripButton4.Enabled = True
@@ -692,6 +699,8 @@ netlis:
                 If handstop = 1 Then ' 自动切换到手动时应停止动作
                     d2210_decel_stop(m_UseAxis, 0.1) '停止运动
                     'DelayS(0.1)
+                    Thread.Sleep(100)
+
                     handstop = 0
                 End If
             End If
@@ -717,11 +726,13 @@ netlis:
                 bytessend(27) = 0 '上拉间隙结束
                 bytessend(28) = 0 '下拉间隙结束
                 bytessend(29) = 0 '0点采集完毕
-
+                TestTickenable = False
                 ' Timtest.Enabled = False
             End If
             If bytesrecd(46) = 1 And movetestflag = 0 Then '此处若加扫码完成标识，必须复位信号并且复位界面显示信息，报警标识未用，现场确定哪些信号
                 ' Timlvbof.Enabled = True
+                TimlvbofTickenable = True
+                TestTickenable = True
                 ' Timtest.Enabled = True
             End If
 
@@ -1259,6 +1270,7 @@ netlis:
                         okorngflag(i) = True
                     Next
                     If fqjianxiexp = True Then fqjianxiexp = False
+                    TestTickenable = False
                     'Timtest.Enabled = False
             End Select
             count1 += 1
