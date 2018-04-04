@@ -271,7 +271,7 @@ Public Class frmMain
         PortOpen()                                  '打开串口
         FastLine1.Clear()                           'treechart1清除
         FastLine2.Clear()
-        TimlvbofTickenable = True
+        'TimlvbofTickenable = True
         TimlvbofTickenable = True
         ' Timlvbof.Enabled = True                         '定时器使能
     End Sub
@@ -669,11 +669,7 @@ netlis:
                 MsgBox("反驱力超过最大换向力，请手动恢复机器于初始位置重新实验(" & clearfqlleft & "/" & vdatafqlleft & "/" & clearfqlright & "/" & vdatafqlright & ")", vbOKOnly, "反驱力超范围")
             End If
         End If
-        If plccoms = 1 Then '通讯状态
-            plccomsstate.BackColor = Color.Green
-        Else
-            plccomsstate.BackColor = Color.Red
-        End If
+
     End Sub
     Public Sub monitor_emergency_stop()
         If bytesrecd(45) = 1 Then '急停
@@ -749,6 +745,8 @@ netlis:
     ''' 线程监控  传感器数据及流程步 以及相关安全动作
     ''' </summary>
     Public Sub ShowAcqAndJudge()
+
+
         monitor_emergency_stop() '紧急情况监控
         If TimlvbofTickenable Then
             monitor_left_right() '左右监控以及  PLC链接状态监控
@@ -1294,6 +1292,13 @@ netlis:
     Private Sub DataProcess()
         On Error Resume Next
         Dim i As Integer
+
+        If plccoms = 1 Then '通讯状态
+            plccomsstate.BackColor = Color.Green
+        Else
+            plccomsstate.BackColor = Color.Red
+        End If
+
 
         volwy = Format(DAQwy.Read, "000.00")
         If volwy < volzerowy - 0.1 Or volwy > volzerowy + 0.1 Then
