@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub leftfqlclr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles leftfqlclr.Click
-        leftfqlclear = frmMain.DAQfqlleft.Read
+        leftfqlclear = Math.Abs(frmMain.DAQfqlleft.Read)
     End Sub
 
     Private Sub rightfqlclr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rightfqlclr.Click
@@ -51,7 +51,7 @@
     End Sub
 
     Private Sub Timerbd_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timerbd.Tick
-        tempfqll = frmMain.DAQfqlleft.Read - leftfqlclear
+        tempfqll = Math.Abs(frmMain.DAQfqlleft.Read) - leftfqlclear
         Textfqll.Text = Format(tempfqll, "0.0000")
         tempfqlr = frmMain.DAQfqlright.Read - rightfqlclear
         Textfqlr.Text = Format(tempfqlr, "0.0000")

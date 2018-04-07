@@ -163,11 +163,16 @@ Public Class Handtest
         Dim temppos As Double
         Application.DoEvents()
 
-        TextBox1.Text = ""
+        TextBox1.Text = "0.000"
         temppos = frmMain.readpos
         'Application.DoEvents()
         ' Return
-        TextBox1.Text = Format(temppos - jxjxclear, "0.000")
+        Dim jxwy_temp As Double
+        jxwy_temp = Format(temppos - jxjxclear, "0.000")
+        'If (100 >= jxwy_temp >= 0) Then
+        TextBox1.Text = jxwy_temp
+        'End If
+
 
     End Sub
 

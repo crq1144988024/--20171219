@@ -31,6 +31,8 @@ Public Class frmMain
     Private backcolorR As Integer
     Private backcolorG As Integer
     Private backcolorB As Integer
+
+    Public lefytli As Double = 0
     ''' <summary>
     ''' 间隙测试使能
     ''' </summary>
@@ -87,10 +89,11 @@ Public Class frmMain
 
     Private Sub ToolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton6.Click
         s.Close()   ' socket 通信关闭
-        PortClose()  '串口关闭
+
         ThreadCom.Abort() '\通信线程关闭
         ThreadCom_displacement.Abort() '\通信线程关闭
         ThreadAcq.Abort() '\通信线程关闭
+        PortClose()  '串口关闭
         Me.Close()
     End Sub
 
@@ -123,10 +126,11 @@ Public Class frmMain
         mysw.Close()
         database.Close()
         s.Close()   ' socket 通信关闭
-        PortClose()  '串口关闭
+
         ThreadCom.Abort() '\通信线程关闭
         ThreadCom_displacement.Abort() '\通信线程关闭
         ThreadAcq.Abort() '\通信线程关闭
+        PortClose()  '串口关闭
         ' OleDbConnpara.Close()  '关闭数据库
         ' OleDbConnpara.Dispose() '释放资源
         ' OleDbConnrecd.Close()
@@ -257,7 +261,7 @@ Public Class frmMain
 
         count1 = 1 '全程计数
         clearwy = DAQwy.Read '位移零位
-        clearfqlleft = DAQfqlleft.Read '左反驱零位
+        clearfqlleft = Math.Abs(DAQfqlleft.Read) '左反驱零位
         clearfqlright = DAQfqlright.Read '右反驱零位
 
         set_piecepara_now() '设置当前产品型号
@@ -640,7 +644,7 @@ netlis:
 
 
     Public Sub monitor_left_right()
-        lvboleft(10) = DAQfqlleft.Read - clearfqlleft
+        lvboleft(10) = Math.Abs(DAQfqlleft.Read) - clearfqlleft
         svel = 0
         For i = 9 To 0 Step -1
             lvboleft(i) = lvboleft(i + 1)
@@ -666,7 +670,7 @@ netlis:
                 ' Timlvbof.Enabled = False
                 ordersend25 = 1
                 '报警信息应该只显示文字部分，具体电压值为临时监视用
-                MsgBox("反驱力超过最大换向力，请手动恢复机器于初始位置重新实验(" & clearfqlleft & "/" & vdatafqlleft & "/" & clearfqlright & "/" & vdatafqlright & ")", vbOKOnly, "反驱力超范围")
+                MsgBox("反驱力超过最大换向力，请手动恢复机器于初始位置重新实验(" & sensorfqlleft & "/" & clearfqlleft & "/" & vdatafqlleft & "/" & clearfqlright & "/" & vdatafqlright & ")", vbOKOnly, "反驱力超范围")
             End If
         End If
 
@@ -740,7 +744,7 @@ netlis:
     End Sub
 
     Private Delegate Sub fanqu()
-
+    Dim li_sensors_times As Boolean
     ''' <summary>
     ''' 线程监控  传感器数据及流程步 以及相关安全动作
     ''' </summary>
@@ -776,7 +780,7 @@ netlis:
 
             If begintest = False Then '自动测试开始——保证只调用一次主测试函数及状态设置
 
-                bytessend(697) = 1 '自动实验后光栅使能
+                'bytessend(697) = 1 '自动实验后光栅使能
                 bytessend(690) = 0
                 If paranew(47) = 1 Then '中位记号笔使能
                     bytessend(680) = 1
@@ -817,14 +821,20 @@ netlis:
                 Else
                     bytessend(690) = 0    '设备未超时
                 End If
-                lbltime.Text = Format(Ttotal, "0.00") '显示时间
-                lblwy.Text = datasensorwy           '显示位移
-                lblfqlleft.Text = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '左反驱力调整
-                lblfqlright.Text = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
-                mypiecedata.mcountdata = count1 '全程计数
-                datawy(count1) = datasensorwy '数组采集数据  一共5000组
+                If li_sensors_times = True Then
+
+                    lbltime.Text = Format(Ttotal, "0.00") '显示时间
+                    lblwy.Text = datasensorwy           '显示位移
+                    lblfqlleft.Text = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '左反驱力调整
+                    lblfqlright.Text = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
+                    mypiecedata.mcountdata = count1 '全程计数
+                    datawy(count1) = datasensorwy '数组采集数据  一共5000组
+                    li_sensors_times = False
+
+                End If
+
             End If
-            Return
+            'Return
             Select Case moveflag
 
                 Case 1 '中位向右
@@ -834,6 +844,11 @@ netlis:
                     moveflag = 2 '步骤
                 Case 2 '右第一次到达
                     datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
+                    TextBox1.Text = datasensor(count1).ToString() + " === " + ((-1) * Val(paranew(19))).ToString() + "\\\\\" + count1.ToString()
+                    If -Val(lblfqlleft.Text) <= -400.0 Then
+                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                    End If
+
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         If ordersend12 = 0 Then
@@ -1271,20 +1286,29 @@ netlis:
                     TestTickenable = False
                     'Timtest.Enabled = False
             End Select
-            count1 += 1
+
 
 
 
             ThreadCount = ThreadCount + 1
             TestEnd = timeGetTime()
-            If (TestEnd - TestStart) >= 1000 Then
+            If (TestEnd - TestStart) >= 50 Then
                 TestStart = TestEnd
-                'ToolStripStatusLabel9.Text = ThreadCount
-                ThreadCount = 0
+                li_sensors_times = True
+                If (count1 < 5000) Then
+
+                    count1 += 1
+                End If
             End If
+            'If (TestEnd - TestStart) >= 1000 Then
+            'TestStart = TestEnd
+            'ToolStripStatusLabel9.Text = ThreadCount
+            '  ThreadCount = 0
+            ' End If
         End If
         reset() '复位数据
 
+        Application.DoEvents()
 
 
     End Sub
@@ -2305,6 +2329,8 @@ netlis:
         Try
             SerialPort1.Open()
         Catch ex As Exception
+            '  SerialPort1.Close()
+
             MsgBox("串口被占用或串口错误！", MsgBoxStyle.Information, "提示！")
         End Try
     End Sub

@@ -41,11 +41,11 @@ Partial Class frmMain
         Me.plccomsstate = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tooltime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.DAQjxl = New AxDAQPILOTAXLib.AxDAQPilot()
-        Me.DAQjxjx = New AxDAQPILOTAXLib.AxDAQPilot()
-        Me.DAQwy = New AxDAQPILOTAXLib.AxDAQPilot()
-        Me.DAQfqlright = New AxDAQPILOTAXLib.AxDAQPilot()
-        Me.DAQfqlleft = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.trouble = New System.Windows.Forms.TextBox()
+        Me.state = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -55,11 +55,11 @@ Partial Class frmMain
         Me.Label20 = New System.Windows.Forms.Label()
         Me.tiaoma = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
+        Me.Pic1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.lblfqlright = New System.Windows.Forms.Label()
-        Me.Pic1 = New System.Windows.Forms.PictureBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.countclr = New System.Windows.Forms.Button()
         Me.countchag = New System.Windows.Forms.Button()
@@ -89,33 +89,34 @@ Partial Class frmMain
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.tcCurve = New Steema.TeeChart.TChart()
-        Me.FastLine1 = New Steema.TeeChart.Styles.FastLine()
-        Me.FastLine2 = New Steema.TeeChart.Styles.FastLine()
-        Me.CursorTool1 = New Steema.TeeChart.Tools.CursorTool()
         Me.Timhand = New System.Windows.Forms.Timer(Me.components)
         Me.Timzero = New System.Windows.Forms.Timer(Me.components)
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.trouble = New System.Windows.Forms.TextBox()
-        Me.state = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.FastLine1 = New Steema.TeeChart.Styles.FastLine()
+        Me.FastLine2 = New Steema.TeeChart.Styles.FastLine()
+        Me.CursorTool1 = New Steema.TeeChart.Tools.CursorTool()
+        Me.DAQjxl = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.DAQjxjx = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.DAQwy = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.DAQfqlright = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.DAQfqlleft = New AxDAQPILOTAXLib.AxDAQPilot()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.datatest, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         CType(Me.DAQjxl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQjxjx, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQwy, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQfqlright, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQfqlleft, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.datatest, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -215,8 +216,8 @@ Partial Class frmMain
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.GroupBox3)
+        Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.DAQjxl)
         Me.Panel1.Controls.Add(Me.DAQjxjx)
         Me.Panel1.Controls.Add(Me.DAQwy)
@@ -229,35 +230,37 @@ Partial Class frmMain
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Panel1.Name = "Panel1"
         '
-        'DAQjxl
+        'GroupBox1
         '
-        resources.ApplyResources(Me.DAQjxl, "DAQjxl")
-        Me.DAQjxl.Name = "DAQjxl"
-        Me.DAQjxl.OcxState = CType(resources.GetObject("DAQjxl.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.GroupBox1.Controls.Add(Me.trouble)
+        Me.GroupBox1.Controls.Add(Me.state)
+        Me.GroupBox1.Controls.Add(Me.Label19)
+        Me.GroupBox1.Controls.Add(Me.Label18)
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.TabStop = False
         '
-        'DAQjxjx
+        'trouble
         '
-        resources.ApplyResources(Me.DAQjxjx, "DAQjxjx")
-        Me.DAQjxjx.Name = "DAQjxjx"
-        Me.DAQjxjx.OcxState = CType(resources.GetObject("DAQjxjx.OcxState"), System.Windows.Forms.AxHost.State)
+        resources.ApplyResources(Me.trouble, "trouble")
+        Me.trouble.Name = "trouble"
         '
-        'DAQwy
+        'state
         '
-        resources.ApplyResources(Me.DAQwy, "DAQwy")
-        Me.DAQwy.Name = "DAQwy"
-        Me.DAQwy.OcxState = CType(resources.GetObject("DAQwy.OcxState"), System.Windows.Forms.AxHost.State)
+        resources.ApplyResources(Me.state, "state")
+        Me.state.Name = "state"
         '
-        'DAQfqlright
+        'Label19
         '
-        resources.ApplyResources(Me.DAQfqlright, "DAQfqlright")
-        Me.DAQfqlright.Name = "DAQfqlright"
-        Me.DAQfqlright.OcxState = CType(resources.GetObject("DAQfqlright.OcxState"), System.Windows.Forms.AxHost.State)
+        resources.ApplyResources(Me.Label19, "Label19")
+        Me.Label19.ForeColor = System.Drawing.Color.Black
+        Me.Label19.Name = "Label19"
         '
-        'DAQfqlleft
+        'Label18
         '
-        resources.ApplyResources(Me.DAQfqlleft, "DAQfqlleft")
-        Me.DAQfqlleft.Name = "DAQfqlleft"
-        Me.DAQfqlleft.OcxState = CType(resources.GetObject("DAQfqlleft.OcxState"), System.Windows.Forms.AxHost.State)
+        resources.ApplyResources(Me.Label18, "Label18")
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Name = "Label18"
         '
         'GroupBox3
         '
@@ -323,6 +326,12 @@ Partial Class frmMain
         Me.Label17.ForeColor = System.Drawing.Color.Black
         Me.Label17.Name = "Label17"
         '
+        'Pic1
+        '
+        resources.ApplyResources(Me.Pic1, "Pic1")
+        Me.Pic1.Name = "Pic1"
+        Me.Pic1.TabStop = False
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label36)
@@ -374,12 +383,6 @@ Partial Class frmMain
         resources.ApplyResources(Me.lblfqlright, "lblfqlright")
         Me.lblfqlright.ForeColor = System.Drawing.Color.White
         Me.lblfqlright.Name = "lblfqlright"
-        '
-        'Pic1
-        '
-        resources.ApplyResources(Me.Pic1, "Pic1")
-        Me.Pic1.Name = "Pic1"
-        Me.Pic1.TabStop = False
         '
         'Label16
         '
@@ -698,6 +701,28 @@ Partial Class frmMain
         '
         Me.tcCurve.Walls.Right.AutoHide = False
         '
+        'Timhand
+        '
+        Me.Timhand.Interval = 80
+        '
+        'Timzero
+        '
+        Me.Timzero.Interval = 80
+        '
+        'Timlvbof
+        '
+        Me.Timlvbof.Interval = 25
+        '
+        'Timtest
+        '
+        Me.Timtest.Interval = 50
+        '
+        'SerialPort1
+        '
+        Me.SerialPort1.BaudRate = 19200
+        Me.SerialPort1.PortName = "COM8"
+        Me.SerialPort1.ReadBufferSize = 500
+        '
         'FastLine1
         '
         '
@@ -787,64 +812,46 @@ Partial Class frmMain
         '
         Me.FastLine2.YValues.DataMember = "Y"
         '
-        'Timhand
+        'DAQjxl
         '
-        Me.Timhand.Interval = 80
+        resources.ApplyResources(Me.DAQjxl, "DAQjxl")
+        Me.DAQjxl.Name = "DAQjxl"
+        Me.DAQjxl.OcxState = CType(resources.GetObject("DAQjxl.OcxState"), System.Windows.Forms.AxHost.State)
         '
-        'Timzero
+        'DAQjxjx
         '
-        Me.Timzero.Interval = 80
+        resources.ApplyResources(Me.DAQjxjx, "DAQjxjx")
+        Me.DAQjxjx.Name = "DAQjxjx"
+        Me.DAQjxjx.OcxState = CType(resources.GetObject("DAQjxjx.OcxState"), System.Windows.Forms.AxHost.State)
         '
-        'Timlvbof
+        'DAQwy
         '
-        Me.Timlvbof.Interval = 25
+        resources.ApplyResources(Me.DAQwy, "DAQwy")
+        Me.DAQwy.Name = "DAQwy"
+        Me.DAQwy.OcxState = CType(resources.GetObject("DAQwy.OcxState"), System.Windows.Forms.AxHost.State)
         '
-        'Timtest
+        'DAQfqlright
         '
-        Me.Timtest.Interval = 50
+        resources.ApplyResources(Me.DAQfqlright, "DAQfqlright")
+        Me.DAQfqlright.Name = "DAQfqlright"
+        Me.DAQfqlright.OcxState = CType(resources.GetObject("DAQfqlright.OcxState"), System.Windows.Forms.AxHost.State)
         '
-        'SerialPort1
+        'DAQfqlleft
         '
-        Me.SerialPort1.BaudRate = 19200
-        Me.SerialPort1.PortName = "COM8"
-        Me.SerialPort1.ReadBufferSize = 500
+        resources.ApplyResources(Me.DAQfqlleft, "DAQfqlleft")
+        Me.DAQfqlleft.Name = "DAQfqlleft"
+        Me.DAQfqlleft.OcxState = CType(resources.GetObject("DAQfqlleft.OcxState"), System.Windows.Forms.AxHost.State)
         '
-        'GroupBox1
+        'TextBox1
         '
-        Me.GroupBox1.Controls.Add(Me.trouble)
-        Me.GroupBox1.Controls.Add(Me.state)
-        Me.GroupBox1.Controls.Add(Me.Label19)
-        Me.GroupBox1.Controls.Add(Me.Label18)
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.TabStop = False
-        '
-        'trouble
-        '
-        resources.ApplyResources(Me.trouble, "trouble")
-        Me.trouble.Name = "trouble"
-        '
-        'state
-        '
-        resources.ApplyResources(Me.state, "state")
-        Me.state.Name = "state"
-        '
-        'Label19
-        '
-        resources.ApplyResources(Me.Label19, "Label19")
-        Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Name = "Label19"
-        '
-        'Label18
-        '
-        resources.ApplyResources(Me.Label18, "Label18")
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Name = "Label18"
+        resources.ApplyResources(Me.TextBox1, "TextBox1")
+        Me.TextBox1.Name = "TextBox1"
         '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -856,20 +863,20 @@ Partial Class frmMain
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.datatest, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         CType(Me.DAQjxl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQjxjx, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQwy, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQfqlright, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQfqlleft, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.datatest, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -952,4 +959,5 @@ Partial Class frmMain
     Friend WithEvents state As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label18 As Label
+    Friend WithEvents TextBox1 As TextBox
 End Class

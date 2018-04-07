@@ -31,7 +31,11 @@ Partial Class frmSensorbiaodg
         Me.leftfql = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Textfqll_N = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Textfqlr_N = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.rightfql = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -40,24 +44,27 @@ Partial Class frmSensorbiaodg
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Textfqlr = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.wy = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.wycoef = New System.Windows.Forms.TextBox()
+        Me.jxjxclr = New System.Windows.Forms.Button()
         Me.wyclr = New System.Windows.Forms.Button()
+        Me.Textwy_mm = New System.Windows.Forms.TextBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Textwy = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Textjxli_N = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.jxli = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.jxlicoef = New System.Windows.Forms.TextBox()
         Me.jxliclr = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.Textjxli = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.jxli = New System.Windows.Forms.TextBox()
         Me.posrun = New System.Windows.Forms.Button()
         Me.negrun = New System.Windows.Forms.Button()
         Me.speedxs = New System.Windows.Forms.TextBox()
@@ -74,15 +81,8 @@ Partial Class frmSensorbiaodg
         Me.jxjx = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.jxjxcoef = New System.Windows.Forms.TextBox()
-        Me.jxjxclr = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Textjxjx = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Textfqll_N = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Textfqlr_N = New System.Windows.Forms.TextBox()
-        Me.Textwy_mm = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -173,6 +173,24 @@ Partial Class frmSensorbiaodg
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "左反驱力标定"
         '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label15.Location = New System.Drawing.Point(38, 285)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(104, 16)
+        Me.Label15.TabIndex = 15
+        Me.Label15.Text = "左反驱力(N):"
+        '
+        'Textfqll_N
+        '
+        Me.Textfqll_N.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Textfqll_N.Location = New System.Drawing.Point(148, 282)
+        Me.Textfqll_N.Name = "Textfqll_N"
+        Me.Textfqll_N.Size = New System.Drawing.Size(116, 26)
+        Me.Textfqll_N.TabIndex = 21
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label16)
@@ -190,6 +208,24 @@ Partial Class frmSensorbiaodg
         Me.GroupBox2.TabIndex = 30
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "右反驱力标定"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label16.Location = New System.Drawing.Point(42, 285)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(104, 16)
+        Me.Label16.TabIndex = 22
+        Me.Label16.Text = "右反驱力(N):"
+        '
+        'Textfqlr_N
+        '
+        Me.Textfqlr_N.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Textfqlr_N.Location = New System.Drawing.Point(162, 282)
+        Me.Textfqlr_N.Name = "Textfqlr_N"
+        Me.Textfqlr_N.Size = New System.Drawing.Size(121, 26)
+        Me.Textfqlr_N.TabIndex = 23
         '
         'Label2
         '
@@ -275,6 +311,16 @@ Partial Class frmSensorbiaodg
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "位移标定"
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label17.Location = New System.Drawing.Point(83, 285)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(80, 16)
+        Me.Label17.TabIndex = 15
+        Me.Label17.Text = "位移(mm):"
+        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -284,6 +330,17 @@ Partial Class frmSensorbiaodg
         Me.Label5.Size = New System.Drawing.Size(72, 16)
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "位移(V):"
+        '
+        'Button6
+        '
+        Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Button6.Location = New System.Drawing.Point(-17, 300)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(48, 28)
+        Me.Button6.TabIndex = 40
+        Me.Button6.Text = "读取当前间隙位移值"
+        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
         '
         'wy
         '
@@ -311,6 +368,17 @@ Partial Class frmSensorbiaodg
         Me.wycoef.Size = New System.Drawing.Size(121, 26)
         Me.wycoef.TabIndex = 18
         '
+        'jxjxclr
+        '
+        Me.jxjxclr.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.jxjxclr.Location = New System.Drawing.Point(46, 309)
+        Me.jxjxclr.Name = "jxjxclr"
+        Me.jxjxclr.Size = New System.Drawing.Size(40, 19)
+        Me.jxjxclr.TabIndex = 42
+        Me.jxjxclr.Text = "径向间隙清零"
+        Me.jxjxclr.UseVisualStyleBackColor = True
+        Me.jxjxclr.Visible = False
+        '
         'wyclr
         '
         Me.wyclr.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -320,6 +388,14 @@ Partial Class frmSensorbiaodg
         Me.wyclr.TabIndex = 19
         Me.wyclr.Text = "位移清零"
         Me.wyclr.UseVisualStyleBackColor = True
+        '
+        'Textwy_mm
+        '
+        Me.Textwy_mm.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Textwy_mm.Location = New System.Drawing.Point(161, 282)
+        Me.Textwy_mm.Name = "Textwy_mm"
+        Me.Textwy_mm.Size = New System.Drawing.Size(121, 26)
+        Me.Textwy_mm.TabIndex = 21
         '
         'Button4
         '
@@ -357,17 +433,6 @@ Partial Class frmSensorbiaodg
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "径向力标定"
         '
-        'Button6
-        '
-        Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button6.Location = New System.Drawing.Point(-17, 300)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(48, 28)
-        Me.Button6.TabIndex = 40
-        Me.Button6.Text = "读取当前间隙位移值"
-        Me.Button6.UseVisualStyleBackColor = True
-        Me.Button6.Visible = False
-        '
         'Label14
         '
         Me.Label14.AutoSize = True
@@ -395,14 +460,6 @@ Partial Class frmSensorbiaodg
         Me.Label7.Size = New System.Drawing.Size(88, 16)
         Me.Label7.TabIndex = 22
         Me.Label7.Text = "径向力(V):"
-        '
-        'jxli
-        '
-        Me.jxli.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.jxli.Location = New System.Drawing.Point(139, 102)
-        Me.jxli.Name = "jxli"
-        Me.jxli.Size = New System.Drawing.Size(116, 26)
-        Me.jxli.TabIndex = 23
         '
         'Label8
         '
@@ -432,6 +489,14 @@ Partial Class frmSensorbiaodg
         Me.jxliclr.Text = "径向力清零"
         Me.jxliclr.UseVisualStyleBackColor = True
         '
+        'Textjxli
+        '
+        Me.Textjxli.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Textjxli.Location = New System.Drawing.Point(139, 46)
+        Me.Textjxli.Name = "Textjxli"
+        Me.Textjxli.Size = New System.Drawing.Size(116, 26)
+        Me.Textjxli.TabIndex = 28
+        '
         'Button5
         '
         Me.Button5.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -442,13 +507,13 @@ Partial Class frmSensorbiaodg
         Me.Button5.Text = "锁存"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'Textjxli
+        'jxli
         '
-        Me.Textjxli.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Textjxli.Location = New System.Drawing.Point(139, 46)
-        Me.Textjxli.Name = "Textjxli"
-        Me.Textjxli.Size = New System.Drawing.Size(116, 26)
-        Me.Textjxli.TabIndex = 28
+        Me.jxli.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.jxli.Location = New System.Drawing.Point(139, 102)
+        Me.jxli.Name = "jxli"
+        Me.jxli.Size = New System.Drawing.Size(116, 26)
+        Me.jxli.TabIndex = 23
         '
         'posrun
         '
@@ -477,7 +542,7 @@ Partial Class frmSensorbiaodg
         Me.speedxs.Name = "speedxs"
         Me.speedxs.Size = New System.Drawing.Size(93, 21)
         Me.speedxs.TabIndex = 36
-        Me.speedxs.Text = "35398.23"
+        Me.speedxs.Text = "10000"
         '
         'Timerbd
         '
@@ -605,17 +670,6 @@ Partial Class frmSensorbiaodg
         Me.jxjxcoef.Size = New System.Drawing.Size(121, 26)
         Me.jxjxcoef.TabIndex = 41
         '
-        'jxjxclr
-        '
-        Me.jxjxclr.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.jxjxclr.Location = New System.Drawing.Point(46, 309)
-        Me.jxjxclr.Name = "jxjxclr"
-        Me.jxjxclr.Size = New System.Drawing.Size(40, 19)
-        Me.jxjxclr.TabIndex = 42
-        Me.jxjxclr.Text = "径向间隙清零"
-        Me.jxjxclr.UseVisualStyleBackColor = True
-        Me.jxjxclr.Visible = False
-        '
         'Button7
         '
         Me.Button7.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -633,60 +687,6 @@ Partial Class frmSensorbiaodg
         Me.Textjxjx.Name = "Textjxjx"
         Me.Textjxjx.Size = New System.Drawing.Size(124, 26)
         Me.Textjxjx.TabIndex = 44
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label15.Location = New System.Drawing.Point(38, 285)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(104, 16)
-        Me.Label15.TabIndex = 15
-        Me.Label15.Text = "左反驱力(N):"
-        '
-        'Textfqll_N
-        '
-        Me.Textfqll_N.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Textfqll_N.Location = New System.Drawing.Point(148, 282)
-        Me.Textfqll_N.Name = "Textfqll_N"
-        Me.Textfqll_N.Size = New System.Drawing.Size(116, 26)
-        Me.Textfqll_N.TabIndex = 21
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label16.Location = New System.Drawing.Point(42, 285)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(104, 16)
-        Me.Label16.TabIndex = 22
-        Me.Label16.Text = "右反驱力(N):"
-        '
-        'Textfqlr_N
-        '
-        Me.Textfqlr_N.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Textfqlr_N.Location = New System.Drawing.Point(162, 282)
-        Me.Textfqlr_N.Name = "Textfqlr_N"
-        Me.Textfqlr_N.Size = New System.Drawing.Size(121, 26)
-        Me.Textfqlr_N.TabIndex = 23
-        '
-        'Textwy_mm
-        '
-        Me.Textwy_mm.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Textwy_mm.Location = New System.Drawing.Point(161, 282)
-        Me.Textwy_mm.Name = "Textwy_mm"
-        Me.Textwy_mm.Size = New System.Drawing.Size(121, 26)
-        Me.Textwy_mm.TabIndex = 21
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label17.Location = New System.Drawing.Point(83, 285)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(80, 16)
-        Me.Label17.TabIndex = 15
-        Me.Label17.Text = "位移(mm):"
         '
         'frmSensorbiaodg
         '
