@@ -105,6 +105,8 @@ Partial Class frmMain
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBOX_num_state = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -298,6 +300,7 @@ Partial Class frmMain
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBOX_num_state)
         Me.GroupBox1.Controls.Add(Me.trouble)
         Me.GroupBox1.Controls.Add(Me.state)
         Me.GroupBox1.Controls.Add(Me.Label19)
@@ -859,10 +862,21 @@ Partial Class frmMain
         resources.ApplyResources(Me.TextBox3, "TextBox3")
         Me.TextBox3.Name = "TextBox3"
         '
+        'TextBOX_num_state
+        '
+        resources.ApplyResources(Me.TextBOX_num_state, "TextBOX_num_state")
+        Me.TextBOX_num_state.Name = "TextBOX_num_state"
+        '
+        'TextBox4
+        '
+        resources.ApplyResources(Me.TextBox4, "TextBox4")
+        Me.TextBox4.Name = "TextBox4"
+        '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
@@ -976,4 +990,6 @@ Partial Class frmMain
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBOX_num_state As TextBox
+    Friend WithEvents TextBox4 As TextBox
 End Class

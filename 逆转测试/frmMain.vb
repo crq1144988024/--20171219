@@ -826,7 +826,7 @@ netlis:
             If runflag = True Then
                 lblwy.Text = datasensorwy           '显示位移
 
-                ' Ttotal = GetTimeCount() / 1000 - TStart  '一次实验总时间
+                Ttotal = GetTimeCount() / 1000 - TStart  '一次实验总时间
                 If Ttotal > Val(paranew(41)) Then  '超时设置
                     bytessend(690) = 1    '设备超时
 
@@ -848,6 +848,7 @@ netlis:
             End If
             Application.DoEvents()
             'Return
+            TextBox4.Text = moveflag.ToString()
             Select Case moveflag
 
                 Case 1 '中位向右
@@ -855,13 +856,14 @@ netlis:
                     Call move_start()
                     ordersend25 = 0
                     moveflag = 2 '步骤
+                    Application.DoEvents()
                 Case 2 '右第一次到达
                     datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
                     ' TextBox2.Text = datasensor(count1).ToString() + " === " + ((-1) * Val(paranew(19))).ToString() + "\\\\\" + count1.ToString()
-                    If -Val(datasensorfqlleft) <= -400.0 Then
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
-                        TextBox2.Text = "停止运动"
-                    End If
+                    'If -Val(datasensorfqlleft) <= -400.0 Then
+                    '    d2210_decel_stop(m_UseAxis, 0) '停止运动
+                    '    TextBox2.Text = "停止运动"
+                    'End If
 
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
@@ -872,12 +874,14 @@ netlis:
                             ordersend12 = 1
                         End If
                     End If
+
                     If ordersend18 = 1 Then
                         If sst1 = 2 Then
                             moveflag = 3
                         End If
                         sst1 += 1   '循环两次加一
                     End If
+                    Thread.SpinWait(10)
                 Case 3 '右向左
                     If ordersend2 = 0 Then '只执行一次就完事
                         Dir1 = 0
@@ -889,6 +893,7 @@ netlis:
                         If ordersend3 = 0 Then
                             eftcot1 = count1 + 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
                             ordersend3 = 1
+
                         End If
                         If Val(lblfqlright.Text) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
                         'If Val(lblfqlright.Text) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
@@ -909,6 +914,7 @@ netlis:
                         End If
                         sst2 += 1
                     End If
+                    Thread.SpinWait(10)
                 Case 4 '左第一次到达后换向，即左向右动
                     If ordersend5 = 0 Then
                         Dir1 = 1
@@ -939,14 +945,15 @@ netlis:
                         End If
                         sst3 += 1
                     End If
+                    Thread.SpinWait(10)
                 Case 13 '计算有效位移对应的采样点
-                    For i = eftcot1 To count3
+                    For i = eftcot1 To count3 'eftcot1 =右向左 有力接触大于30N时候 过了50*3ms后的点  count3=左向右 停止前 50*2ms
                         If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then '百分比，所以要除以100，转换为小数  paranew(30)有效测试位移百分比
                             eftcot1 = i
                             Exit For
                         End If
                     Next
-                    For i = count3 To eftcot1 Step -1
+                    For i = count3 To eftcot1 Step -1 '如果有效位移百分比位95%截取靠近左侧 剩余的5%位移
                         If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
                             count3 = i
                             Exit For
@@ -1355,7 +1362,7 @@ netlis:
             tiaoma.Text = ""
         End If
 
-
+        TextBOX_num_state.Text = bytesrecd(0).ToString() '显示状态数字
         tooltime.Text = Now
         Select Case bytesrecd(0) '状态显示
             Case 0
@@ -1628,8 +1635,8 @@ netlis:
         lblfqlleft.Text = Format(datasensorfqlleft - Val(paranew(27)), "0")
         lblfqlright.Text = Format(datasensorfqlright - Val(paranew(28)), "0")
         lblwy.Text = Format(datasensorwy, "0.00")
-        TextBox3.Text = "左压力" + datasensorfqlleft.ToString() + " 左压力调整 -/ " + Val(paranew(27)).ToString() + " * 左压力零点偏置" + Val(paranew(26)).ToString() +
-            "右压力" + datasensorfqlright.ToString() + " 右压力调整 -/ " + Val(paranew(28)).ToString() + " * 右压力零点偏置" + Val(paranew(26)).ToString()
+        ' TextBox3.Text = "左压力" + datasensorfqlleft.ToString() + " 左压力调整 -/ " + Val(paranew(27)).ToString() + " * 左压力零点偏置" + Val(paranew(26)).ToString() +
+        '    "右压力" + datasensorfqlright.ToString() + " 右压力调整 -/ " + Val(paranew(28)).ToString() + " * 右压力零点偏置" + Val(paranew(26)).ToString()
         ''手动调试可换向
         'leftchg = Val(lblfqlleft.Text)
         'If leftchg >= Val(paranew(19)) And leftchgflag = 0 Then
@@ -1923,7 +1930,7 @@ netlis:
         '    scot += filterarr(i)
         'Next
         'datasensorfqlright = scot / 10 + Val(paranew(26))
-
+        TextBox3.Text = datasensorfqlleft.ToString() + "当前电压" + Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")).ToString() + "零点偏置" + Val(paranew(26)).ToString()
         '位移
         '待确定滤波效果，由于位移在中位时为零，两侧运动有正负区分，滤波会引入误差
         '若位移不需要滤波，则力的滤波算法也必须去掉
