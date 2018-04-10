@@ -5,9 +5,9 @@
 
     Public PiecePARA As New DataClasses_pieceparaDataContext
 
-    Public Datatable_save As IQueryable(Of piecedatasave)
+    Public Datatable_save As IQueryable(Of piecedatasave1)
 
-    Public Datatable_para As IQueryable(Of piecepara)
+    Public Datatable_para As IQueryable(Of piecepara1)
 
     '线程次数
     Public ThreadCount As Integer

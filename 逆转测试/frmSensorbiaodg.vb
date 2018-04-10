@@ -31,7 +31,7 @@
     End Sub
 
     Private Sub leftfqlclr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles leftfqlclr.Click
-        leftfqlclear = Math.Abs(frmMain.DAQfqlleft.Read)
+        leftfqlclear = frmMain.DAQfqlleft.Read
     End Sub
 
     Private Sub rightfqlclr_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rightfqlclr.Click
@@ -165,7 +165,7 @@
         For i = 0 To num - 1
             GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
 
-            Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara
+            Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara1
                               Where cust.工件类别 = frmMain.typesel.Items(i).ToString()).ToList()(0)
             updateCust.左反驱力标定 = paranew(21)
             updateCust.右反驱力标定 = paranew(22)

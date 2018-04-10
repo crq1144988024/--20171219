@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="datasave" Class="DataClasses_pieceparaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasaveConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.piecepara" Member="piecepara">
-    <Type Name="piecepara">
-      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="datasave1" Class="DataClasses_pieceparaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave1;Integrated Security=True" SettingsObjectName="逆转测试.My.MySettings" SettingsPropertyName="datasave1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.piecepara1" Member="piecepara1">
+    <Type Name="piecepara1">
+      <Column Name="工件类别" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="反驱力最大值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="反驱力最大值下限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="反驱力最小值上限" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />

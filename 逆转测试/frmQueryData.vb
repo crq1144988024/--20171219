@@ -90,7 +90,7 @@ Public Class frmQueryData
         ''Call CloseConncx()
 
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
         For Each customer In companyNameQuery
             Listdata.Items.Add(customer.编号)
         Next
@@ -115,7 +115,7 @@ Public Class frmQueryData
         '' countdata1 = MyRec.RecordCount - 1
 
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
         For Each customer In companyNameQuery
             Listdata.Items.Add(customer.编号)
         Next
@@ -143,7 +143,7 @@ Public Class frmQueryData
         'Next
         'Call CloseConncx()
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Where cust.日期 = j1 OrElse cust.结果 = j1 OrElse cust.编号 = j1 OrElse cust.工件类别 = j1 OrElse cust.条码 = j1 Select cust
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.日期 = j1 OrElse cust.结果 = j1 OrElse cust.编号 = j1 OrElse cust.工件类别 = j1 OrElse cust.条码 = j1 Select cust
 
         For Each customer In companyNameQuery
             Listdata.Items.Add(customer.编号)
@@ -168,8 +168,8 @@ Public Class frmQueryData
         ''  Call OpenConncx()
         id = Listdata.Text '所要查询工件
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Where cust.编号 = id Select cust
-        Dim CUST_ONE As piecedatasave
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.编号 = id Select cust
+        Dim CUST_ONE As piecedatasave1
         For Each customer In companyNameQuery
             CUST_ONE = customer
         Next

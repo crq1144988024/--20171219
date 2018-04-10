@@ -211,7 +211,7 @@ Module mVariblesForUI
 
 
 
-        Dim companyNameQuery = From cust In GlobalVariable.PiecePARA.piecepara Select cust
+        Dim companyNameQuery = From cust In GlobalVariable.PiecePARA.piecepara1 Select cust
 
 
         GlobalVariable.Datatable_para = companyNameQuery
@@ -232,7 +232,7 @@ Module mVariblesForUI
 
     '打开数据记录数据库
     Public Sub OpenConnNew()
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Select cust
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Select cust
 
         Return
         Dim Sqlstring As String

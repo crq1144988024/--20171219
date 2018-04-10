@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13.625" name="DataClasses_piecepara">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13.25" name="DataClasses_piecepara">
   <DataContextMoniker Name="/DataClasses_pieceparaDataContext" />
   <nestedChildShapes>
-    <classShape Id="6a3c669c-ac87-4c1f-86ac-62a81b7fd22e" absoluteBounds="6.25, 3, 2, 10.358451741536458">
-      <DataClassMoniker Name="/DataClasses_pieceparaDataContext/piecepara" />
+    <classShape Id="872e9444-7d6b-49f8-8d82-32618d651a1e" absoluteBounds="4.75, 2.625, 2, 10.358451741536458">
+      <DataClassMoniker Name="/DataClasses_pieceparaDataContext/piecepara1" />
       <nestedChildShapes>
-        <elementListCompartment Id="e77e8c0d-4738-41bc-a3aa-1e7f7560d765" absoluteBounds="6.265, 3.46, 1.9700000000000002, 9.7984517415364571" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="add8ca3d-413c-4776-97e6-4f3c5baa3d50" absoluteBounds="4.765, 3.085, 1.9700000000000002, 9.7984517415364571" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

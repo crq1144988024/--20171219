@@ -131,9 +131,18 @@ Public Class frmPreferset
         Next
         piecetype.Text = piecetype.Items(0)
         prefpiecetype = piecetype.Text
-        CloseConn()
+        ' CloseConn()
     End Sub
+    Private Sub insert_para_row(ByVal prefpiecetypenew As String)
 
+        Dim cust1 As New piecepara1 With {
+                      .工件类别 = prefpiecetypenew
+                  }
+
+        GlobalVariable.PiecePARA.piecepara1.InsertOnSubmit(cust1)
+        GlobalVariable.PiecePARA.SubmitChanges()
+
+    End Sub
     Private Sub Addnew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Addnew.Click
         Dim i As Integer
         Dim filenum As String
@@ -148,12 +157,17 @@ Public Class frmPreferset
             '' database.DataGridView1.DataSource = MyDataSet.Tables(0)
             piecetype.Items.Clear()
             frmMain.typesel.Items.Clear()
+
             countpiecepara = database.DataGridView1.RowCount - 1
             For i = 0 To countpiecepara - 1
                 piecetype.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)
                 frmMain.typesel.Items.Add(database.DataGridView1.Rows(i).Cells(0).Value)
             Next
-            CloseConn()
+            'CloseConn()
+            piecetype.Items.Add(prefpiecetype)
+            frmMain.typesel.Items.Add(prefpiecetype)
+
+            insert_para_row(prefpiecetype) '先新增再更新
             Call writeparanew()
             Call writeadvparanew()
             piecetype.Text = prefpiecetype
@@ -166,6 +180,7 @@ Public Class frmPreferset
         mysw.WriteLine(0)
         mysw.WriteLine(0)
         mysw.Close()
+        OpenConn()
     End Sub
 
     Private Sub piecetype_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles piecetype.SelectedIndexChanged
@@ -486,10 +501,10 @@ Public Class frmPreferset
 
         GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
 
-        Dim deleteCust = (From cust In GlobalVariable.PiecePARA.piecepara
+        Dim deleteCust = (From cust In GlobalVariable.PiecePARA.piecepara1
                           Where cust.工件类别 = prefpiecetype).ToList()(0)
 
-        GlobalVariable.PiecePARA.piecepara.DeleteOnSubmit(deleteCust)
+        GlobalVariable.PiecePARA.piecepara1.DeleteOnSubmit(deleteCust)
 
         Try
             GlobalVariable.PiecePARA.SubmitChanges()
@@ -508,47 +523,58 @@ Public Class frmPreferset
     '参数存储
     Public Sub writeparanew()
 
-        GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
+        Dim SS2 As DataClasses_pieceparaDataContext = New DataClasses_pieceparaDataContext()
 
-        Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara
-                          Where cust.工件类别 = prefpiecetype).ToList()(0)
+        Dim customer = From cust1 In SS2.piecepara1
+                       Where cust1.工件类别 = prefpiecetype Select cust1
 
-        updateCust.反驱力最大值上限 = paranew(1)
-        updateCust.反驱力最大值下限 = paranew(2)
-        updateCust.反驱力最小值上限 = paranew(3)
-        updateCust.反驱力最小值下限 = paranew(4)
-        updateCust.反驱力波动量上限 = paranew(5)
-        updateCust.反驱力波动量下限 = paranew(6)
-        updateCust.反驱力平均值上限 = paranew(7)
-        updateCust.反驱力平均值下限 = paranew(8)
-        updateCust.左右波动量差值上限 = paranew(9)
-        updateCust.左右波动量差值下限 = paranew(10)
-        updateCust.反驱动位移上限 = paranew(11)
-        updateCust.反驱动位移下限 = paranew(12)
-        updateCust.齿条径向间隙上限 = paranew(13)
-        updateCust.齿条径向间隙下限 = paranew(14)
-        updateCust.齿条径向力上限 = paranew(15)
-        updateCust.齿条径向力下限 = paranew(16)
-        updateCust.间隙检测抽检间隔 = paranew(17)
-        updateCust.测试速度 = paranew(18)
-        updateCust.换向力 = paranew(19)
-        updateCust.最大换向力 = paranew(29)
-        updateCust.扫条码使能 = paranew(20)
 
-        updateCust.左反驱力标定 = paranew(21)
-        updateCust.右反驱力标定 = paranew(22)
-        updateCust.位移标定 = paranew(23)
-        updateCust.径向力标定 = paranew(24)
-        updateCust.零位判断基准电压 = paranew(33)
-        updateCust.间隙检测位置 = paranew(34)
-        updateCust.左右平均力差值上限 = paranew(35)
-        updateCust.左右平均力差值下限 = paranew(36)
-        updateCust.中位记号笔使能 = paranew(47)
-        updateCust.径向间隙标定 = paranew(25)
 
+        For Each updateCust In customer
+
+            If updateCust.工件类别 = prefpiecetype Then
+                MsgBox(prefpiecetype.ToString() + "  " + paranew(29))
+
+                updateCust.反驱力最大值上限 = paranew(1)
+                updateCust.反驱力最大值下限 = paranew(2)
+                updateCust.反驱力最小值上限 = paranew(3)
+                updateCust.反驱力最小值下限 = paranew(4)
+                updateCust.反驱力波动量上限 = paranew(5)
+                updateCust.反驱力波动量下限 = paranew(6)
+                updateCust.反驱力平均值上限 = paranew(7)
+                updateCust.反驱力平均值下限 = paranew(8)
+                updateCust.左右波动量差值上限 = paranew(9)
+                updateCust.左右波动量差值下限 = paranew(10)
+                updateCust.反驱动位移上限 = paranew(11)
+                updateCust.反驱动位移下限 = paranew(12)
+                updateCust.齿条径向间隙上限 = paranew(13)
+                updateCust.齿条径向间隙下限 = paranew(14)
+                updateCust.齿条径向力上限 = paranew(15)
+                updateCust.齿条径向力下限 = paranew(16)
+                updateCust.间隙检测抽检间隔 = paranew(17)
+                updateCust.测试速度 = paranew(18)
+                updateCust.换向力 = paranew(19)
+                updateCust.最大换向力 = paranew(29)
+                updateCust.扫条码使能 = paranew(20)
+
+                updateCust.左反驱力标定 = paranew(21)
+                updateCust.右反驱力标定 = paranew(22)
+                updateCust.位移标定 = paranew(23)
+                updateCust.径向力标定 = paranew(24)
+                updateCust.零位判断基准电压 = paranew(33)
+                updateCust.间隙检测位置 = paranew(34)
+                updateCust.左右平均力差值上限 = paranew(35)
+                updateCust.左右平均力差值下限 = paranew(36)
+                updateCust.中位记号笔使能 = paranew(47)
+                updateCust.径向间隙标定 = paranew(25)
+            End If
+        Next
+
+        SS2.SubmitChanges()
         Try
-            GlobalVariable.PiecePARA.SubmitChanges()
+
         Catch
+            MsgBox("保存失败！")
             ' Handle exception.  
         End Try
         Return
@@ -594,7 +620,7 @@ Public Class frmPreferset
     Public Sub writeadvparanew()
         GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
 
-        Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara
+        Dim updateCust = (From cust In GlobalVariable.PiecePARA.piecepara1
                           Where cust.工件类别 = prefpiecetype).ToList()(0)
         updateCust.零点偏置 = paranew(26)
         updateCust.左反驱力调整 = paranew(27)

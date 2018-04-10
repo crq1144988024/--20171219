@@ -261,7 +261,7 @@ Public Class frmMain
 
         count1 = 1 '全程计数
         clearwy = DAQwy.Read '位移零位
-        clearfqlleft = Math.Abs(DAQfqlleft.Read) '左反驱零位
+        clearfqlleft = DAQfqlleft.Read '左反驱零位
         clearfqlright = DAQfqlright.Read '右反驱零位
 
         set_piecepara_now() '设置当前产品型号
@@ -644,22 +644,22 @@ netlis:
 
 
     Public Sub monitor_left_right()
-        lvboleft(10) = Math.Abs(DAQfqlleft.Read) - clearfqlleft
+        lvboleft(10) = Abs(DAQfqlleft.Read - clearfqlleft)
         svel = 0
-        For i = 9 To 0 Step -1
-            lvboleft(i) = lvboleft(i + 1)
-            svel += lvboleft(i)
-        Next
-        vdatafqlleft = svel / 10 '求1-11的平均值 left
-
-        lvboright(10) = DAQfqlright.Read - clearfqlright
+        ' For i = 9 To 0 Step -1
+        '  lvboleft(i) = lvboleft(i + 1)
+        ' svel += lvboleft(i)
+        'Next
+        'vdatafqlleft = svel / 10 '求1-11的平均值 left
+        vdatafqlleft = lvboleft(10)
+        lvboright(10) = Abs(DAQfqlright.Read - clearfqlright)
         svel = 0
-        For i = 9 To 0 Step -1
-            lvboright(i) = lvboright(i + 1)
-            svel += lvboright(i)
-        Next
-        vdatafqlright = svel / 10 * (-1) '求1-11的平均值 right
-
+        ' For i = 9 To 0 Step -1
+        ' lvboright(i) = lvboright(i + 1)
+        ' svel += lvboright(i)
+        ' Next
+        'vdatafqlright = svel / 10 * (-1) '求1-11的平均值 right
+        vdatafqlright = lvboright(10)
         sensorfqlleft = Val(Format(lvboleft(10) * Val(paranew(21)), "0.00"))  '与标定数据相乘
         sensorfqlright = Val(Format(lvboright(10) * Val(paranew(22)), "0.00"))
         If Abs(sensorfqlleft) >= Val(paranew(29)) Or Abs(sensorfqlright) >= Val(paranew(29)) Then '大于最大换向力停止动作
@@ -752,11 +752,23 @@ netlis:
 
 
         monitor_emergency_stop() '紧急情况监控
+        Application.DoEvents()
         If TimlvbofTickenable Then
             monitor_left_right() '左右监控以及  PLC链接状态监控
+            Application.DoEvents()
+            TextBox1.Text = "TimlvbofTickenable=True" + vdatafqlleft.ToString()
+        Else
+            TextBox1.Text = "TimlvbofTickenable=false  " + vdatafqlleft.ToString()
         End If
 
         If TestTickenable Then
+            TextBox2.Text = "TestTickenable=true" + vdatafqlleft.ToString()
+        Else
+            TextBox2.Text = "TestTickenable=false" + vdatafqlleft.ToString()
+        End If
+        If TestTickenable Then
+
+
             datasensorfqlleft = Val(Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '加上零点偏置
             datasensorfqlright = Val(Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")) + Val(paranew(26))
             vdatawy = DAQwy.Read - clearwy ''位移电压= 读取的值-位移零位
@@ -777,7 +789,7 @@ netlis:
             End If
 
 
-
+            Application.DoEvents()
             If begintest = False Then '自动测试开始——保证只调用一次主测试函数及状态设置
 
                 'bytessend(697) = 1 '自动实验后光栅使能
@@ -809,7 +821,7 @@ netlis:
                 moveflag = 1    '正反转控制
                 runflag = True  '自动动作标识
                 begintest = True  '自动测试调用结束置位——保证只调用一次主测试函数及状态设置
-
+                Application.DoEvents()
             End If
             If runflag = True Then
                 lblwy.Text = datasensorwy           '显示位移
@@ -830,10 +842,11 @@ netlis:
                     mypiecedata.mcountdata = count1 '全程计数
                     datawy(count1) = datasensorwy '数组采集数据  一共5000组
                     li_sensors_times = False
-
+                    Application.DoEvents()
                 End If
 
             End If
+            Application.DoEvents()
             'Return
             Select Case moveflag
 
@@ -844,9 +857,10 @@ netlis:
                     moveflag = 2 '步骤
                 Case 2 '右第一次到达
                     datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
-                    TextBox1.Text = datasensor(count1).ToString() + " === " + ((-1) * Val(paranew(19))).ToString() + "\\\\\" + count1.ToString()
-                    If -Val(lblfqlleft.Text) <= -400.0 Then
+                    ' TextBox2.Text = datasensor(count1).ToString() + " === " + ((-1) * Val(paranew(19))).ToString() + "\\\\\" + count1.ToString()
+                    If -Val(datasensorfqlleft) <= -400.0 Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        TextBox2.Text = "停止运动"
                     End If
 
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
@@ -1610,11 +1624,12 @@ netlis:
 
     Private Sub Timhand_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timhand.Tick
         Call acqcurrentdata()
+        Application.DoEvents()
         lblfqlleft.Text = Format(datasensorfqlleft - Val(paranew(27)), "0")
         lblfqlright.Text = Format(datasensorfqlright - Val(paranew(28)), "0")
         lblwy.Text = Format(datasensorwy, "0.00")
-
-
+        TextBox3.Text = "左压力" + datasensorfqlleft.ToString() + " 左压力调整 -/ " + Val(paranew(27)).ToString() + " * 左压力零点偏置" + Val(paranew(26)).ToString() +
+            "右压力" + datasensorfqlright.ToString() + " 右压力调整 -/ " + Val(paranew(28)).ToString() + " * 右压力零点偏置" + Val(paranew(26)).ToString()
         ''手动调试可换向
         'leftchg = Val(lblfqlleft.Text)
         'If leftchg >= Val(paranew(19)) And leftchgflag = 0 Then
@@ -1715,7 +1730,7 @@ netlis:
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
 
         If scancodeflag = True Then
-            Dim cust1 As New piecedatasave With {
+            Dim cust1 As New piecedatasave1 With {
                         .编号 = mypiecedata.datasaverec(0),
                         .日期 = mypiecedata.datasaverec(1),
                         .工件类别 = mypiecedata.datasaverec(2),
@@ -1735,12 +1750,12 @@ netlis:
                         .左右波动量差值 = mypiecedata.datasaverec(15)
                     }
 
-            GlobalVariable.Piecedatasave.piecedatasave.InsertOnSubmit(cust1)
-
+            GlobalVariable.Piecedatasave.piecedatasave1.InsertOnSubmit(cust1)
+            GlobalVariable.Piecedatasave.SubmitChanges()
 
 
         Else
-            Dim cust2 As New piecedatasave With {
+            Dim cust2 As New piecedatasave1 With {
                         .编号 = mypiecedata.datasaverec(0),
                         .日期 = mypiecedata.datasaverec(1),
                         .工件类别 = mypiecedata.datasaverec(2),
@@ -1758,8 +1773,8 @@ netlis:
                        .左右反驱力平均值差值 = mypiecedata.datasaverec(20),
                        .左右波动量差值 = mypiecedata.datasaverec(15)
                    }
-            GlobalVariable.Piecedatasave.piecedatasave.InsertOnSubmit(cust2)
-
+            GlobalVariable.Piecedatasave.piecedatasave1.InsertOnSubmit(cust2)
+            GlobalVariable.Piecedatasave.SubmitChanges()
         End If
 
         Return
@@ -1793,7 +1808,7 @@ netlis:
     Public Sub savejianxiexp()
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
 
-        Dim updateCust = (From cust In GlobalVariable.Piecedatasave.piecedatasave
+        Dim updateCust = (From cust In GlobalVariable.Piecedatasave.piecedatasave1
                           Where cust.编号 = prefpiecetype).ToList()(0)
         updateCust.上拉齿条径向间隙 = mypiecedata.datasaverec(16)
         updateCust.上拉齿条径向力 = mypiecedata.datasaverec(17)
@@ -1863,10 +1878,29 @@ netlis:
     Public Sub acqcurrentdata()
         'Dim i As Integer
         On Error Resume Next
+        Dim leftlinow As Double
+        Dim rightlinow As Double
+
+        leftlinow = Abs(DAQfqlleft.Read - clearfqlleft)
+        ' svel = 0
+        ' For i = 9 To 0 Step -1
+        '  lvboleft(i) = lvboleft(i + 1)
+        ' svel += lvboleft(i)
+        'Next
+        'vdatafqlleft = svel / 10 '求1-11的平均值 left
+        ' vdatafqlleft = lvboleft(10)
+        rightlinow = Abs(DAQfqlright.Read - clearfqlright)
+        ' svel = 0
+        ' For i = 9 To 0 Step -1
+        ' lvboright(i) = lvboright(i + 1)
+        ' svel += lvboright(i)
+        ' Next
+        'vdatafqlright = svel / 10 * (-1) '求1-11的平均值 right
+        ' vdatafqlright = lvboright(10)
 
         '左反驱力
         'vdatafqlleft *= -1
-        datasensorfqlleft = Val(Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '不进行滤波
+        datasensorfqlleft = Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")) + Val(paranew(26)) '不进行滤波
         'filterarr(9) = Format(Val(vdatafqlleft) * Val(paranew(21)), "0.00")
         'For i = 1 To 9
         '    filterarr(i - 1) = filterarr(i)
@@ -1879,7 +1913,7 @@ netlis:
 
         '右反驱力
         vdatafqlright *= -1
-        datasensorfqlright = Val(Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")) + Val(paranew(26))
+        datasensorfqlright = Val(Format(Val(rightlinow) * Val(paranew(22)), "0.00")) + Val(paranew(26))
         'filterarr(9) = Format(Val(vdatafqlright) * Val(paranew(22)), "0.00")
         'For i = 1 To 9
         '    filterarr(i - 1) = filterarr(i)
@@ -2399,7 +2433,7 @@ netlis:
         '  Dim customers As Table(Of piecedatasave) = piecedatasave
 
 
-        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave Where cust.上拉齿条径向力 = "1" Select cust.结果
+        Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.上拉齿条径向力 = "1" Select cust.结果
 
 
 
