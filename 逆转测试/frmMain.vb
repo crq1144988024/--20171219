@@ -261,8 +261,8 @@ Public Class frmMain
 
         count1 = 1 '全程计数
         clearwy = DAQwy.Read '位移零位
-        clearfqlleft = DAQfqlleft.Read '左反驱零位
-        clearfqlright = DAQfqlright.Read '右反驱零位
+        '’clearfqlleft = DAQfqlleft.Read '左反驱零位
+        '’clearfqlright = DAQfqlright.Read '右反驱零位
 
         set_piecepara_now() '设置当前产品型号
 
@@ -635,7 +635,7 @@ netlis:
             checkupflag = False
             begintest = False
             movetestflag = 0
-            TimlvbofTickenable = True
+            'TimlvbofTickenable = True
             TimlvbofTickenable = True
             ' Timlvbof.Enabled = True
             If fqjianxiexp = True Then fqjianxiexp = False
@@ -745,6 +745,8 @@ netlis:
 
     Private Delegate Sub fanqu()
     Dim li_sensors_times As Boolean
+    Dim lileft_sensorszero As Boolean
+    Dim liright_sensorszero As Boolean
     ''' <summary>
     ''' 线程监控  传感器数据及流程步 以及相关安全动作
     ''' </summary>
@@ -753,21 +755,33 @@ netlis:
         Dim lblfqlright_now_adjiust As Double
         Dim lblwy_now_adjiust As Double
 
+        Dim lblfqlleft_now_weijianlingdain As Double
+        Dim lblfqlright_now_weijianlingdain As Double
+
         monitor_emergency_stop() '紧急情况监控
         Application.DoEvents()
+
+
         If TimlvbofTickenable Then
             monitor_left_right() '左右监控以及  PLC链接状态监控
             Application.DoEvents()
-            TextBox1.Text = "TimlvbofTickenable=True" + vdatafqlleft.ToString()
-        Else
-            TextBox1.Text = "TimlvbofTickenable=false  " + vdatafqlleft.ToString()
+
+
+        End If
+        If lileft_sensorszero = False Or liright_sensorszero = False Then
+            lblfqlleft_now_weijianlingdain = Val(Format(Val(DAQfqlleft.Read) * Val(paranew(21)), "0.00"))
+            lblfqlright_now_weijianlingdain = Val(Format(Val(DAQfqlright.Read) * Val(paranew(22)), "0.00"))
+        End If
+        If lileft_sensorszero = False And lblfqlleft_now_weijianlingdain < 10 Then
+            clearfqlleft = DAQfqlleft.Read '左反驱零位
+            lileft_sensorszero = True
         End If
 
-        If TestTickenable Then
-            TextBox2.Text = "TestTickenable=true" + vdatafqlleft.ToString()
-        Else
-            TextBox2.Text = "TestTickenable=false" + vdatafqlleft.ToString()
+        If liright_sensorszero = False And lblfqlright_now_weijianlingdain < 10 Then
+            clearfqlright = DAQfqlright.Read '右反驱零位
+            liright_sensorszero = True
         End If
+        TextBox4.Text = moveflag.ToString()
         If TestTickenable Then
 
 
@@ -856,7 +870,7 @@ netlis:
             Application.DoEvents()
 
             'Return
-            TextBox4.Text = moveflag.ToString()
+            TextBox1.Text = moveflag.ToString()
             Select Case moveflag
 
                 Case 1 '中位向右
@@ -876,7 +890,7 @@ netlis:
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         If ordersend12 = 0 Then
-                            count2 = count1 '' - 2
+                            count2 = count1 - 3 '- 2
                             maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend18 = 1
                             ordersend12 = 1
@@ -891,24 +905,28 @@ netlis:
                     End If
                     Thread.SpinWait(10)
                 Case 3 '右向左
+                    ' MsgBox("右向左1")
                     If ordersend2 = 0 Then '只执行一次就完事
                         Dir1 = 0
                         Call move_start()
                         ordersend2 = 1
+                        ' MsgBox("右向左2")
+                        Application.DoEvents()
                     End If
                     datasensor(count1) = Val(lblfqlright_now_adjiust) '31为反驱力调整系数
                     If Val(lblfqlright_now_adjiust) >= 30 Then
                         If ordersend3 = 0 Then
-                            eftcot1 = count1 + 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
+                            eftcot1 = count1 + 20 '+ 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
                             ordersend3 = 1
-
+                            Application.DoEvents()
                         End If
                         If Val(lblfqlright_now_adjiust) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
                         'If Val(lblfqlright_now_adjiust) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
                         If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend13 = 0 Then
-                                count3 = count1 ''- 2
+                                'MsgBox("右向左3")
+                                count3 = count1 - 3 ' - 2
                                 maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend13 = 1
                                 ordersend17 = 1
@@ -916,6 +934,7 @@ netlis:
                             zerowybc = maxwy2 - (maxwy2 - maxwy3) / 2 '回中位移  右是+  左是-
                         End If
                     End If
+                    Application.DoEvents()
                     If ordersend17 = 1 Then
                         If sst2 = 2 Then
                             moveflag = 4
@@ -932,7 +951,7 @@ netlis:
                     datasensor(count1) = -Val(lblfqlleft_now_adjiust)
                     If Val(lblfqlleft_now_adjiust) >= 30 Then
                         If ordersend6 = 0 Then
-                            eftcot2 = count1 + 3 '？？？？？？？？？？？？？？？？？？？？？？
+                            eftcot2 = count1 + 2 '+ 13 '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend6 = 1
                         End If
                         If Val(lblfqlleft_now_adjiust) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
@@ -940,10 +959,11 @@ netlis:
                         If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend14 = 0 Then
-                                count4 = count1 ''- 2
+                                count4 = count1 '+ 3 ''- 2
                                 maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend19 = 1
                                 ordersend14 = 1
+                                sst3 = 0
                             End If
                         End If
                     End If
@@ -1227,6 +1247,7 @@ netlis:
                         Call datasave(countpieceng)
                     End If
                     counter = 0
+
                     Call setparamain()  '赋值操作-主界面
 
                 'moveflag = 122
@@ -1261,6 +1282,7 @@ netlis:
                     If mypiecedata.datasaverec(4) = "NG" Then bytessend(19) = 2
                     bytessend(21) = 1 '反驱结束，需复位
                     movetestflag = 1
+
 
                     moveflag = 0
                     bytessend(697) = 0
@@ -1321,7 +1343,7 @@ netlis:
 
             ThreadCount = ThreadCount + 1
             TestEnd = timeGetTime()
-            If (TestEnd - TestStart) >= 50 Then
+            If (TestEnd - TestStart) >= 5 Then
                 TestStart = TestEnd
                 li_sensors_times = True
                 If (count1 < 5000) Then
@@ -1719,7 +1741,9 @@ netlis:
         my_ngnum = Val(lblng.Text)
         my_allnum = Val(lblall.Text)
         Call savecount(my_oknum, my_ngnum, my_allnum) '计数保存
+
         Call saveerycheckresult() '保存实验结果——不包含间隙检测结果
+
         If fqjianxiexp Then
             Call savejianxiexp() '保存间隙检测结果
         End If
@@ -1822,21 +1846,24 @@ netlis:
 
     '保存间隙检测结果
     Public Sub savejianxiexp()
-        GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
 
-        Dim updateCust = (From cust In GlobalVariable.Piecedatasave.piecedatasave1
-                          Where cust.编号 = prefpiecetype).ToList()(0)
-        updateCust.上拉齿条径向间隙 = mypiecedata.datasaverec(16)
-        updateCust.上拉齿条径向力 = mypiecedata.datasaverec(17)
-        updateCust.下拉齿条径向间隙 = mypiecedata.datasaverec(18)
-        updateCust.下拉齿条径向力 = mypiecedata.datasaverec(19)
+
+        GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
 
 
 
 
         Try
+            Dim updateCust = (From cust In GlobalVariable.Piecedatasave.piecedatasave1
+                              Where cust.编号 = mypiecedata.datasaverec(0)).ToList()(0)
+            updateCust.上拉齿条径向间隙 = mypiecedata.datasaverec(16)
+            updateCust.上拉齿条径向力 = mypiecedata.datasaverec(17)
+            updateCust.下拉齿条径向间隙 = mypiecedata.datasaverec(18)
+            updateCust.下拉齿条径向力 = mypiecedata.datasaverec(19)
+
             GlobalVariable.Piecedatasave.SubmitChanges()
         Catch
+            MessageBox.Show("保存间隙检测结果失败")
             ' Handle exception.  
         End Try
         Return
@@ -1939,7 +1966,8 @@ netlis:
         '    scot += filterarr(i)
         'Next
         'datasensorfqlright = scot / 10 + Val(paranew(26))
-        TextBox3.Text = datasensorfqlleft.ToString() + "当前电压" + Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")).ToString() + "零点偏置" + Val(paranew(26)).ToString()
+        TextBox3.Text = datasensorfqlleft.ToString() + "当前电压" + DAQfqlleft.Read.ToString() + "//零点" + clearfqlleft.ToString() + "//" + Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")).ToString() + "零点偏置" + Val(paranew(26)).ToString() +
+        "右侧 " + DAQfqlright.Read.ToString() + "//零点 " + clearfqlright.ToString()
         '位移
         '待确定滤波效果，由于位移在中位时为零，两侧运动有正负区分，滤波会引入误差
         '若位移不需要滤波，则力的滤波算法也必须去掉
