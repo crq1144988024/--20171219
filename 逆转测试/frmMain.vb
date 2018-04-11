@@ -749,7 +749,9 @@ netlis:
     ''' 线程监控  传感器数据及流程步 以及相关安全动作
     ''' </summary>
     Public Sub ShowAcqAndJudge()
-
+        Dim lblfqlleft_now_adjiust As Double
+        Dim lblfqlright_now_adjiust As Double
+        Dim lblwy_now_adjiust As Double
 
         monitor_emergency_stop() '紧急情况监控
         Application.DoEvents()
@@ -823,6 +825,7 @@ netlis:
                 begintest = True  '自动测试调用结束置位——保证只调用一次主测试函数及状态设置
                 Application.DoEvents()
             End If
+
             If runflag = True Then
                 lblwy.Text = datasensorwy           '显示位移
 
@@ -833,12 +836,16 @@ netlis:
                 Else
                     bytessend(690) = 0    '设备未超时
                 End If
+
+                lblfqlleft_now_adjiust = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '27左反驱力调整力 31左反驱力调整系数
+                lblfqlright_now_adjiust = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
+                lblwy_now_adjiust = datasensorwy '显示位移
                 If li_sensors_times = True Then
 
                     lbltime.Text = Format(Ttotal, "0.00") '显示时间
-                    lblwy.Text = datasensorwy           '显示位移
-                    lblfqlleft.Text = Format((datasensorfqlleft - Val(paranew(27))) * Val(paranew(31)), "0.00")   '左反驱力调整
-                    lblfqlright.Text = Format((datasensorfqlright - Val(paranew(28))) * Val(paranew(31)), "0.00") '右反驱力调整
+                    lblwy.Text = lblwy_now_adjiust           '显示位移
+                    lblfqlleft.Text = lblfqlleft_now_adjiust  '27左反驱力调整力 31左反驱力调整系数
+                    lblfqlright.Text = lblfqlright_now_adjiust '右反驱力调整
                     mypiecedata.mcountdata = count1 '全程计数
                     datawy(count1) = datasensorwy '数组采集数据  一共5000组
                     li_sensors_times = False
@@ -847,6 +854,7 @@ netlis:
 
             End If
             Application.DoEvents()
+
             'Return
             TextBox4.Text = moveflag.ToString()
             Select Case moveflag
@@ -858,7 +866,7 @@ netlis:
                     moveflag = 2 '步骤
                     Application.DoEvents()
                 Case 2 '右第一次到达
-                    datasensor(count1) = -Val(lblfqlleft.Text) '为画图显示方便，左反驱力取成负值
+                    datasensor(count1) = -Val(lblfqlleft_now_adjiust) '为画图显示方便，左反驱力取成负值
                     ' TextBox2.Text = datasensor(count1).ToString() + " === " + ((-1) * Val(paranew(19))).ToString() + "\\\\\" + count1.ToString()
                     'If -Val(datasensorfqlleft) <= -400.0 Then
                     '    d2210_decel_stop(m_UseAxis, 0) '停止运动
@@ -868,7 +876,7 @@ netlis:
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         If ordersend12 = 0 Then
-                            count2 = count1 - 2
+                            count2 = count1 '' - 2
                             maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend18 = 1
                             ordersend12 = 1
@@ -888,19 +896,19 @@ netlis:
                         Call move_start()
                         ordersend2 = 1
                     End If
-                    datasensor(count1) = Val(lblfqlright.Text) '31为反驱力调整系数
-                    If Val(lblfqlright.Text) >= 30 Then
+                    datasensor(count1) = Val(lblfqlright_now_adjiust) '31为反驱力调整系数
+                    If Val(lblfqlright_now_adjiust) >= 30 Then
                         If ordersend3 = 0 Then
                             eftcot1 = count1 + 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
                             ordersend3 = 1
 
                         End If
-                        If Val(lblfqlright.Text) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
-                        'If Val(lblfqlright.Text) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
+                        If Val(lblfqlright_now_adjiust) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
+                        'If Val(lblfqlright_now_adjiust) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
                         If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend13 = 0 Then
-                                count3 = count1 - 2
+                                count3 = count1 ''- 2
                                 maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend13 = 1
                                 ordersend17 = 1
@@ -921,18 +929,18 @@ netlis:
                         Call move_start()
                         ordersend5 = 1
                     End If
-                    datasensor(count1) = -Val(lblfqlleft.Text)
-                    If Val(lblfqlleft.Text) >= 30 Then
+                    datasensor(count1) = -Val(lblfqlleft_now_adjiust)
+                    If Val(lblfqlleft_now_adjiust) >= 30 Then
                         If ordersend6 = 0 Then
                             eftcot2 = count1 + 3 '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend6 = 1
                         End If
-                        If Val(lblfqlleft.Text) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
-                        'If Val(lblfqlleft.Text) < 198 Then FastLine2.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
+                        If Val(lblfqlleft_now_adjiust) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
+                        'If Val(lblfqlleft_now_adjiust) < 198 Then FastLine2.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
                         If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend14 = 0 Then
-                                count4 = count1 - 2
+                                count4 = count1 ''- 2
                                 maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend19 = 1
                                 ordersend14 = 1
@@ -959,7 +967,7 @@ netlis:
                             Exit For
                         End If
                     Next
-                    For i = eftcot2 To count4
+                    For i = eftcot2 To count4 '左向右动
                         If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
                             eftcot2 = i
                             Exit For
@@ -1023,7 +1031,7 @@ netlis:
                         Call move_start2()
                         ordersend8 = 1
                     End If
-                    If Val(lblfqlleft.Text) <= 30 And ordersend9 = 0 Then
+                    If Val(lblfqlleft_now_adjiust) <= 30 And ordersend9 = 0 Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         If sst4 = 2 Then
                             ordersend9 = 1
@@ -1327,6 +1335,7 @@ netlis:
             '  ThreadCount = 0
             ' End If
         End If
+        Application.DoEvents()
         reset() '复位数据
 
         Application.DoEvents()
