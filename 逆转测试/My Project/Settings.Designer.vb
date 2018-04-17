@@ -57,48 +57,6 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=USER-E0SA31SLC7\SQLEXPRESS;Initial Catalog=TEST1;Integrated Security="& _ 
-            "True")>  _
-        Public ReadOnly Property TEST1ConnectionString() As String
-            Get
-                Return CType(Me("TEST1ConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SQL\datasave."& _ 
-            "mdf;Integrated Security=True")>  _
-        Public ReadOnly Property datasaveConnectionString() As String
-            Get
-                Return CType(Me("datasaveConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=CRQ-PC\WINCC;Initial Catalog=datasave;Integrated Security=True")>  _
-        Public ReadOnly Property datasaveConnectionString1() As String
-            Get
-                Return CType(Me("datasaveConnectionString1"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave;Integrated Security=True")>  _
-        Public ReadOnly Property datasaveConnectionString2() As String
-            Get
-                Return CType(Me("datasaveConnectionString2"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=JUSTPLAY-PC\SQL;Initial Catalog=datasave1;Integrated Security=True")>  _
         Public ReadOnly Property datasave1ConnectionString() As String
             Get
