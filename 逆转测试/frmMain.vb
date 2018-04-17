@@ -241,8 +241,8 @@ Public Class frmMain
         'OleDbConnrecd.Open() '打卡数据库
 
         set_chart() '调整图表控件
-        '  Me.Visible = False  '隐藏窗体
-        '  Login.ShowDialog()   '加载登录对话框
+        Me.Visible = False  '隐藏窗体
+        Login.ShowDialog()   '加载登录对话框
 
         set_initialize_datagridview_now() '设置datagridview now图表显示
         'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留

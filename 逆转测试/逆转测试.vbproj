@@ -358,6 +358,7 @@
     <Content Include="Sys\piecetype.txt" />
     <Content Include="Sys\v3.txt" />
     <Content Include="Sys\V301.txt" />
+    <Content Include="user\中机儒拉玛特LOGO.JPG" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
