@@ -93,6 +93,7 @@ Public Class frmMain
         ThreadCom.Abort() '\通信线程关闭
         ThreadCom_displacement.Abort() '\通信线程关闭
         ThreadAcq.Abort() '\通信线程关闭
+        Application.DoEvents()
         PortClose()  '串口关闭
         Me.Close()
     End Sub
@@ -130,6 +131,7 @@ Public Class frmMain
         ThreadCom.Abort() '\通信线程关闭
         ThreadCom_displacement.Abort() '\通信线程关闭
         ThreadAcq.Abort() '\通信线程关闭
+        Application.DoEvents()
         PortClose()  '串口关闭
         ' OleDbConnpara.Close()  '关闭数据库
         ' OleDbConnpara.Dispose() '释放资源
@@ -268,11 +270,14 @@ Public Class frmMain
 
         ' Return
         ComboBox1.Enabled = False                  '在线离线控件使能关闭
-
-        ThreadCom.Start() '通信线程开始
-        ThreadAcq.Start() '通信线程开始
-        ThreadCom_displacement.Start() '通信线程开始
         PortOpen()                                  '打开串口
+        Application.DoEvents()
+        ThreadCom.Start() '通信线程开始
+        Application.DoEvents()
+        ThreadAcq.Start() '通信线程开始
+        Application.DoEvents()
+        ThreadCom_displacement.Start() '通信线程开始
+        Application.DoEvents()
         FastLine1.Clear()                           'treechart1清除
         FastLine2.Clear()
         'TimlvbofTickenable = True
@@ -2486,11 +2491,5 @@ netlis:
         Next
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        PortOpen()
-    End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        PortClose()  '串口关闭
-    End Sub
 End Class
