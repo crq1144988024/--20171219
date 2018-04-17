@@ -51,6 +51,7 @@ Partial Class frmMain
         Me.tiaoma = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBOX_num_state = New System.Windows.Forms.TextBox()
         Me.trouble = New System.Windows.Forms.TextBox()
         Me.state = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -102,10 +103,6 @@ Partial Class frmMain
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBOX_num_state = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -308,6 +305,11 @@ Partial Class frmMain
         resources.ApplyResources(Me.GroupBox1, "GroupBox1")
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.TabStop = False
+        '
+        'TextBOX_num_state
+        '
+        resources.ApplyResources(Me.TextBOX_num_state, "TextBOX_num_state")
+        Me.TextBOX_num_state.Name = "TextBOX_num_state"
         '
         'trouble
         '
@@ -847,26 +849,6 @@ Partial Class frmMain
         Me.SerialPort1.PortName = "COM8"
         Me.SerialPort1.ReadBufferSize = 500
         '
-        'TextBox1
-        '
-        resources.ApplyResources(Me.TextBox1, "TextBox1")
-        Me.TextBox1.Name = "TextBox1"
-        '
-        'TextBox2
-        '
-        resources.ApplyResources(Me.TextBox2, "TextBox2")
-        Me.TextBox2.Name = "TextBox2"
-        '
-        'TextBox3
-        '
-        resources.ApplyResources(Me.TextBox3, "TextBox3")
-        Me.TextBox3.Name = "TextBox3"
-        '
-        'TextBOX_num_state
-        '
-        resources.ApplyResources(Me.TextBOX_num_state, "TextBOX_num_state")
-        Me.TextBOX_num_state.Name = "TextBOX_num_state"
-        '
         'TextBox4
         '
         resources.ApplyResources(Me.TextBox4, "TextBox4")
@@ -877,9 +859,6 @@ Partial Class frmMain
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -987,9 +966,6 @@ Partial Class frmMain
     Friend WithEvents state As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label18 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBOX_num_state As TextBox
     Friend WithEvents TextBox4 As TextBox
 End Class

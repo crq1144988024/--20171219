@@ -870,7 +870,7 @@ netlis:
             Application.DoEvents()
 
             'Return
-            TextBox1.Text = moveflag.ToString()
+            '  TextBox1.Text = moveflag.ToString()
             Select Case moveflag
 
                 Case 1 '中位向右
@@ -1966,8 +1966,8 @@ netlis:
         '    scot += filterarr(i)
         'Next
         'datasensorfqlright = scot / 10 + Val(paranew(26))
-        TextBox3.Text = datasensorfqlleft.ToString() + "当前电压" + DAQfqlleft.Read.ToString() + "//零点" + clearfqlleft.ToString() + "//" + Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")).ToString() + "零点偏置" + Val(paranew(26)).ToString() +
-        "右侧 " + DAQfqlright.Read.ToString() + "//零点 " + clearfqlright.ToString()
+        'TextBox3.Text = datasensorfqlleft.ToString() + "当前电压" + DAQfqlleft.Read.ToString() + "//零点" + clearfqlleft.ToString() + "//" + Val(Format(Val(leftlinow) * Val(paranew(21)), "0.00")).ToString() + "零点偏置" + Val(paranew(26)).ToString() +
+        '"右侧 " + DAQfqlright.Read.ToString() + "//零点 " + clearfqlright.ToString()
         '位移
         '待确定滤波效果，由于位移在中位时为零，两侧运动有正负区分，滤波会引入误差
         '若位移不需要滤波，则力的滤波算法也必须去掉
