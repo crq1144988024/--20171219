@@ -104,6 +104,8 @@ Partial Class frmMain
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -854,10 +856,24 @@ Partial Class frmMain
         resources.ApplyResources(Me.TextBox4, "TextBox4")
         Me.TextBox4.Name = "TextBox4"
         '
+        'Button1
+        '
+        resources.ApplyResources(Me.Button1, "Button1")
+        Me.Button1.Name = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        resources.ApplyResources(Me.Button2, "Button2")
+        Me.Button2.Name = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -968,4 +984,6 @@ Partial Class frmMain
     Friend WithEvents Label18 As Label
     Friend WithEvents TextBOX_num_state As TextBox
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class
