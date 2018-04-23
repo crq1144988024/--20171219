@@ -112,19 +112,433 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="查询" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\查询.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="记录查询" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\sc\记录查询.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="查询-cx" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\sc\查询-cx.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="查询" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\sc\查询.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2013129102816629" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\2013129102816629.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="banner_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\banner_8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Control" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Control.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ControlPara" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\ControlPara.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Data.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\exit1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Floppy%20Drive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Floppy%20Drive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gnome-run" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\gnome-run.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GRAPHITE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\GRAPHITE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GREEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\GREEN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="guanhui" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\guanhui.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Help1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Help1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kailiang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\kailiang.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\lian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="library" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\library.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lockstart_session" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\lockstart_session.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Log%20Out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Log%20Out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logohk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\logohk.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0007" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0055" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0055.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0056" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0056.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0063" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0063.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0073" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0073.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0076" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0076.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0111" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0111.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0122" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0122.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0154" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0154.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0236" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0236.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0237" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0237.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0265" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0265.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0338" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0338.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0367" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0367.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0380" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0380.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0406" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0406.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0421" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0421.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0456" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0456.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0457" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0457.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0458" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0458.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0463" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0463.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0464" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0464.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0475" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0475.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0476" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0476.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0478" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0478.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0484" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0484.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0538" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0538.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0566" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0566.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0599" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0599.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0600" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0600.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0601" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0601.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0638" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0638.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0639" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0639.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0683" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0683.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0689" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0689.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0729" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0729.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0749" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0749.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0750" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0750.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0815" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0815.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0819" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0819.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0826" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0826.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0831" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0831.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0838" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0838.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0842" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0842.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0843" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0843.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0844" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0844.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0846" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0846.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0848" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0848.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0849" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0849.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0898" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0898.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0899" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0899.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0900" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0900.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0901" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0901.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0903" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0903.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0904" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0904.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0905" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0905.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0909" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0909.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0910" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0910.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0923" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0923.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0939" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0939.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0956" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0956.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 0957" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 0957.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 1021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 1021.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 1034" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 1034.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 1128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 1128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NetByte Design Studio - 1315" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NetByte Design Studio - 1315.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="network-wired" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\network-wired.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewCreate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\NewCreate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Print" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Print.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="qrcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\qrcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\SaveData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Setup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\sh.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shut Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Shut Down.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\StartTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StopTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\StopTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StopTest1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\StopTest1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thumb_64_64_EditPlus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\thumb_64_64_EditPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="thumb_64_64_Win8Master" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\thumb_64_64_Win8Master.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\ts.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\up1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_female" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\user_female.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_male" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\user_male.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xmag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\xmag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\xs.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y帮助" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Y帮助.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y保存方法" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Y保存方法.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Y退出" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\Y退出.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="标定" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\标定.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="查询1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\查询.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="查询-cx1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\查询-cx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="公司标" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\公司标.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="公司标志" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\公司标志.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="计时" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\计时.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="记录查询1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\记录查询.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="蓝天白云" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\蓝天白云.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="浏览" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\浏览.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="浏览1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\浏览1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="屏幕" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\屏幕.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="清零" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\清零.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="设置" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\设置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="手动调试" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\手动调试.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="退出" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\退出.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="系统归零" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\系统归零.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="修改密码" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\修改密码.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="选项" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\选项.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="用户" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\用户.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="邮件" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\邮件.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="增加用户" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\增加用户.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="照明" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\照明.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="中机儒拉玛特LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\sc\中机儒拉玛特LOGO.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

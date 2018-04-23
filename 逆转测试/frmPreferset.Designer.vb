@@ -28,6 +28,8 @@ Partial Class frmPreferset
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.piecetype = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label42 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -83,8 +85,6 @@ Partial Class frmPreferset
         Me.Label20 = New System.Windows.Forms.Label()
         Me.TextBox12 = New System.Windows.Forms.TextBox()
         Me.TextBox11 = New System.Windows.Forms.TextBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.Label42 = New System.Windows.Forms.Label()
         Me.jxexpcoef = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.SetPrefer = New System.Windows.Forms.GroupBox()
@@ -114,6 +114,8 @@ Partial Class frmPreferset
         Me.freqjx = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.jxposition = New System.Windows.Forms.TextBox()
+        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.Label48 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SetPrefer.SuspendLayout()
@@ -123,6 +125,8 @@ Partial Class frmPreferset
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ComboBox6)
+        Me.GroupBox1.Controls.Add(Me.Label48)
         Me.GroupBox1.Controls.Add(Me.Addnew)
         Me.GroupBox1.Controls.Add(Me.Delete)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
@@ -184,6 +188,26 @@ Partial Class frmPreferset
         Me.Label2.Size = New System.Drawing.Size(77, 14)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "输入型号："
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Items.AddRange(New Object() {"在线", "离线"})
+        Me.ComboBox3.Location = New System.Drawing.Point(117, 194)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(72, 22)
+        Me.ComboBox3.TabIndex = 55
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label42.Location = New System.Drawing.Point(6, 197)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(105, 14)
+        Me.Label42.TabIndex = 56
+        Me.Label42.Text = "当前生产模式："
         '
         'Label1
         '
@@ -753,26 +777,6 @@ Partial Class frmPreferset
         Me.TextBox11.Size = New System.Drawing.Size(70, 23)
         Me.TextBox11.TabIndex = 11
         '
-        'ComboBox3
-        '
-        Me.ComboBox3.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"在线", "离线"})
-        Me.ComboBox3.Location = New System.Drawing.Point(117, 194)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(72, 22)
-        Me.ComboBox3.TabIndex = 55
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Label42.Location = New System.Drawing.Point(6, 197)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(105, 14)
-        Me.Label42.TabIndex = 56
-        Me.Label42.Text = "当前生产模式："
-        '
         'jxexpcoef
         '
         Me.jxexpcoef.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -1059,6 +1063,24 @@ Partial Class frmPreferset
         Me.jxposition.TabIndex = 36
         Me.jxposition.Visible = False
         '
+        'ComboBox6
+        '
+        Me.ComboBox6.FormattingEnabled = True
+        Me.ComboBox6.Items.AddRange(New Object() {"禁用", "启用"})
+        Me.ComboBox6.Location = New System.Drawing.Point(117, 153)
+        Me.ComboBox6.Name = "ComboBox6"
+        Me.ComboBox6.Size = New System.Drawing.Size(72, 20)
+        Me.ComboBox6.TabIndex = 19
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(10, 158)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(65, 12)
+        Me.Label48.TabIndex = 18
+        Me.Label48.Text = "允许返工："
+        '
         'frmPreferset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1183,4 +1205,6 @@ Partial Class frmPreferset
     Friend WithEvents TextBox18 As System.Windows.Forms.TextBox
     Friend WithEvents Label47 As System.Windows.Forms.Label
     Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents ComboBox6 As ComboBox
+    Friend WithEvents Label48 As Label
 End Class

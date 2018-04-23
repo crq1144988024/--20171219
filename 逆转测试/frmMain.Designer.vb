@@ -25,16 +25,6 @@ Partial Class frmMain
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.添加用户ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.删除用户ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.修改密码ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tooluser = New System.Windows.Forms.ToolStripStatusLabel()
         Me.toolstate = New System.Windows.Forms.ToolStripStatusLabel()
@@ -59,7 +49,6 @@ Partial Class frmMain
         Me.DAQjxl = New AxDAQPILOTAXLib.AxDAQPilot()
         Me.DAQjxjx = New AxDAQPILOTAXLib.AxDAQPilot()
         Me.DAQwy = New AxDAQPILOTAXLib.AxDAQPilot()
-        Me.Pic1 = New System.Windows.Forms.PictureBox()
         Me.DAQfqlright = New AxDAQPILOTAXLib.AxDAQPilot()
         Me.DAQfqlleft = New AxDAQPILOTAXLib.AxDAQPilot()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -94,16 +83,30 @@ Partial Class frmMain
         Me.测量值 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.tcCurve = New Steema.TeeChart.TChart()
-        Me.FastLine1 = New Steema.TeeChart.Styles.FastLine()
-        Me.FastLine2 = New Steema.TeeChart.Styles.FastLine()
-        Me.CursorTool1 = New Steema.TeeChart.Tools.CursorTool()
         Me.Timhand = New System.Windows.Forms.Timer(Me.components)
         Me.Timzero = New System.Windows.Forms.Timer(Me.components)
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.tcCurve = New Steema.TeeChart.TChart()
+        Me.FastLine1 = New Steema.TeeChart.Styles.FastLine()
+        Me.FastLine2 = New Steema.TeeChart.Styles.FastLine()
+        Me.CursorTool1 = New Steema.TeeChart.Tools.CursorTool()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.添加用户ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.删除用户ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.修改密码ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.Pic1 = New System.Windows.Forms.PictureBox()
+        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -112,80 +115,21 @@ Partial Class frmMain
         CType(Me.DAQjxl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQjxjx, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQwy, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQfqlright, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DAQfqlleft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.datatest, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
         '
         Me.ToolStrip1.BackColor = System.Drawing.SystemColors.MenuBar
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(50, 50)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton5})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton8})
         resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
         Me.ToolStrip1.Name = "ToolStrip1"
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.添加用户ToolStripMenuItem, Me.删除用户ToolStripMenuItem, Me.修改密码ToolStripMenuItem})
-        resources.ApplyResources(Me.ToolStripButton1, "ToolStripButton1")
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        '
-        '添加用户ToolStripMenuItem
-        '
-        Me.添加用户ToolStripMenuItem.Name = "添加用户ToolStripMenuItem"
-        resources.ApplyResources(Me.添加用户ToolStripMenuItem, "添加用户ToolStripMenuItem")
-        '
-        '删除用户ToolStripMenuItem
-        '
-        Me.删除用户ToolStripMenuItem.Name = "删除用户ToolStripMenuItem"
-        resources.ApplyResources(Me.删除用户ToolStripMenuItem, "删除用户ToolStripMenuItem")
-        '
-        '修改密码ToolStripMenuItem
-        '
-        Me.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem"
-        resources.ApplyResources(Me.修改密码ToolStripMenuItem, "修改密码ToolStripMenuItem")
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton2, "ToolStripButton2")
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton3, "ToolStripButton3")
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        '
-        'ToolStripButton4
-        '
-        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton4, "ToolStripButton4")
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        '
-        'ToolStripButton7
-        '
-        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton7, "ToolStripButton7")
-        Me.ToolStripButton7.Name = "ToolStripButton7"
-        '
-        'ToolStripButton6
-        '
-        Me.ToolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton6, "ToolStripButton6")
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
-        Me.ToolStripButton5.Name = "ToolStripButton5"
         '
         'StatusStrip1
         '
@@ -350,12 +294,6 @@ Partial Class frmMain
         resources.ApplyResources(Me.DAQwy, "DAQwy")
         Me.DAQwy.Name = "DAQwy"
         Me.DAQwy.OcxState = CType(resources.GetObject("DAQwy.OcxState"), System.Windows.Forms.AxHost.State)
-        '
-        'Pic1
-        '
-        resources.ApplyResources(Me.Pic1, "Pic1")
-        Me.Pic1.Name = "Pic1"
-        Me.Pic1.TabStop = False
         '
         'DAQfqlright
         '
@@ -620,6 +558,38 @@ Partial Class frmMain
         resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Name = "Panel2"
         '
+        'Timhand
+        '
+        Me.Timhand.Interval = 80
+        '
+        'Timzero
+        '
+        Me.Timzero.Interval = 80
+        '
+        'Timlvbof
+        '
+        Me.Timlvbof.Interval = 25
+        '
+        'Timtest
+        '
+        Me.Timtest.Interval = 50
+        '
+        'SerialPort1
+        '
+        Me.SerialPort1.BaudRate = 19200
+        Me.SerialPort1.PortName = "COM8"
+        Me.SerialPort1.ReadBufferSize = 500
+        '
+        'TextBox4
+        '
+        resources.ApplyResources(Me.TextBox4, "TextBox4")
+        Me.TextBox4.Name = "TextBox4"
+        '
+        'Label3
+        '
+        resources.ApplyResources(Me.Label3, "Label3")
+        Me.Label3.Name = "Label3"
+        '
         'tcCurve
         '
         '
@@ -827,37 +797,90 @@ Partial Class frmMain
         '
         Me.FastLine2.YValues.DataMember = "Y"
         '
-        'Timhand
+        'ToolStripButton1
         '
-        Me.Timhand.Interval = 80
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.添加用户ToolStripMenuItem, Me.删除用户ToolStripMenuItem, Me.修改密码ToolStripMenuItem, Me.ToolStripMenuItem4})
+        resources.ApplyResources(Me.ToolStripButton1, "ToolStripButton1")
+        Me.ToolStripButton1.Name = "ToolStripButton1"
         '
-        'Timzero
+        '添加用户ToolStripMenuItem
         '
-        Me.Timzero.Interval = 80
+        Me.添加用户ToolStripMenuItem.Name = "添加用户ToolStripMenuItem"
+        resources.ApplyResources(Me.添加用户ToolStripMenuItem, "添加用户ToolStripMenuItem")
         '
-        'Timlvbof
+        '删除用户ToolStripMenuItem
         '
-        Me.Timlvbof.Interval = 25
+        Me.删除用户ToolStripMenuItem.Name = "删除用户ToolStripMenuItem"
+        resources.ApplyResources(Me.删除用户ToolStripMenuItem, "删除用户ToolStripMenuItem")
         '
-        'Timtest
+        '修改密码ToolStripMenuItem
         '
-        Me.Timtest.Interval = 50
+        Me.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem"
+        resources.ApplyResources(Me.修改密码ToolStripMenuItem, "修改密码ToolStripMenuItem")
         '
-        'SerialPort1
+        'ToolStripButton2
         '
-        Me.SerialPort1.BaudRate = 19200
-        Me.SerialPort1.PortName = "COM8"
-        Me.SerialPort1.ReadBufferSize = 500
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton2, "ToolStripButton2")
+        Me.ToolStripButton2.Name = "ToolStripButton2"
         '
-        'TextBox4
+        'ToolStripButton3
         '
-        resources.ApplyResources(Me.TextBox4, "TextBox4")
-        Me.TextBox4.Name = "TextBox4"
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton3, "ToolStripButton3")
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton4.Image = Global.逆转测试.My.Resources.Resources.Setup
+        resources.ApplyResources(Me.ToolStripButton4, "ToolStripButton4")
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        '
+        'ToolStripButton7
+        '
+        Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton7.Image = Global.逆转测试.My.Resources.Resources.清零
+        resources.ApplyResources(Me.ToolStripButton7, "ToolStripButton7")
+        Me.ToolStripButton7.Name = "ToolStripButton7"
+        '
+        'ToolStripButton6
+        '
+        Me.ToolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton6, "ToolStripButton6")
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton5, "ToolStripButton5")
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        '
+        'Pic1
+        '
+        resources.ApplyResources(Me.Pic1, "Pic1")
+        Me.Pic1.Name = "Pic1"
+        Me.Pic1.TabStop = False
+        '
+        'ToolStripButton8
+        '
+        Me.ToolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton8.Image = Global.逆转测试.My.Resources.Resources.照明
+        resources.ApplyResources(Me.ToolStripButton8, "ToolStripButton8")
+        Me.ToolStripButton8.Name = "ToolStripButton8"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        resources.ApplyResources(Me.ToolStripMenuItem4, "ToolStripMenuItem4")
         '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -877,13 +900,13 @@ Partial Class frmMain
         CType(Me.DAQjxl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQjxjx, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQwy, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQfqlright, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DAQfqlleft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.datatest, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.Pic1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -968,4 +991,7 @@ Partial Class frmMain
     Friend WithEvents Label18 As Label
     Friend WithEvents TextBOX_num_state As TextBox
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ToolStripButton8 As ToolStripButton
+    Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
 End Class

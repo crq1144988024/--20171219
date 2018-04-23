@@ -236,15 +236,25 @@ Public Class frmMain
 
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        SystemInitialization.ShowDialog()
+        frmPreferset.ComboBox6.SelectedIndex = 0 '是否返工设置
 
+        添加用户ToolStripMenuItem.Enabled = False
+        删除用户ToolStripMenuItem.Enabled = False
+        修改密码ToolStripMenuItem.Enabled = False
+        ToolStripButton2.Enabled = False
+        ToolStripButton3.Enabled = False
+        ToolStripButton4.Enabled = False
+        ToolStripButton5.Enabled = False
+        ToolStripButton7.Enabled = False
 
         bytessend(22) = 0 '间隙抽检只有两个状态——1,不做；2,做
         'OleDbConnpara.Open() '打开数据库
         'OleDbConnrecd.Open() '打卡数据库
 
         set_chart() '调整图表控件
-        Me.Visible = False  '隐藏窗体
-        Login.ShowDialog()   '加载登录对话框
+        ' Me.Visible = False  '隐藏窗体
+        'Login.ShowDialog()   '加载登录对话框
 
         set_initialize_datagridview_now() '设置datagridview now图表显示
         'datatest.Rows(14).Visible = False '间隙只测总差值，此处多余，预留
@@ -628,6 +638,7 @@ netlis:
             ordersend23 = 0
             ordersend24 = 0
             ordersend25 = 0
+
             sst1 = 0
             sst2 = 0
             sst3 = 0
@@ -695,6 +706,7 @@ netlis:
                 countclr.Enabled = True
                 TestTickenable = False
                 ' Timtest.Enabled = False
+                ToolStripButton2.Enabled = True
                 ToolStripButton3.Enabled = True
                 ToolStripButton4.Enabled = True
                 ToolStripButton7.Enabled = True
@@ -712,6 +724,7 @@ netlis:
             If bytesrecd(43) = 1 Then '自动
                 typesel.Enabled = False
                 countclr.Enabled = False
+                ToolStripButton2.Enabled = False
                 ToolStripButton3.Enabled = False
                 ToolStripButton4.Enabled = False
                 ToolStripButton7.Enabled = False
@@ -895,7 +908,7 @@ netlis:
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         If ordersend12 = 0 Then
-                            count2 = count1 - 3 '- 2
+                            count2 = count1 - 2 '- 2
                             maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend18 = 1
                             ordersend12 = 1
@@ -915,10 +928,12 @@ netlis:
                         Dir1 = 0
                         Call move_start()
                         ordersend2 = 1
-                        ' MsgBox("右向左2")
+                        'gBox("右向左2")
                         Application.DoEvents()
                     End If
+
                     datasensor(count1) = Val(lblfqlright_now_adjiust) '31为反驱力调整系数
+
                     If Val(lblfqlright_now_adjiust) >= 30 Then
                         If ordersend3 = 0 Then
                             eftcot1 = count1 + 20 '+ 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
@@ -927,10 +942,12 @@ netlis:
                         End If
                         If Val(lblfqlright_now_adjiust) < Val(paranew(19)) Then FastLine1.Add(datawy(count1), datasensor(count1)) 'paranew(19) 换向力  符合换向力范围 就画曲线 
                         'If Val(lblfqlright_now_adjiust) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
+                        ' Label3.Text = datasensor(count1)
                         If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
+                            ' MsgBox(ordersend13.ToString())
                             If ordersend13 = 0 Then
-                                'MsgBox("右向左3")
+                                ' MsgBox("右向左3")
                                 count3 = count1 - 3 ' - 2
                                 maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend13 = 1
@@ -956,7 +973,7 @@ netlis:
                     datasensor(count1) = -Val(lblfqlleft_now_adjiust)
                     If Val(lblfqlleft_now_adjiust) >= 30 Then
                         If ordersend6 = 0 Then
-                            eftcot2 = count1 + 2 '+ 13 '？？？？？？？？？？？？？？？？？？？？？？
+                            eftcot2 = count1 + 3 '+ 13 '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend6 = 1
                         End If
                         If Val(lblfqlleft_now_adjiust) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
@@ -964,7 +981,7 @@ netlis:
                         If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend14 = 0 Then
-                                count4 = count1 '+ 3 ''- 2
+                                count4 = count1 - 20 ''- 2
                                 maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend19 = 1
                                 ordersend14 = 1
@@ -1262,6 +1279,7 @@ netlis:
                         moveflag = 121
                     End If
                 Case 121
+
                     Call maincapture() '保存曲线截图到本地
                     '上传实验结果到PLC, 进而到追溯系统, OK / NG后发, 防止信息丢失
                     Call singletobin(mypiecedata.datasaverec(5), 100, 101, 102, 103)
@@ -1288,7 +1306,7 @@ netlis:
                     bytessend(21) = 1 '反驱结束，需复位
                     movetestflag = 1
 
-
+                    frmPreferset.ComboBox6.SelectedIndex = 0 '返工设置选择
                     moveflag = 0
                     bytessend(697) = 0
                     countAflag = 0
@@ -1364,7 +1382,7 @@ netlis:
         End If
         Application.DoEvents()
         reset() '复位数据
-
+        bytessend(18) = frmPreferset.ComboBox6.SelectedIndex '返工设置选择
         Application.DoEvents()
 
 
@@ -1379,6 +1397,7 @@ netlis:
         Else
             plccomsstate.BackColor = Color.Red
         End If
+
 
 
         volwy = Format(DAQwy.Read, "000.00")
@@ -1401,6 +1420,8 @@ netlis:
         TextBOX_num_state.Text = bytesrecd(0).ToString() '显示状态数字
         tooltime.Text = Now
         Select Case bytesrecd(0) '状态显示
+
+
             Case 0
                 state.Text = ""
                 trouble.Text = ""
@@ -1421,41 +1442,47 @@ netlis:
             Case 11
                 state.Text = "电缸已归零，可以开始自动实验"
             Case 20
-                trouble.Text = "壳体定位气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "壳体夹紧气缸工作位异常，请检查工作端敏感元件后复位"
             Case 21
-                trouble.Text = "壳体定位气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "壳体夹紧气缸返回位异常，请检查返回端敏感元件后复位"
             Case 22
-                trouble.Text = "壳体定位气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "壳体夹紧气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 24
-                trouble.Text = "检测机构气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "间隙检测横移气缸工作位异常，请检查工作端敏感元件后复位"
             Case 25
-                trouble.Text = "检测机构气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "间隙检测横移气缸返回位异常，请检查返回端敏感元件后复位"
             Case 26
-                trouble.Text = "检测机构气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "间隙检测横移气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 28
-                trouble.Text = "传感器气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "间隙检测压下气缸工作位异常，请检查工作端敏感元件后复位"
             Case 29
-                trouble.Text = "传感器气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "间隙检测压下气缸返回位异常，请检查返回端敏感元件后复位"
             Case 30
-                trouble.Text = "传感器气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "间隙检测压下气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 32
-                trouble.Text = "施力气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "加载气缸工作位异常，请检查工作端敏感元件后复位"
             Case 33
-                trouble.Text = "施力气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "加载气缸返回位异常，请检查返回端敏感元件后复位"
             Case 34
-                trouble.Text = "施力气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "加载气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 36
-                trouble.Text = "平衡气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "加载下限位导杆气缸工作位异常，请检查工作端敏感元件后复位"
             Case 37
-                trouble.Text = "平衡气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "加载下限位导杆气缸返回位异常，请检查返回端敏感元件后复位"
             Case 38
-                trouble.Text = "平衡气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "加载下限位导杆气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 40
-                trouble.Text = "施力机构气缸工作位异常，请检查工作端敏感元件后复位"
+                trouble.Text = "加载横移气缸工作位异常，请检查工作端敏感元件后复位"
             Case 41
-                trouble.Text = "施力机构气缸返回位异常，请检查返回端敏感元件后复位"
+                trouble.Text = "加载横移气缸返回位异常，请检查返回端敏感元件后复位"
             Case 42
-                trouble.Text = "施力机构气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+                trouble.Text = "加载横移气缸敏感元件损坏，请检查气缸前进、后退动作是否正常"
+            Case 44
+                trouble.Text = "壳体夹紧气缸二工作位异常，请检查工作端敏感元件后复位"
+            Case 45
+                trouble.Text = "壳体夹紧气缸二返回位异常，请检查返回端敏感元件后复位"
+            Case 46
+                trouble.Text = "壳体夹紧气缸二敏感元件损坏，请检查气缸前进、后退动作是否正常"
             Case 60
                 trouble.Text = "伺服电机左移限位，手动向右移动"
             Case 61
@@ -1468,10 +1495,11 @@ netlis:
                 state.Text = "请放壳体，并拨自动开关"
             Case 201
                 state.Text = "请扫条码"
+
             Case 202
-                'state.Text = "未做该项实验，请拨自动开关"
+                state.Text = "重复加工，允许开始"
             Case 203
-                'state.Text = "已做该项实验，请拨自动开关"
+                state.Text = "重复加工，不能开始"
             Case 204
                 state.Text = "该条码信息未录入追溯系统，请从初始工位重新开始"
             Case 205
@@ -2491,5 +2519,15 @@ netlis:
         Next
     End Sub
 
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
+        If bytessend(20) = 0 Then
+            bytessend(20) = 1
+        Else
+            bytessend(20) = 0
+        End If
+    End Sub
 
+    Private Sub ToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem4.Click
+        Login.ShowDialog()   '加载登录对话框
+    End Sub
 End Class

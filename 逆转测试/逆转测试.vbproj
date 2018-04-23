@@ -183,6 +183,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses_piecepara.dbml</DependentUpon>
     </Compile>
+    <Compile Include="SystemInitialization.designer.vb">
+      <DependentUpon>SystemInitialization.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SystemInitialization.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="user\AddUser.Designer.vb">
       <DependentUpon>AddUser.vb</DependentUpon>
     </Compile>
@@ -269,6 +275,9 @@
     <None Include="SQL\LINGTOSQL\DataClasses_piecepara.dbml.layout">
       <DependentUpon>DataClasses_piecepara.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="SystemInitialization.resx">
+      <DependentUpon>SystemInitialization.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="user\AddUser.resx">
       <DependentUpon>AddUser.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -339,6 +348,143 @@
     <Content Include="DLL\TeeChart.DLL" />
     <Content Include="DLL\TELib.dll" />
     <Content Include="oc2_mdoc.ico" />
+    <Content Include="sc\2013129102816629.jpg" />
+    <Content Include="sc\banner_8.jpg" />
+    <Content Include="sc\bexit.ico" />
+    <Content Include="sc\Control.png" />
+    <Content Include="sc\ControlPara.png" />
+    <Content Include="sc\Data.png" />
+    <Content Include="sc\Diagram.ico" />
+    <Content Include="sc\down.png" />
+    <Content Include="sc\exit.png" />
+    <Content Include="sc\exit1.png" />
+    <Content Include="sc\Floppy%2520Drive.png" />
+    <Content Include="sc\gnome-run.png" />
+    <Content Include="sc\GRAPHITE.png" />
+    <Content Include="sc\GREEN.png" />
+    <Content Include="sc\guanhui.bmp" />
+    <Content Include="sc\Help1.png" />
+    <Content Include="sc\kailiang.bmp" />
+    <Content Include="sc\lian.png" />
+    <Content Include="sc\library.png" />
+    <Content Include="sc\lockstart_session.png" />
+    <Content Include="sc\Log%2520Out.png" />
+    <Content Include="sc\logo.jpg" />
+    <Content Include="sc\logohk.JPG" />
+    <Content Include="sc\NetByte Design Studio - 0007.png" />
+    <Content Include="sc\NetByte Design Studio - 0055.png" />
+    <Content Include="sc\NetByte Design Studio - 0056.png" />
+    <Content Include="sc\NetByte Design Studio - 0063.png" />
+    <Content Include="sc\NetByte Design Studio - 0073.png" />
+    <Content Include="sc\NetByte Design Studio - 0076.png" />
+    <Content Include="sc\NetByte Design Studio - 0100.png" />
+    <Content Include="sc\NetByte Design Studio - 0111.png" />
+    <Content Include="sc\NetByte Design Studio - 0122.png" />
+    <Content Include="sc\NetByte Design Studio - 0154.png" />
+    <Content Include="sc\NetByte Design Studio - 0236.png" />
+    <Content Include="sc\NetByte Design Studio - 0237.png" />
+    <Content Include="sc\NetByte Design Studio - 0265.png" />
+    <Content Include="sc\NetByte Design Studio - 0338.png" />
+    <Content Include="sc\NetByte Design Studio - 0367.png" />
+    <Content Include="sc\NetByte Design Studio - 0380.png" />
+    <Content Include="sc\NetByte Design Studio - 0406.png" />
+    <Content Include="sc\NetByte Design Studio - 0421.png" />
+    <Content Include="sc\NetByte Design Studio - 0456.png" />
+    <Content Include="sc\NetByte Design Studio - 0457.png" />
+    <Content Include="sc\NetByte Design Studio - 0458.png" />
+    <Content Include="sc\NetByte Design Studio - 0463.png" />
+    <Content Include="sc\NetByte Design Studio - 0464.png" />
+    <Content Include="sc\NetByte Design Studio - 0475.png" />
+    <Content Include="sc\NetByte Design Studio - 0476.png" />
+    <Content Include="sc\NetByte Design Studio - 0478.png" />
+    <Content Include="sc\NetByte Design Studio - 0484.png" />
+    <Content Include="sc\NetByte Design Studio - 0538.png" />
+    <Content Include="sc\NetByte Design Studio - 0566.png" />
+    <Content Include="sc\NetByte Design Studio - 0599.png" />
+    <Content Include="sc\NetByte Design Studio - 0600.png" />
+    <Content Include="sc\NetByte Design Studio - 0601.png" />
+    <Content Include="sc\NetByte Design Studio - 0638.png" />
+    <Content Include="sc\NetByte Design Studio - 0639.png" />
+    <Content Include="sc\NetByte Design Studio - 0683.png" />
+    <Content Include="sc\NetByte Design Studio - 0689.png" />
+    <Content Include="sc\NetByte Design Studio - 0729.png" />
+    <Content Include="sc\NetByte Design Studio - 0749.png" />
+    <Content Include="sc\NetByte Design Studio - 0750.png" />
+    <Content Include="sc\NetByte Design Studio - 0815.png" />
+    <Content Include="sc\NetByte Design Studio - 0819.png" />
+    <Content Include="sc\NetByte Design Studio - 0826.png" />
+    <Content Include="sc\NetByte Design Studio - 0831.png" />
+    <Content Include="sc\NetByte Design Studio - 0838.png" />
+    <Content Include="sc\NetByte Design Studio - 0842.png" />
+    <Content Include="sc\NetByte Design Studio - 0843.png" />
+    <Content Include="sc\NetByte Design Studio - 0844.png" />
+    <Content Include="sc\NetByte Design Studio - 0846.png" />
+    <Content Include="sc\NetByte Design Studio - 0848.png" />
+    <Content Include="sc\NetByte Design Studio - 0849.png" />
+    <Content Include="sc\NetByte Design Studio - 0898.png" />
+    <Content Include="sc\NetByte Design Studio - 0899.png" />
+    <Content Include="sc\NetByte Design Studio - 0900.png" />
+    <Content Include="sc\NetByte Design Studio - 0901.png" />
+    <Content Include="sc\NetByte Design Studio - 0902.png" />
+    <Content Include="sc\NetByte Design Studio - 0903.png" />
+    <Content Include="sc\NetByte Design Studio - 0904.png" />
+    <Content Include="sc\NetByte Design Studio - 0905.png" />
+    <Content Include="sc\NetByte Design Studio - 0909.png" />
+    <Content Include="sc\NetByte Design Studio - 0910.png" />
+    <Content Include="sc\NetByte Design Studio - 0923.png" />
+    <Content Include="sc\NetByte Design Studio - 0939.png" />
+    <Content Include="sc\NetByte Design Studio - 0956.png" />
+    <Content Include="sc\NetByte Design Studio - 0957.png" />
+    <Content Include="sc\NetByte Design Studio - 1021.png" />
+    <Content Include="sc\NetByte Design Studio - 1034.png" />
+    <Content Include="sc\NetByte Design Studio - 1128.png" />
+    <Content Include="sc\NetByte Design Studio - 1315.png" />
+    <Content Include="sc\network-wired.png" />
+    <Content Include="sc\NewCreate.png" />
+    <Content Include="sc\on.png" />
+    <Content Include="sc\Open.png" />
+    <Content Include="sc\Print.png" />
+    <Content Include="sc\Profile.png" />
+    <Content Include="sc\qrcode.png" />
+    <Content Include="sc\SaveData.png" />
+    <Content Include="sc\Setup.png" />
+    <Content Include="sc\sh.jpg" />
+    <Content Include="sc\Shut Down.BMP" />
+    <Content Include="sc\StartTest.png" />
+    <Content Include="sc\StopTest.png" />
+    <Content Include="sc\StopTest1.png" />
+    <Content Include="sc\thumb_64_64_EditPlus.png" />
+    <Content Include="sc\thumb_64_64_Win8Master.png" />
+    <Content Include="sc\ts.jpg" />
+    <Content Include="sc\up.png" />
+    <Content Include="sc\up1.png" />
+    <Content Include="sc\user_female.png" />
+    <Content Include="sc\user_male.png" />
+    <Content Include="sc\xmag.png" />
+    <Content Include="sc\xs.jpg" />
+    <Content Include="sc\Y保存方法.png" />
+    <Content Include="sc\Y帮助.png" />
+    <Content Include="sc\Y退出.png" />
+    <Content Include="sc\中机儒拉玛特LOGO.JPG" />
+    <Content Include="sc\修改密码.png" />
+    <Content Include="sc\公司标.JPG" />
+    <Content Include="sc\公司标志.PNG" />
+    <Content Include="sc\增加用户.png" />
+    <Content Include="sc\屏幕.png" />
+    <None Include="sc\标定.png" />
+    <None Include="sc\手动调试.png" />
+    <Content Include="sc\浏览.png" />
+    <Content Include="sc\浏览1.png" />
+    <Content Include="sc\清零.png" />
+    <Content Include="sc\照明.png" />
+    <None Include="sc\系统归零.png" />
+    <None Include="sc\用户.png" />
+    <Content Include="sc\蓝天白云.jpg" />
+    <Content Include="sc\计时.jpg" />
+    <Content Include="sc\设置.png" />
+    <None Include="sc\退出.png" />
+    <Content Include="sc\选项.png" />
+    <Content Include="sc\邮件.png" />
     <Content Include="SQL\datasave.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

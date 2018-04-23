@@ -99,7 +99,7 @@ Partial Class Login
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(107, 28)
         Me.Cancel.TabIndex = 6
-        Me.Cancel.Text = "取消"
+        Me.Cancel.Text = "注销"
         Me.Cancel.UseVisualStyleBackColor = True
         '
         'Login

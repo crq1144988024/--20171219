@@ -161,6 +161,7 @@
         paranew(23) = wycoef.Text
         paranew(24) = jxlicoef.Text
         paranew(25) = jxjxcoef.Text
+        paranew(33) = wyzerojizhun.Text
         OpenConn()
         For i = 0 To num - 1
             GlobalVariable.PiecePARA = New DataClasses_pieceparaDataContext()
@@ -169,7 +170,7 @@
                               Where cust.工件类别 = frmMain.typesel.Items(i).ToString()).ToList()(0)
             updateCust.左反驱力标定 = paranew(21)
             updateCust.右反驱力标定 = paranew(22)
-            updateCust.位移标定 = paranew(33)
+            updateCust.位移标定 = paranew(23)
             updateCust.径向力标定 = paranew(24)
             updateCust.零位判断基准电压 = paranew(33)
             updateCust.径向间隙标定 = paranew(25)
