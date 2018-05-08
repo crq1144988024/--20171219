@@ -533,7 +533,7 @@ Public Class frmPreferset
         For Each updateCust In customer
 
             If updateCust.工件类别 = prefpiecetype Then
-                MsgBox(prefpiecetype.ToString() + "  " + paranew(29))
+                '   MsgBox(prefpiecetype.ToString() + "  " + paranew(29))
 
                 updateCust.反驱力最大值上限 = paranew(1)
                 updateCust.反驱力最大值下限 = paranew(2)

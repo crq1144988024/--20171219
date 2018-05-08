@@ -1092,7 +1092,7 @@ netlis:
                     'Else
                     '    eftcot2 = count3
                     'End If
-                    TextBox1.Text = "eftcot1=" + datawy(eftcot1).ToString() + "  count3" + datawy(count3).ToString() + "  eftcot2" + datawy(eftcot2).ToString() + "  count4" + datawy(count4).ToString()
+                    '   TextBox1.Text = "eftcot1=" + datawy(eftcot1).ToString() + "  count3" + datawy(count3).ToString() + "  eftcot2" + datawy(eftcot2).ToString() + "  count4" + datawy(count4).ToString()
                     mypiecedata.huitustart = eftcot1
                     mypiecedata.huituend1 = count3
                     mypiecedata.huitustart1 = eftcot2

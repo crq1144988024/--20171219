@@ -53,6 +53,20 @@ Partial Class Handtest
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
+        Me.TextBox_Cylinder_w01 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h01 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w02 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h02 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w03 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h03 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w07 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h07 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w05 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h05 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w04 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h04 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w06 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h06 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -61,7 +75,7 @@ Partial Class Handtest
         'Button5
         '
         Me.Button5.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button5.Location = New System.Drawing.Point(495, 119)
+        Me.Button5.Location = New System.Drawing.Point(495, 167)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(180, 55)
         Me.Button5.TabIndex = 14
@@ -71,7 +85,7 @@ Partial Class Handtest
         'Button6
         '
         Me.Button6.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button6.Location = New System.Drawing.Point(20, 119)
+        Me.Button6.Location = New System.Drawing.Point(20, 167)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(180, 55)
         Me.Button6.TabIndex = 13
@@ -81,7 +95,7 @@ Partial Class Handtest
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button3.Location = New System.Drawing.Point(20, 218)
+        Me.Button3.Location = New System.Drawing.Point(20, 273)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(180, 55)
         Me.Button3.TabIndex = 12
@@ -91,7 +105,7 @@ Partial Class Handtest
         'Button4
         '
         Me.Button4.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button4.Location = New System.Drawing.Point(495, 19)
+        Me.Button4.Location = New System.Drawing.Point(495, 59)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(180, 55)
         Me.Button4.TabIndex = 11
@@ -101,7 +115,7 @@ Partial Class Handtest
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button2.Location = New System.Drawing.Point(257, 20)
+        Me.Button2.Location = New System.Drawing.Point(257, 59)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(180, 55)
         Me.Button2.TabIndex = 10
@@ -111,7 +125,7 @@ Partial Class Handtest
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button1.Location = New System.Drawing.Point(32, 31)
+        Me.Button1.Location = New System.Drawing.Point(20, 59)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(180, 55)
         Me.Button1.TabIndex = 9
@@ -141,7 +155,7 @@ Partial Class Handtest
         'Button7
         '
         Me.Button7.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button7.Location = New System.Drawing.Point(495, 218)
+        Me.Button7.Location = New System.Drawing.Point(495, 273)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(180, 55)
         Me.Button7.TabIndex = 18
@@ -151,7 +165,7 @@ Partial Class Handtest
         'Button8
         '
         Me.Button8.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button8.Location = New System.Drawing.Point(719, 219)
+        Me.Button8.Location = New System.Drawing.Point(719, 273)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(180, 55)
         Me.Button8.TabIndex = 23
@@ -161,7 +175,7 @@ Partial Class Handtest
         'Button9
         '
         Me.Button9.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button9.Location = New System.Drawing.Point(719, 120)
+        Me.Button9.Location = New System.Drawing.Point(719, 167)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(180, 55)
         Me.Button9.TabIndex = 22
@@ -171,7 +185,7 @@ Partial Class Handtest
         'Button10
         '
         Me.Button10.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button10.Location = New System.Drawing.Point(257, 119)
+        Me.Button10.Location = New System.Drawing.Point(257, 167)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(180, 55)
         Me.Button10.TabIndex = 21
@@ -181,7 +195,7 @@ Partial Class Handtest
         'Button11
         '
         Me.Button11.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button11.Location = New System.Drawing.Point(257, 218)
+        Me.Button11.Location = New System.Drawing.Point(257, 273)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(180, 55)
         Me.Button11.TabIndex = 20
@@ -191,7 +205,7 @@ Partial Class Handtest
         'Button12
         '
         Me.Button12.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button12.Location = New System.Drawing.Point(719, 20)
+        Me.Button12.Location = New System.Drawing.Point(719, 59)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(180, 55)
         Me.Button12.TabIndex = 19
@@ -278,6 +292,7 @@ Partial Class Handtest
         Me.TextBox_motor_target.Name = "TextBox_motor_target"
         Me.TextBox_motor_target.Size = New System.Drawing.Size(173, 21)
         Me.TextBox_motor_target.TabIndex = 20
+        Me.TextBox_motor_target.Visible = False
         '
         'TextBox_motor_speed
         '
@@ -285,6 +300,7 @@ Partial Class Handtest
         Me.TextBox_motor_speed.Name = "TextBox_motor_speed"
         Me.TextBox_motor_speed.Size = New System.Drawing.Size(173, 21)
         Me.TextBox_motor_speed.TabIndex = 19
+        Me.TextBox_motor_speed.Visible = False
         '
         'Label8
         '
@@ -295,6 +311,7 @@ Partial Class Handtest
         Me.Label8.Size = New System.Drawing.Size(112, 16)
         Me.Label8.TabIndex = 18
         Me.Label8.Text = "电机目标(deg)"
+        Me.Label8.Visible = False
         '
         'Label7
         '
@@ -305,6 +322,7 @@ Partial Class Handtest
         Me.Label7.Size = New System.Drawing.Size(128, 16)
         Me.Label7.TabIndex = 17
         Me.Label7.Text = "电机转速(deg/s)"
+        Me.Label7.Visible = False
         '
         'GroupBox2
         '
@@ -323,8 +341,23 @@ Partial Class Handtest
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h07)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h04)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h05)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h03)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h06)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h02)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_h01)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w04)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w07)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w05)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w03)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w06)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w02)
+        Me.GroupBox3.Controls.Add(Me.TextBox_Cylinder_w01)
         Me.GroupBox3.Controls.Add(Me.Button16)
         Me.GroupBox3.Controls.Add(Me.Button8)
+        Me.GroupBox3.Controls.Add(Me.Button1)
         Me.GroupBox3.Controls.Add(Me.Button15)
         Me.GroupBox3.Controls.Add(Me.Button7)
         Me.GroupBox3.Controls.Add(Me.Button2)
@@ -346,7 +379,7 @@ Partial Class Handtest
         'Button16
         '
         Me.Button16.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button16.Location = New System.Drawing.Point(257, 337)
+        Me.Button16.Location = New System.Drawing.Point(257, 378)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(180, 55)
         Me.Button16.TabIndex = 23
@@ -356,12 +389,168 @@ Partial Class Handtest
         'Button15
         '
         Me.Button15.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.Button15.Location = New System.Drawing.Point(20, 337)
+        Me.Button15.Location = New System.Drawing.Point(20, 378)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(180, 55)
         Me.Button15.TabIndex = 18
         Me.Button15.Text = "壳体夹紧气缸二  夹紧"
         Me.Button15.UseVisualStyleBackColor = True
+        '
+        'TextBox_Cylinder_w01
+        '
+        Me.TextBox_Cylinder_w01.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox_Cylinder_w01.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w01.Location = New System.Drawing.Point(80, 21)
+        Me.TextBox_Cylinder_w01.Name = "TextBox_Cylinder_w01"
+        Me.TextBox_Cylinder_w01.ReadOnly = True
+        Me.TextBox_Cylinder_w01.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w01.TabIndex = 24
+        Me.TextBox_Cylinder_w01.Text = "夹紧到位"
+        '
+        'TextBox_Cylinder_h01
+        '
+        Me.TextBox_Cylinder_h01.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h01.Location = New System.Drawing.Point(313, 21)
+        Me.TextBox_Cylinder_h01.Name = "TextBox_Cylinder_h01"
+        Me.TextBox_Cylinder_h01.ReadOnly = True
+        Me.TextBox_Cylinder_h01.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h01.TabIndex = 24
+        Me.TextBox_Cylinder_h01.Text = "松开到位"
+        '
+        'TextBox_Cylinder_w02
+        '
+        Me.TextBox_Cylinder_w02.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w02.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TextBox_Cylinder_w02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w02.Location = New System.Drawing.Point(540, 21)
+        Me.TextBox_Cylinder_w02.Name = "TextBox_Cylinder_w02"
+        Me.TextBox_Cylinder_w02.ReadOnly = True
+        Me.TextBox_Cylinder_w02.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w02.TabIndex = 24
+        Me.TextBox_Cylinder_w02.Text = "前进到位"
+        '
+        'TextBox_Cylinder_h02
+        '
+        Me.TextBox_Cylinder_h02.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h02.Location = New System.Drawing.Point(773, 21)
+        Me.TextBox_Cylinder_h02.Name = "TextBox_Cylinder_h02"
+        Me.TextBox_Cylinder_h02.ReadOnly = True
+        Me.TextBox_Cylinder_h02.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h02.TabIndex = 24
+        Me.TextBox_Cylinder_h02.Text = "后退到位"
+        '
+        'TextBox_Cylinder_w03
+        '
+        Me.TextBox_Cylinder_w03.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w03.Location = New System.Drawing.Point(80, 140)
+        Me.TextBox_Cylinder_w03.Name = "TextBox_Cylinder_w03"
+        Me.TextBox_Cylinder_w03.ReadOnly = True
+        Me.TextBox_Cylinder_w03.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w03.TabIndex = 24
+        Me.TextBox_Cylinder_w03.Text = "上升到位"
+        '
+        'TextBox_Cylinder_h03
+        '
+        Me.TextBox_Cylinder_h03.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h03.Location = New System.Drawing.Point(313, 140)
+        Me.TextBox_Cylinder_h03.Name = "TextBox_Cylinder_h03"
+        Me.TextBox_Cylinder_h03.ReadOnly = True
+        Me.TextBox_Cylinder_h03.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h03.TabIndex = 24
+        Me.TextBox_Cylinder_h03.Text = "下降到位"
+        '
+        'TextBox_Cylinder_w07
+        '
+        Me.TextBox_Cylinder_w07.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w07.Location = New System.Drawing.Point(80, 351)
+        Me.TextBox_Cylinder_w07.Name = "TextBox_Cylinder_w07"
+        Me.TextBox_Cylinder_w07.ReadOnly = True
+        Me.TextBox_Cylinder_w07.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w07.TabIndex = 24
+        Me.TextBox_Cylinder_w07.Text = "夹紧到位"
+        '
+        'TextBox_Cylinder_h07
+        '
+        Me.TextBox_Cylinder_h07.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h07.Location = New System.Drawing.Point(313, 351)
+        Me.TextBox_Cylinder_h07.Name = "TextBox_Cylinder_h07"
+        Me.TextBox_Cylinder_h07.ReadOnly = True
+        Me.TextBox_Cylinder_h07.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h07.TabIndex = 24
+        Me.TextBox_Cylinder_h07.Text = "松开到位"
+        '
+        'TextBox_Cylinder_w05
+        '
+        Me.TextBox_Cylinder_w05.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w05.Location = New System.Drawing.Point(80, 246)
+        Me.TextBox_Cylinder_w05.Name = "TextBox_Cylinder_w05"
+        Me.TextBox_Cylinder_w05.ReadOnly = True
+        Me.TextBox_Cylinder_w05.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w05.TabIndex = 24
+        Me.TextBox_Cylinder_w05.Text = "上升到位"
+        '
+        'TextBox_Cylinder_h05
+        '
+        Me.TextBox_Cylinder_h05.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h05.Location = New System.Drawing.Point(313, 246)
+        Me.TextBox_Cylinder_h05.Name = "TextBox_Cylinder_h05"
+        Me.TextBox_Cylinder_h05.ReadOnly = True
+        Me.TextBox_Cylinder_h05.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h05.TabIndex = 24
+        Me.TextBox_Cylinder_h05.Text = "下降到位"
+        '
+        'TextBox_Cylinder_w04
+        '
+        Me.TextBox_Cylinder_w04.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w04.Location = New System.Drawing.Point(540, 140)
+        Me.TextBox_Cylinder_w04.Name = "TextBox_Cylinder_w04"
+        Me.TextBox_Cylinder_w04.ReadOnly = True
+        Me.TextBox_Cylinder_w04.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w04.TabIndex = 24
+        Me.TextBox_Cylinder_w04.Text = "上升到位"
+        '
+        'TextBox_Cylinder_h04
+        '
+        Me.TextBox_Cylinder_h04.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h04.Location = New System.Drawing.Point(773, 140)
+        Me.TextBox_Cylinder_h04.Name = "TextBox_Cylinder_h04"
+        Me.TextBox_Cylinder_h04.ReadOnly = True
+        Me.TextBox_Cylinder_h04.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h04.TabIndex = 24
+        Me.TextBox_Cylinder_h04.Text = "下降到位"
+        '
+        'TextBox_Cylinder_w06
+        '
+        Me.TextBox_Cylinder_w06.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.TextBox_Cylinder_w06.Location = New System.Drawing.Point(540, 246)
+        Me.TextBox_Cylinder_w06.Name = "TextBox_Cylinder_w06"
+        Me.TextBox_Cylinder_w06.ReadOnly = True
+        Me.TextBox_Cylinder_w06.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w06.TabIndex = 24
+        Me.TextBox_Cylinder_w06.Text = "前进到位"
+        '
+        'TextBox_Cylinder_h06
+        '
+        Me.TextBox_Cylinder_h06.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h06.Location = New System.Drawing.Point(773, 246)
+        Me.TextBox_Cylinder_h06.Name = "TextBox_Cylinder_h06"
+        Me.TextBox_Cylinder_h06.ReadOnly = True
+        Me.TextBox_Cylinder_h06.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h06.TabIndex = 24
+        Me.TextBox_Cylinder_h06.Text = "后退到位"
         '
         'Handtest
         '
@@ -370,7 +559,6 @@ Partial Class Handtest
         Me.ClientSize = New System.Drawing.Size(967, 721)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox3)
         Me.Name = "Handtest"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -380,6 +568,7 @@ Partial Class Handtest
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -413,4 +602,18 @@ Partial Class Handtest
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents Button16 As Button
     Friend WithEvents Button15 As Button
+    Friend WithEvents TextBox_Cylinder_w01 As TextBox
+    Friend WithEvents TextBox_Cylinder_h01 As TextBox
+    Friend WithEvents TextBox_Cylinder_h07 As TextBox
+    Friend WithEvents TextBox_Cylinder_h03 As TextBox
+    Friend WithEvents TextBox_Cylinder_h02 As TextBox
+    Friend WithEvents TextBox_Cylinder_w07 As TextBox
+    Friend WithEvents TextBox_Cylinder_w03 As TextBox
+    Friend WithEvents TextBox_Cylinder_w02 As TextBox
+    Friend WithEvents TextBox_Cylinder_h04 As TextBox
+    Friend WithEvents TextBox_Cylinder_h05 As TextBox
+    Friend WithEvents TextBox_Cylinder_h06 As TextBox
+    Friend WithEvents TextBox_Cylinder_w04 As TextBox
+    Friend WithEvents TextBox_Cylinder_w05 As TextBox
+    Friend WithEvents TextBox_Cylinder_w06 As TextBox
 End Class

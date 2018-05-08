@@ -172,6 +172,86 @@ Public Class Handtest
         'If (100 >= jxwy_temp >= 0) Then
         TextBox1.Text = jxwy_temp
         'End If
+        If bytesrecd(70) = 1 Then '01
+            TextBox_Cylinder_w01.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w01.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(71) = 1 Then '01
+            TextBox_Cylinder_h01.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h01.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(72) = 1 Then '02
+            TextBox_Cylinder_w02.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w02.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(73) = 1 Then '02
+            TextBox_Cylinder_h02.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h02.BackColor = Color.Gray
+        End If
+        If bytesrecd(74) = 1 Then '03
+            TextBox_Cylinder_w03.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w03.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(75) = 1 Then '03
+            TextBox_Cylinder_h03.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h03.BackColor = Color.Gray
+        End If
+        If bytesrecd(76) = 1 Then '04
+            TextBox_Cylinder_w04.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w04.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(77) = 1 Then '04
+            TextBox_Cylinder_h04.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h04.BackColor = Color.Gray
+        End If
+
+        If bytesrecd(78) = 1 Then '05
+            TextBox_Cylinder_w05.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w05.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(79) = 1 Then '05
+            TextBox_Cylinder_h05.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h05.BackColor = Color.Gray
+        End If
+
+        If bytesrecd(80) = 1 Then '06
+            TextBox_Cylinder_w06.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w06.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(81) = 1 Then '06
+            TextBox_Cylinder_h06.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h06.BackColor = Color.Gray
+        End If
+        If bytesrecd(82) = 1 Then '07
+            TextBox_Cylinder_w07.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_w07.BackColor = Color.Gray
+
+        End If
+        If bytesrecd(83) = 1 Then '07
+            TextBox_Cylinder_h07.BackColor = Color.YellowGreen
+        Else
+            TextBox_Cylinder_h07.BackColor = Color.Gray
+        End If
 
 
     End Sub
