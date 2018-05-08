@@ -1288,7 +1288,7 @@ netlis:
                         ordersend24 = 1
                     End If
                     If (vdatawy + clearwy) <= (Val(paranew(33)) - Val(paranew(42))) And ordersend21 = 0 Then '33零位判断基准电压
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
                         ordersend21 = 1
                     End If
                     If ordersend21 = 1 Then
@@ -1301,7 +1301,7 @@ netlis:
                     moveflag = 23
                 Case 21 '未用
                     If (vdatawy + clearwy) >= (Val(paranew(33)) + Val(paranew(42))) And ordersend21 = 0 Then '42回中补偿电压
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
                         ordersend21 = 1
                     End If
                     If ordersend21 = 1 Then
@@ -1313,7 +1313,10 @@ netlis:
                     Call move_return()  '回零
                     moveflag = 23
                 Case 23
-                    If vdatawy + clearwy >= Val(paranew(33)) Then
+                    '  volwy = Format(DAQwy.Read, "000.00") + clearwy
+                    If volwy <= Val(paranew(33)） Then
+                        ' TextBox4.Text = vdatawy.ToString() + "   " + Val(paranew(33)).ToString()
+                        'If vdatawy >= Val(paranew(33)) Then ' Then Or volwy > volzerowy + 0.3
                         d2210_imd_stop(0) '停止运动
 
                         ordersend15 = 1
@@ -1321,10 +1324,10 @@ netlis:
                         runflag = False '自动动作标识
 
 
-
+                        sst6 = 2
                         Application.DoEvents()
 
-
+                        moveflag = 12
                     End If
                     If ordersend15 = 1 Then
                         If sst6 = 2 Then
@@ -1503,7 +1506,7 @@ netlis:
 
 
         volwy = Format(DAQwy.Read, "000.00")
-        If volwy < volzerowy - 0.1 Or volwy > volzerowy + 0.1 Then
+        If volwy < volzerowy - 0.2 Or volwy > volzerowy + 0.2 Then
             bytessend(696) = 0 '
         Else
             bytessend(696) = 1 '设备已归零
