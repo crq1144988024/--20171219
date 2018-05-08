@@ -706,22 +706,25 @@ netlis:
                 countclr.Enabled = True
                 TestTickenable = False
                 ' Timtest.Enabled = False
-                ToolStripButton2.Enabled = True
-                ToolStripButton3.Enabled = True
-                ToolStripButton4.Enabled = True
-                ToolStripButton7.Enabled = True
-                ToolStripButton5.Enabled = True
-                runflag = False '在手动条件下  禁止显示数值传感器
-                moveflag = -1
-                If handstop = 1 Then ' 自动切换到手动时应停止动作
-                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-                    'DelayS(0.1)
-                    Thread.Sleep(100)
-
-                    handstop = 0
+                If (tooluser.Text = "Administrator") Then
+                    ToolStripButton2.Enabled = True
+                    ToolStripButton3.Enabled = True
+                    ToolStripButton4.Enabled = True
+                    ToolStripButton7.Enabled = True
+                    ToolStripButton5.Enabled = True
                 End If
-            End If
-            If bytesrecd(43) = 1 Then '自动
+
+                runflag = False '在手动条件下  禁止显示数值传感器
+                    moveflag = -1
+                    If handstop = 1 Then ' 自动切换到手动时应停止动作
+                        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+                        'DelayS(0.1)
+                        Thread.Sleep(100)
+
+                        handstop = 0
+                    End If
+                End If
+                If bytesrecd(43) = 1 Then '自动
                 typesel.Enabled = False
                 countclr.Enabled = False
                 ToolStripButton2.Enabled = False
@@ -908,20 +911,22 @@ netlis:
                     'End If
 
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        ' d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
                         Application.DoEvents()
                         If ordersend12 = 0 Then
-                            count2 = count1 - 2 '- 2
+                            count2 = count1 - 5 '- 2
                             maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend18 = 1
                             ordersend12 = 1
                             Application.DoEvents()
                             count_delay = 1
+
+                            ordersend2 = 0
+
                         End If
                     End If
-                    While count_delay = 1000
-                        count_delay = count_delay + 1
-                    End While
+
 
 
                     If ordersend18 = 1 Then
@@ -931,12 +936,20 @@ netlis:
                         sst1 += 1   '循环两次加一
                     End If
                     Application.DoEvents()
-
+                    count_delay = 1
                 Case 3 '右向左
+                    If ordersend18 = 1 Then
+                        d2210_imd_stop(0) '停止运动
+                        ordersend18 = 0
+                    End If
+                    Dir1 = 0
                     Application.DoEvents()
                     ' MsgBox("右向左1")
+                    'While count_delay = 100
+                    '    count_delay = count_delay + 1
+                    'End While
                     If ordersend2 = 0 Then '只执行一次就完事
-                        Dir1 = 0
+
                         Call move_start()
                         ordersend2 = 1
                         'gBox("右向左2")
@@ -947,7 +960,7 @@ netlis:
 
                     If Val(lblfqlright_now_adjiust) >= 30 Then
                         If ordersend3 = 0 Then
-                            eftcot1 = count1 + 20 '+ 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
+                            eftcot1 = count1 + 5 '+ 3 '有效测试，右边刚接触上的采样点 ？？？？？？？？？？？？？？？？？？？？？？
                             ordersend3 = 1
                             Application.DoEvents()
                         End If
@@ -955,11 +968,11 @@ netlis:
                         'If Val(lblfqlright_now_adjiust) < 198 Then FastLine1.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
                         ' Label3.Text = datasensor(count1)
                         If datasensor(count1) >= Val(paranew(19)) Then '大于设置的换向力 就停止运动
-                            d2210_decel_stop(m_UseAxis, 0) '停止运动
+                            d2210_imd_stop(0) '停止运动
                             ' MsgBox(ordersend13.ToString())
                             If ordersend13 = 0 Then
                                 ' MsgBox("右向左3")
-                                count3 = count1 - 2 ' - 2
+                                count3 = count1 - 5 ' - 2
                                 maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend13 = 1
                                 ordersend17 = 1
@@ -971,11 +984,20 @@ netlis:
                     If ordersend17 = 1 Then
                         If sst2 = 2 Then
                             moveflag = 4
+                            ordersend18 = 1
                         End If
                         sst2 += 1
                     End If
-                    Thread.SpinWait(10)
+                   ' Thread.SpinWait(10)
                 Case 4 '左第一次到达后换向，即左向右动
+                    If ordersend18 = 1 Then
+                        ' d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
+                        ordersend18 = 0
+                    End If
+                    Dir1 = 1
+
+
                     If ordersend5 = 0 Then
                         Dir1 = 1
                         Call move_start()
@@ -984,15 +1006,15 @@ netlis:
                     datasensor(count1) = -Val(lblfqlleft_now_adjiust)
                     If Val(lblfqlleft_now_adjiust) >= 30 Then
                         If ordersend6 = 0 Then
-                            eftcot2 = count1 + 3 '+ 13 '？？？？？？？？？？？？？？？？？？？？？？
+                            eftcot2 = count1 + 5 '+ 13 '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend6 = 1
                         End If
                         If Val(lblfqlleft_now_adjiust) < Val(paranew(19)) Then FastLine2.Add(datawy(count1), datasensor(count1))
                         'If Val(lblfqlleft_now_adjiust) < 198 Then FastLine2.Add(datawy(count1), datasensor(count1)) '干扰影响，采用阈值处理
                         If datasensor(count1) <= (-1) * Val(paranew(19)) Then
-                            d2210_decel_stop(m_UseAxis, 0) '停止运动
+                            d2210_imd_stop(0) '停止运动
                             If ordersend14 = 0 Then
-                                count4 = count1 - 2 ''- 2
+                                count4 = count1 - 5 ''- 2
                                 maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend19 = 1
                                 ordersend14 = 1
@@ -1006,7 +1028,7 @@ netlis:
                         End If
                         sst3 += 1
                     End If
-                    Thread.SpinWait(10)
+                    'Thread.SpinWait(10)
                 Case 13 '计算有效位移对应的采样点
                     For i = eftcot1 To count3 'eftcot1 =右向左 有力接触大于30N时候 过了50*3ms后的点  count3=左向右 停止前 50*2ms
                         If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then '百分比，所以要除以100，转换为小数  paranew(30)有效测试位移百分比
@@ -1146,7 +1168,7 @@ netlis:
                         ordersend8 = 1
                     End If
                     If Val(lblfqlleft_now_adjiust) <= 30 And ordersend9 = 0 Then
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
                         If sst4 = 2 Then
                             ordersend9 = 1
                         End If
@@ -1292,19 +1314,21 @@ netlis:
                     moveflag = 23
                 Case 23
                     If vdatawy + clearwy >= Val(paranew(33)) Then
-                        d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        d2210_imd_stop(0) '停止运动
+
+                        ordersend15 = 1
+
                         runflag = False '自动动作标识
+
+
+
                         Application.DoEvents()
 
-                        Thread.SpinWait(5)
 
-
-                        moveflag = 12
-                        ordersend15 = 1
                     End If
                     If ordersend15 = 1 Then
                         If sst6 = 2 Then
-
+                            moveflag = 12
                         End If
                         sst6 += 1
                     End If
@@ -1479,7 +1503,7 @@ netlis:
 
 
         volwy = Format(DAQwy.Read, "000.00")
-        If volwy < volzerowy - 0.5 Or volwy > volzerowy + 0.5 Then
+        If volwy < volzerowy - 0.1 Or volwy > volzerowy + 0.1 Then
             bytessend(696) = 0 '
         Else
             bytessend(696) = 1 '设备已归零
@@ -2406,7 +2430,7 @@ netlis:
             If bytesrecd(61) = 1 And zeromoveflag = 1 Then '归零位  61 电缸左限位(归零位)
 
                 zeromoveflag = 2
-                d2210_decel_stop(m_UseAxis, 0) '停止运动
+                d2210_imd_stop(0) '停止运动
                 zerored1 = 1
             End If
             If zerored1 = 1 And zerored2 <= 3 Then
@@ -2420,7 +2444,7 @@ netlis:
                 zerored2 = 4
             End If
             If volwy >= Val(paranew(33)) And zerored2 = 4 Then '零位判断基准电压
-                d2210_decel_stop(m_UseAxis, 0) '停止运动
+                d2210_imd_stop(0) '停止运动
                 clearwy = DAQwy.Read '零位电压作为基准值
                 'clearfqlleft = DAQfqlleft.Read '现场会出现回零带工件操作，导致左侧压力相对零点不准确，压头接触工件了
                 'clearfqlright = DAQfqlright.Read
@@ -2441,7 +2465,7 @@ netlis:
                 d2210_t_vmove(0, 1)
             End If
             If volwy >= Val(paranew(33)) Then
-                d2210_decel_stop(m_UseAxis, 0) '停止运动
+                d2210_imd_stop(0) '停止运动
                 clearwy = DAQwy.Read '零位电压作为基准值
                 'clearfqlleft = DAQfqlleft.Read
                 'clearfqlright = DAQfqlright.Read

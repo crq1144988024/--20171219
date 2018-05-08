@@ -51,6 +51,7 @@
                         frmMain.ToolStripButton5.Enabled = False
                         frmMain.ToolStripButton7.Enabled = False
                     End If
+
                     g_UserLoginPara.LastUsername = CobName.SelectedIndex
                     SaveUserLoginPara()
                     frmMain.tooluser.Text = CobName.Text
