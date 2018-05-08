@@ -51,7 +51,7 @@
     End Sub
 
     Private Sub Timerbd_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timerbd.Tick
-        tempfqll = Math.Abs(frmMain.DAQfqlleft.Read) - leftfqlclear
+        tempfqll = frmMain.DAQfqlleft.Read - leftfqlclear
         Textfqll.Text = Format(tempfqll, "0.0000")
         tempfqlr = frmMain.DAQfqlright.Read - rightfqlclear
         Textfqlr.Text = Format(tempfqlr, "0.0000")

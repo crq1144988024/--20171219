@@ -765,6 +765,8 @@ netlis:
     Dim li_sensors_times As Boolean
     Dim lileft_sensorszero As Boolean
     Dim liright_sensorszero As Boolean
+    Dim count_delay As Int64
+
     ''' <summary>
     ''' 线程监控  传感器数据及流程步 以及相关安全动作
     ''' </summary>
@@ -907,13 +909,20 @@ netlis:
 
                     If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
+                        Application.DoEvents()
                         If ordersend12 = 0 Then
                             count2 = count1 - 2 '- 2
                             maxwy2 = datawy(count2) '？？？？？？？？？？？？？？？？？？？？？？
                             ordersend18 = 1
                             ordersend12 = 1
+                            Application.DoEvents()
+                            count_delay = 1
                         End If
                     End If
+                    While count_delay = 1000
+                        count_delay = count_delay + 1
+                    End While
+
 
                     If ordersend18 = 1 Then
                         If sst1 = 2 Then
@@ -921,8 +930,10 @@ netlis:
                         End If
                         sst1 += 1   '循环两次加一
                     End If
-                    Thread.SpinWait(10)
+                    Application.DoEvents()
+
                 Case 3 '右向左
+                    Application.DoEvents()
                     ' MsgBox("右向左1")
                     If ordersend2 = 0 Then '只执行一次就完事
                         Dir1 = 0
@@ -948,7 +959,7 @@ netlis:
                             ' MsgBox(ordersend13.ToString())
                             If ordersend13 = 0 Then
                                 ' MsgBox("右向左3")
-                                count3 = count1 - 3 ' - 2
+                                count3 = count1 - 2 ' - 2
                                 maxwy3 = datawy(count3) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend13 = 1
                                 ordersend17 = 1
@@ -981,7 +992,7 @@ netlis:
                         If datasensor(count1) <= (-1) * Val(paranew(19)) Then
                             d2210_decel_stop(m_UseAxis, 0) '停止运动
                             If ordersend14 = 0 Then
-                                count4 = count1 - 20 ''- 2
+                                count4 = count1 - 2 ''- 2
                                 maxwy4 = datawy(count4) '？？？？？？？？？？？？？？？？？？？？？？
                                 ordersend19 = 1
                                 ordersend14 = 1
@@ -1011,16 +1022,77 @@ netlis:
                     Next
                     For i = eftcot2 To count4 '左向右动
                         If datawy(i) >= (maxwy2 - maxwy3) * Val(-paranew(30)) / 200 + zerowybc Then
+
                             eftcot2 = i
+                            If datawy(eftcot2) <= datawy(count3) Then
+                                For k = eftcot2 To count4
+                                    If datawy(k) >= datawy(count3) Then
+                                        eftcot2 = k
+                                        Exit For
+
+                                    End If
+
+                                Next
+
+                            Else
+                                For k = count3 To eftcot1 Step -1
+                                    If datawy(k) >= datawy(eftcot2) Then
+                                        count3 = k
+                                        Exit For
+
+                                    End If
+
+                                Next
+
+                            End If
+
                             Exit For
                         End If
                     Next
                     For i = count4 To eftcot2 Step -1
                         If datawy(i) <= (maxwy2 - maxwy3) * Val(paranew(30)) / 200 + zerowybc Then
                             count4 = i
+                            If datawy(eftcot1) <= datawy(count4) Then
+                                For k = count4 To eftcot2 Step -1
+                                    If datawy(k) <= datawy(eftcot1) Then
+                                        count4 = k
+                                        Exit For
+
+                                    End If
+
+                                Next
+
+                            Else
+                                For k = eftcot1 To count3
+                                    If datawy(k) <= datawy(count4) Then
+                                        eftcot1 = k
+                                        Exit For
+
+                                    End If
+
+                                Next
+
+                            End If
+                            'If datawy(eftcot1) <= datawy(count4) Then
+                            '    count4 = eftcot1
+                            'Else
+                            '    eftcot1 = count4
+
+                            'End If
                             Exit For
                         End If
                     Next
+
+                    '    eftcot1 = count4
+                    'Else
+                    '    count4 = eftcot1
+                    'End If
+                    'If count3 <= eftcot2 Then
+                    '    count3 = eftcot2
+                    'Else
+                    '    eftcot2 = count3
+                    'End If
+                    TextBox1.Text = "eftcot1=" + datawy(eftcot1).ToString() + "  count3" + datawy(count3).ToString() + "  eftcot2" + datawy(eftcot2).ToString() + "  count4" + datawy(count4).ToString()
                     mypiecedata.huitustart = eftcot1
                     mypiecedata.huituend1 = count3
                     mypiecedata.huitustart1 = eftcot2
@@ -1222,11 +1294,17 @@ netlis:
                     If vdatawy + clearwy >= Val(paranew(33)) Then
                         d2210_decel_stop(m_UseAxis, 0) '停止运动
                         runflag = False '自动动作标识
+                        Application.DoEvents()
+
+                        Thread.SpinWait(5)
+
+
+                        moveflag = 12
                         ordersend15 = 1
                     End If
                     If ordersend15 = 1 Then
                         If sst6 = 2 Then
-                            moveflag = 12
+
                         End If
                         sst6 += 1
                     End If
@@ -1366,7 +1444,7 @@ netlis:
 
             ThreadCount = ThreadCount + 1
             TestEnd = timeGetTime()
-            If (TestEnd - TestStart) >= 5 Then
+            If (TestEnd - TestStart) >= 50 Then
                 TestStart = TestEnd
                 li_sensors_times = True
                 If (count1 < 5000) Then
@@ -1401,7 +1479,7 @@ netlis:
 
 
         volwy = Format(DAQwy.Read, "000.00")
-        If volwy < volzerowy - 0.1 Or volwy > volzerowy + 0.1 Then
+        If volwy < volzerowy - 0.5 Or volwy > volzerowy + 0.5 Then
             bytessend(696) = 0 '
         Else
             bytessend(696) = 1 '设备已归零
