@@ -23,6 +23,8 @@ Partial Class frmPreferset
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
+        Me.Label48 = New System.Windows.Forms.Label()
         Me.Addnew = New System.Windows.Forms.Button()
         Me.Delete = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -114,8 +116,6 @@ Partial Class frmPreferset
         Me.freqjx = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.jxposition = New System.Windows.Forms.TextBox()
-        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
-        Me.Label48 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SetPrefer.SuspendLayout()
@@ -141,6 +141,24 @@ Partial Class frmPreferset
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "型号设置"
+        '
+        'ComboBox6
+        '
+        Me.ComboBox6.FormattingEnabled = True
+        Me.ComboBox6.Items.AddRange(New Object() {"禁用", "启用"})
+        Me.ComboBox6.Location = New System.Drawing.Point(117, 153)
+        Me.ComboBox6.Name = "ComboBox6"
+        Me.ComboBox6.Size = New System.Drawing.Size(72, 20)
+        Me.ComboBox6.TabIndex = 19
+        '
+        'Label48
+        '
+        Me.Label48.AutoSize = True
+        Me.Label48.Location = New System.Drawing.Point(10, 158)
+        Me.Label48.Name = "Label48"
+        Me.Label48.Size = New System.Drawing.Size(65, 12)
+        Me.Label48.TabIndex = 18
+        Me.Label48.Text = "允许返工："
         '
         'Addnew
         '
@@ -523,9 +541,9 @@ Partial Class frmPreferset
         Me.Label17.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label17.Location = New System.Drawing.Point(220, 246)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(14, 14)
+        Me.Label17.Size = New System.Drawing.Size(21, 14)
         Me.Label17.TabIndex = 40
-        Me.Label17.Text = "V"
+        Me.Label17.Text = "mm"
         '
         'TextBox8
         '
@@ -541,9 +559,9 @@ Partial Class frmPreferset
         Me.Label16.Font = New System.Drawing.Font("宋体", 10.5!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         Me.Label16.Location = New System.Drawing.Point(20, 246)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(105, 14)
+        Me.Label16.Size = New System.Drawing.Size(91, 14)
         Me.Label16.TabIndex = 38
-        Me.Label16.Text = "回中补偿电压："
+        Me.Label16.Text = "中位位置值："
         '
         'Label14
         '
@@ -1062,24 +1080,6 @@ Partial Class frmPreferset
         Me.jxposition.Size = New System.Drawing.Size(70, 23)
         Me.jxposition.TabIndex = 36
         Me.jxposition.Visible = False
-        '
-        'ComboBox6
-        '
-        Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Items.AddRange(New Object() {"禁用", "启用"})
-        Me.ComboBox6.Location = New System.Drawing.Point(117, 153)
-        Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(72, 20)
-        Me.ComboBox6.TabIndex = 19
-        '
-        'Label48
-        '
-        Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(10, 158)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(65, 12)
-        Me.Label48.TabIndex = 18
-        Me.Label48.Text = "允许返工："
         '
         'frmPreferset
         '

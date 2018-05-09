@@ -179,7 +179,7 @@ Partial Class frmMain
         'ToolStripButton7
         '
         Me.ToolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton7.Image = Global.逆转测试.My.Resources.Resources.清零
+        Me.ToolStripButton7.Image = Global.逆转测试.My.Resources.Resources.系统归零
         resources.ApplyResources(Me.ToolStripButton7, "ToolStripButton7")
         Me.ToolStripButton7.Name = "ToolStripButton7"
         '

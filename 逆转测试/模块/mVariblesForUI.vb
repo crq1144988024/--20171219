@@ -300,7 +300,7 @@ Module mVariblesForUI
         Dir = Dir1
         m_nStart = 500  '提取输入信息
         'm_nSpeed = Val(paranew(18)) * Val(frmSensorbiaodg.speedxs.Text)
-        m_nSpeed = 0.03 * Val(frmSensorbiaodg.speedxs.Text) '速度限定死
+        m_nSpeed = 0.3 * Val(frmSensorbiaodg.speedxs.Text) '速度限定死
         fAcc = 0.5
         d2210_set_profile(m_UseAxis, m_nStart, m_nSpeed, fAcc, 0.1)   '设置速度、加速度
         d2210_t_vmove(m_UseAxis, Dir) '作连续运动

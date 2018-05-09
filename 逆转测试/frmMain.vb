@@ -573,7 +573,7 @@ netlis:
     ''' </summary>
     Public Sub reset()
         If bytesrecd(44) = 1 Then '复位
-            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+            d2210_imd_stop(0) '停止运动
             runflag = False
             TestTickenable = False
             ' Timtest.Enabled = False
@@ -693,7 +693,7 @@ netlis:
     End Sub
     Public Sub monitor_emergency_stop()
         If bytesrecd(45) = 1 Then '急停
-            d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+            d2210_imd_stop(0) '停止运动
             runflag = False
             moveflag = -1
             TestTickenable = False
@@ -733,7 +733,7 @@ netlis:
                 ToolStripButton7.Enabled = False
                 ToolStripButton5.Enabled = False
                 If bytesrecd(39) = 1 Then '光栅报警
-                    d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+                    d2210_imd_stop(0) '停止运动
                     'DelayS(0.1)
                     runflag = False
                     moveflag = -1
@@ -759,7 +759,7 @@ netlis:
 
         End If
         If bytesrecd(41) = 1 Then
-            d2210_decel_stop(m_UseAxis, 0)
+            d2210_imd_stop(0) '停止运动
             toolstate.Text = "系统处于待机状态"
         End If
     End Sub
@@ -1283,11 +1283,13 @@ netlis:
                     Call move_start()
                     moveflag = 9
                 Case 9
+
                     If (vdatawy + clearwy) < Val(paranew(33)) + 0.5 And ordersend24 = 0 Then '33零位判断基准电压
                         Call changespeed() '回中速度改变
                         ordersend24 = 1
                     End If
-                    If (vdatawy + clearwy) <= (Val(paranew(33)) - Val(paranew(42))) And ordersend21 = 0 Then '33零位判断基准电压
+                    '  If (vdatawy + clearwy) <= (Val(paranew(33)) - Val(paranew(42))) And ordersend21 = 0 Then '33零位判断基准电压     Val(paranew(33)）
+                    If Val(Format(volwy * Val(paranew(23)), "0.00")) <= Val(paranew(42)) Then
                         d2210_imd_stop(0) '停止运动
                         ordersend21 = 1
                     End If
@@ -1314,11 +1316,13 @@ netlis:
                     moveflag = 23
                 Case 23
                     '  volwy = Format(DAQwy.Read, "000.00") + clearwy
-                    If volwy <= Val(paranew(33)） Then
+
+
+                    If volwy >= Val(paranew(33)） Then
                         ' TextBox4.Text = vdatawy.ToString() + "   " + Val(paranew(33)).ToString()
                         'If vdatawy >= Val(paranew(33)) Then ' Then Or volwy > volzerowy + 0.3
                         d2210_imd_stop(0) '停止运动
-
+                        clearwy = DAQwy.Read '零位电压作为基准值
                         ordersend15 = 1
 
                         runflag = False '自动动作标识
@@ -1493,10 +1497,25 @@ netlis:
 
     End Sub
     '数据处理 另开线程一直监控
+    Public alarm_auto As Boolean
     Private Sub DataProcess()
         On Error Resume Next
         Dim i As Integer
+        If bytesrecd(56) = 1 Then
 
+            '  alarm_auto = True
+        End If
+        If bytesrecd(56) = 1 & bytesrecd(42) = 0 Then
+
+            alarm_auto = True
+        End If
+        If alarm_auto = True Then
+            'd2210_imd_stop(0) '停止运动
+        End If
+        If alarm_auto = True & bytesrecd(42) = 1 Then
+            ' d2210_imd_stop(0) '停止运动
+            alarm_auto = False
+        End If
         If plccoms = 1 Then '通讯状态
             plccomsstate.BackColor = Color.Green
         Else
@@ -1506,6 +1525,7 @@ netlis:
 
 
         volwy = Format(DAQwy.Read, "000.00")
+        'If Val(Format(volwy * Val(paranew(23)), "0.00")) <= Val(paranew(42) + 0.5) And Val(Format(volwy * Val(paranew(23)), "0.00")) >= Val(paranew(42) - 0.5) Then
         If volwy < volzerowy - 0.2 Or volwy > volzerowy + 0.2 Then
             bytessend(696) = 0 '
         Else
