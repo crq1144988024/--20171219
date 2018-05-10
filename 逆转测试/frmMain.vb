@@ -604,7 +604,9 @@ netlis:
                 bytessend(i) = 0
             Next
             bytessend(22) = 0
+
             moveflag = 0
+
             countAflag = 0
             count1 = 1
             count2 = 0
@@ -1490,32 +1492,38 @@ netlis:
             ' End If
         End If
         Application.DoEvents()
-        reset() '复位数据
+        If bytesrecd(42) = 1 Then
+
+            alarm_auto = True
+        Else
+            reset() '复位数据
+        End If
+        If alarm_auto = True Then
+            'd2210_imd_stop(0) '停止运动
+            reset() '复位数据
+            alarm_auto = False
+        End If
+
         bytessend(18) = frmPreferset.ComboBox6.SelectedIndex '返工设置选择
         Application.DoEvents()
 
 
+        If bytesrecd(56) = 1 Then
+            moveflag = -1
+            TestTickenable = False
+            '  alarm_auto = True
+        End If
+
+        If bytesrecd(72) = 1 Or bytesrecd(80) = 1 Or bytesrecd(56) = 1 Then '02
+            d2210_imd_stop(0) '停止运动
+        End If
     End Sub
     '数据处理 另开线程一直监控
     Public alarm_auto As Boolean
     Private Sub DataProcess()
         On Error Resume Next
         Dim i As Integer
-        If bytesrecd(56) = 1 Then
 
-            '  alarm_auto = True
-        End If
-        If bytesrecd(56) = 1 & bytesrecd(42) = 0 Then
-
-            alarm_auto = True
-        End If
-        If alarm_auto = True Then
-            'd2210_imd_stop(0) '停止运动
-        End If
-        If alarm_auto = True & bytesrecd(42) = 1 Then
-            ' d2210_imd_stop(0) '停止运动
-            alarm_auto = False
-        End If
         If plccoms = 1 Then '通讯状态
             plccomsstate.BackColor = Color.Green
         Else

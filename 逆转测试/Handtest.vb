@@ -253,7 +253,9 @@ Public Class Handtest
             TextBox_Cylinder_h07.BackColor = Color.Gray
         End If
 
-
+        If bytesrecd(72) = 1 Or bytesrecd(80) = 1 Or bytesrecd(56) = 1 Then '02
+            d2210_imd_stop(0) '停止运动
+        End If
     End Sub
 
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
