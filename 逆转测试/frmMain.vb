@@ -573,6 +573,7 @@ netlis:
     ''' </summary>
     Public Sub reset()
         If bytesrecd(44) = 1 Then '复位
+            alarm_auto = False
             d2210_imd_stop(0) '停止运动
             runflag = False
             TestTickenable = False
@@ -682,7 +683,7 @@ netlis:
         sensorfqlright = Val(Format(lvboright(10) * Val(paranew(22)), "0.00"))
         If Abs(sensorfqlleft) >= Val(paranew(29)) Or Abs(sensorfqlright) >= Val(paranew(29)) Then '大于最大换向力停止动作
             If ordersend25 = 0 Then  '保证停止函数执行一次
-                d2210_decel_stop(m_UseAxis, 0) '停止运动
+                d2210_imd_stop(0) '停止运动
                 moveflag = -1
                 TimlvbofTickenable = True
                 ' Timlvbof.Enabled = False
@@ -719,11 +720,11 @@ netlis:
                 runflag = False '在手动条件下  禁止显示数值传感器
                     moveflag = -1
                     If handstop = 1 Then ' 自动切换到手动时应停止动作
-                        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
-                        'DelayS(0.1)
-                        Thread.Sleep(100)
+                    d2210_imd_stop(0) '停止运动
+                    'DelayS(0.1)
+                    'Thread.Sleep(100)
 
-                        handstop = 0
+                    handstop = 0
                     End If
                 End If
                 If bytesrecd(43) = 1 Then '自动
@@ -833,8 +834,8 @@ netlis:
             Application.DoEvents()
             If begintest = False Then '自动测试开始——保证只调用一次主测试函数及状态设置
 
-                'bytessend(697) = 1 '自动实验后光栅使能
-                bytessend(690) = 0
+                bytessend(697) = 1 '自动实验后光栅使能
+                ' bytessend(690) = 0
                 If paranew(47) = 1 Then '中位记号笔使能
                     bytessend(680) = 1
                 Else
@@ -1492,7 +1493,7 @@ netlis:
             ' End If
         End If
         Application.DoEvents()
-        If bytesrecd(42) = 1 Then
+        If bytesrecd(42) = 0 And alarm_auto = False Then
 
             alarm_auto = True
         Else
@@ -1501,7 +1502,7 @@ netlis:
         If alarm_auto = True Then
             'd2210_imd_stop(0) '停止运动
             reset() '复位数据
-            alarm_auto = False
+
         End If
 
         bytessend(18) = frmPreferset.ComboBox6.SelectedIndex '返工设置选择

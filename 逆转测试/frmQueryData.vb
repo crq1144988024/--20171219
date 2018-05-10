@@ -2,6 +2,8 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Windows.Forms.ToolStripMenuItem
+Imports Microsoft.Office.Core
+Imports Microsoft.Office.Interop
 
 Public Class frmQueryData
     Dim Sqlstring As String
@@ -91,6 +93,8 @@ Public Class frmQueryData
 
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
         Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
+        data_export_batch.DataGridView1.DataSource = companyNameQuery
+
         For Each customer In companyNameQuery
             Listdata.Items.Add(customer.编号)
         Next
@@ -116,6 +120,7 @@ Public Class frmQueryData
 
         GlobalVariable.Piecedatasave = New DataClasses_PIECEDATASAVEDataContext()
         Dim companyNameQuery = From cust In GlobalVariable.Piecedatasave.piecedatasave1 Where cust.日期 >= j1 AndAlso cust.日期 <= j2 AndAlso cust.结果 = j3 Select cust
+        data_export_batch.DataGridView1.DataSource = companyNameQuery
         For Each customer In companyNameQuery
             Listdata.Items.Add(customer.编号)
         Next
@@ -328,5 +333,58 @@ Public Class frmQueryData
 
     Private Sub pietype_TextChanged(sender As Object, e As EventArgs) Handles pietype.TextChanged
 
+    End Sub
+    ''' <summary>
+    ''' 批量工艺数据导出
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim DataGridView1 As DataGridView = data_export_batch.DataGridView1
+
+        If DataGridView1.Rows.Count > 1 Then
+            Me.Cursor = Cursors.WaitCursor
+            Dim myexcel As New Excel.Application
+            myexcel.Workbooks.Add()
+            myexcel.Workbooks(1).Activate()
+
+
+            Dim i As Integer
+            Dim j As Integer
+
+            For i = 0 To DataGridView1.Columns.Count - 1
+                myexcel.Cells(1, i + 1) = DataGridView1.Columns(i).HeaderText
+            Next
+
+            Dim Str1 As String = " "
+            For i = 0 To DataGridView1.Rows.Count - 1
+                For j = 0 To DataGridView1.Columns.Count - 2
+                    '   Dim cellvalue As Object
+                    If DataGridView1.Rows(0).Cells(0).Value Is DBNull.Value Then
+                        myexcel.Cells(i + 2, j + 1) = " "
+                    Else
+                        If DataGridView1.Rows(0).Cells(0).Value = Nothing Then
+                        Else
+
+                            myexcel.Cells(i + 2, j + 1) = DataGridView1.Rows(i).Cells(j).Value
+                            ' If IsDBNull(Str1) = False Then
+
+                            'End If
+                        End If
+                    End If
+                Next
+            Next
+
+            If Dir("D:\导出工艺数据\", vbDirectory) = "" Then
+                MkDir("D:\导出工艺数据\")
+            End If
+            myexcel.Workbooks(1).SaveAs("D:\导出工艺数据\" & Now.ToString("yyyy-MM-dd-HH-mm-ss") & ".xlsx")
+            myexcel.Workbooks.Close()
+            myexcel.Quit()
+            Me.Cursor = Cursors.Default
+            MsgBox("导出到 D:\导出工艺数据 成功")
+        Else
+            MsgBox("没有数据可以导出")
+        End If
     End Sub
 End Class
