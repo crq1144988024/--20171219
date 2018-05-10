@@ -118,7 +118,7 @@ Public Class frmMain
         Dim filenum As String
         Dim mysw As System.IO.StreamWriter
 
-        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+        d2210_imd_stop(0) '停止运动
         filenum = Apppath & "\Sys\piecetype.txt"  '产品型号
         If Dir(filenum) <> "" Then File.Delete(filenum) '如果文件存在删除此文件（产品型号）
         mysw = New System.IO.StreamWriter(filenum, True)
@@ -325,7 +325,8 @@ Public Class frmMain
         DeleteDC(hDC)
         DeleteDC(hMDC)
         DeleteObject(hBMP)
-        Dim sPath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Photo\"
+        '  Dim sPath As String = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly.Location) & "\Photo\"
+        Dim sPath As String = "D:\实验结果图片\"
         Dim bmp As Bitmap = Pic1.Image
 
         Dim yy As String
@@ -1986,29 +1987,8 @@ netlis:
 
         Return
 
-        If scancodeflag = True Then
-            MyOledbCommand.CommandText = "insert into piecedatasave (编号,日期,工件类别,条码,结果) values ('" + mypiecedata.datasaverec(0) + "','" + mypiecedata.datasaverec(1) + "','" + mypiecedata.datasaverec(2) + "','" + mypiecedata.datasaverec(3) + "','" + mypiecedata.datasaverec(4) + "')"
-        Else
-            MyOledbCommand.CommandText = "insert into piecedatasave (编号,日期,工件类别,结果) values ('" + mypiecedata.datasaverec(0) + "','" + mypiecedata.datasaverec(1) + "','" + mypiecedata.datasaverec(2) + "','" + mypiecedata.datasaverec(4) + "')"
-        End If
-        MyOledbCommand.Connection = OleDbConnrecd
-        MyOledbCommand.ExecuteNonQuery()
-        MyOledbCommand.CommandText = "Update piecedatasave set " _
-            & "右反驱力最大值= '" & mypiecedata.datasaverec(5) & "', " _
-            & "右反驱力最小值= '" & mypiecedata.datasaverec(6) & "', " _
-            & "右反驱力波动量= '" & mypiecedata.datasaverec(7) & "', " _
-            & "右反驱力平均值= '" & mypiecedata.datasaverec(8) & "', " _
-            & "右反驱动位移= '" & mypiecedata.datasaverec(9) & "', " _
-            & "左反驱力最大值= '" & mypiecedata.datasaverec(10) & "', " _
-            & "左反驱力最小值= '" & mypiecedata.datasaverec(11) & "', " _
-            & "左反驱力波动量= '" & mypiecedata.datasaverec(12) & "', " _
-            & "左反驱力平均值= '" & mypiecedata.datasaverec(13) & "', " _
-            & "左反驱动位移= '" & mypiecedata.datasaverec(14) & "', " _
-            & "左右反驱力平均值差值= '" & mypiecedata.datasaverec(20) & "', " _
-            & "左右波动量差值= '" & mypiecedata.datasaverec(15) & "' where 编号 = '" & mypiecedata.datasaverec(0) & "'"
-        MyOledbCommand.Connection = OleDbConnrecd
-        MyOledbCommand.ExecuteNonQuery()
-        'CloseConnNew()
+
+
     End Sub
 
     '保存间隙检测结果
@@ -2034,17 +2014,7 @@ netlis:
             ' Handle exception.  
         End Try
         Return
-        'OpenConnNew()
-        MyOledbCommand.Connection = OleDbConnrecd
-        'MyOledbCommand.ExecuteNonQuery()
-        MyOledbCommand.CommandText = "Update piecedatasave set " _
-        & "上拉齿条径向间隙= '" & mypiecedata.datasaverec(16) & "', " _
-        & "上拉齿条径向力= '" & mypiecedata.datasaverec(17) & "', " _
-        & "下拉齿条径向间隙= '" & mypiecedata.datasaverec(18) & "', " _
-        & "下拉齿条径向力= '" & mypiecedata.datasaverec(19) & "' where 编号 = '" & mypiecedata.datasaverec(0) & "'"
-        MyOledbCommand.Connection = OleDbConnrecd
-        MyOledbCommand.ExecuteNonQuery()
-        'CloseConnNew()
+
     End Sub
 
     '保存查询界面重新画图数据-点数(huituend-huitustart)+扭矩+角度，先全部扭矩再全部角度
