@@ -225,6 +225,12 @@ Public Class frmPreferset
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        If Val(TextBox9.Text) = 0 Then
+            'MsgBox("反驱力调整系数应大于0", vbOKOnly, "超出范围")
+            TextBox9.Text = "145.35"
+            Exit Sub
+        End If
+
         If Val(fqlcoef.Text) = 0 Then
             MsgBox("反驱力调整系数应大于0", vbOKOnly, "超出范围")
             fqlcoef.Text = "1"

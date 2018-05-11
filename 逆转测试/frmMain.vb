@@ -272,12 +272,13 @@ Public Class frmMain
 
 
         count1 = 1 '全程计数
-        clearwy = DAQwy.Read '位移零位
+
         '’clearfqlleft = DAQfqlleft.Read '左反驱零位
         '’clearfqlright = DAQfqlright.Read '右反驱零位
 
         set_piecepara_now() '设置当前产品型号
-
+        clearwy = Val(paranew(33)） '位移零位
+        TextBox4.Text = clearwy
         ' Return
         ComboBox1.Enabled = False                  '在线离线控件使能关闭
         PortOpen()                                  '打开串口
@@ -809,7 +810,7 @@ netlis:
             clearfqlright = DAQfqlright.Read '右反驱零位
             liright_sensorszero = True
         End If
-        TextBox4.Text = moveflag.ToString()
+        'TextBox4.Text = moveflag.ToString()
         If TestTickenable Then
 
 
