@@ -562,7 +562,7 @@ Partial Class frmSensorbiaodg
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(152, 16)
         Me.Label11.TabIndex = 39
-        Me.Label11.Text = "零位判断基准电压："
+        Me.Label11.Text = "伺服零位基准电压："
         '
         'Label12
         '

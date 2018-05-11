@@ -51,22 +51,24 @@ Partial Class Handtest
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.TextBox_Cylinder_h07 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h04 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h05 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h03 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h06 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h02 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_h01 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w04 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w07 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w05 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w03 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w06 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w02 = New System.Windows.Forms.TextBox()
+        Me.TextBox_Cylinder_w01 = New System.Windows.Forms.TextBox()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
-        Me.TextBox_Cylinder_w01 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h01 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w02 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h02 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w03 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h03 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w07 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h07 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w05 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h05 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w04 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h04 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_w06 = New System.Windows.Forms.TextBox()
-        Me.TextBox_Cylinder_h06 = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Textwy_mm = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -273,6 +275,8 @@ Partial Class Handtest
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label17)
+        Me.GroupBox1.Controls.Add(Me.Textwy_mm)
         Me.GroupBox1.Controls.Add(Me.TextBox_motor_target)
         Me.GroupBox1.Controls.Add(Me.TextBox_motor_speed)
         Me.GroupBox1.Controls.Add(Me.Label8)
@@ -288,7 +292,7 @@ Partial Class Handtest
         '
         'TextBox_motor_target
         '
-        Me.TextBox_motor_target.Location = New System.Drawing.Point(199, 160)
+        Me.TextBox_motor_target.Location = New System.Drawing.Point(199, 145)
         Me.TextBox_motor_target.Name = "TextBox_motor_target"
         Me.TextBox_motor_target.Size = New System.Drawing.Size(173, 21)
         Me.TextBox_motor_target.TabIndex = 20
@@ -306,7 +310,7 @@ Partial Class Handtest
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("宋体", 12.0!)
-        Me.Label8.Location = New System.Drawing.Point(47, 160)
+        Me.Label8.Location = New System.Drawing.Point(51, 150)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(112, 16)
         Me.Label8.TabIndex = 18
@@ -376,6 +380,162 @@ Partial Class Handtest
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "气缸手动"
         '
+        'TextBox_Cylinder_h07
+        '
+        Me.TextBox_Cylinder_h07.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h07.Location = New System.Drawing.Point(313, 351)
+        Me.TextBox_Cylinder_h07.Name = "TextBox_Cylinder_h07"
+        Me.TextBox_Cylinder_h07.ReadOnly = True
+        Me.TextBox_Cylinder_h07.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h07.TabIndex = 24
+        Me.TextBox_Cylinder_h07.Text = "松开到位"
+        '
+        'TextBox_Cylinder_h04
+        '
+        Me.TextBox_Cylinder_h04.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h04.Location = New System.Drawing.Point(773, 140)
+        Me.TextBox_Cylinder_h04.Name = "TextBox_Cylinder_h04"
+        Me.TextBox_Cylinder_h04.ReadOnly = True
+        Me.TextBox_Cylinder_h04.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h04.TabIndex = 24
+        Me.TextBox_Cylinder_h04.Text = "下降到位"
+        '
+        'TextBox_Cylinder_h05
+        '
+        Me.TextBox_Cylinder_h05.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h05.Location = New System.Drawing.Point(313, 246)
+        Me.TextBox_Cylinder_h05.Name = "TextBox_Cylinder_h05"
+        Me.TextBox_Cylinder_h05.ReadOnly = True
+        Me.TextBox_Cylinder_h05.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h05.TabIndex = 24
+        Me.TextBox_Cylinder_h05.Text = "下降到位"
+        '
+        'TextBox_Cylinder_h03
+        '
+        Me.TextBox_Cylinder_h03.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h03.Location = New System.Drawing.Point(313, 140)
+        Me.TextBox_Cylinder_h03.Name = "TextBox_Cylinder_h03"
+        Me.TextBox_Cylinder_h03.ReadOnly = True
+        Me.TextBox_Cylinder_h03.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h03.TabIndex = 24
+        Me.TextBox_Cylinder_h03.Text = "下降到位"
+        '
+        'TextBox_Cylinder_h06
+        '
+        Me.TextBox_Cylinder_h06.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h06.Location = New System.Drawing.Point(773, 246)
+        Me.TextBox_Cylinder_h06.Name = "TextBox_Cylinder_h06"
+        Me.TextBox_Cylinder_h06.ReadOnly = True
+        Me.TextBox_Cylinder_h06.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h06.TabIndex = 24
+        Me.TextBox_Cylinder_h06.Text = "后退到位"
+        '
+        'TextBox_Cylinder_h02
+        '
+        Me.TextBox_Cylinder_h02.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h02.Location = New System.Drawing.Point(773, 21)
+        Me.TextBox_Cylinder_h02.Name = "TextBox_Cylinder_h02"
+        Me.TextBox_Cylinder_h02.ReadOnly = True
+        Me.TextBox_Cylinder_h02.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h02.TabIndex = 24
+        Me.TextBox_Cylinder_h02.Text = "后退到位"
+        '
+        'TextBox_Cylinder_h01
+        '
+        Me.TextBox_Cylinder_h01.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_h01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_h01.Location = New System.Drawing.Point(313, 21)
+        Me.TextBox_Cylinder_h01.Name = "TextBox_Cylinder_h01"
+        Me.TextBox_Cylinder_h01.ReadOnly = True
+        Me.TextBox_Cylinder_h01.Size = New System.Drawing.Size(56, 14)
+        Me.TextBox_Cylinder_h01.TabIndex = 24
+        Me.TextBox_Cylinder_h01.Text = "松开到位"
+        '
+        'TextBox_Cylinder_w04
+        '
+        Me.TextBox_Cylinder_w04.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w04.Location = New System.Drawing.Point(540, 140)
+        Me.TextBox_Cylinder_w04.Name = "TextBox_Cylinder_w04"
+        Me.TextBox_Cylinder_w04.ReadOnly = True
+        Me.TextBox_Cylinder_w04.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w04.TabIndex = 24
+        Me.TextBox_Cylinder_w04.Text = "上升到位"
+        '
+        'TextBox_Cylinder_w07
+        '
+        Me.TextBox_Cylinder_w07.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w07.Location = New System.Drawing.Point(80, 351)
+        Me.TextBox_Cylinder_w07.Name = "TextBox_Cylinder_w07"
+        Me.TextBox_Cylinder_w07.ReadOnly = True
+        Me.TextBox_Cylinder_w07.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w07.TabIndex = 24
+        Me.TextBox_Cylinder_w07.Text = "夹紧到位"
+        '
+        'TextBox_Cylinder_w05
+        '
+        Me.TextBox_Cylinder_w05.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w05.Location = New System.Drawing.Point(80, 246)
+        Me.TextBox_Cylinder_w05.Name = "TextBox_Cylinder_w05"
+        Me.TextBox_Cylinder_w05.ReadOnly = True
+        Me.TextBox_Cylinder_w05.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w05.TabIndex = 24
+        Me.TextBox_Cylinder_w05.Text = "上升到位"
+        '
+        'TextBox_Cylinder_w03
+        '
+        Me.TextBox_Cylinder_w03.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w03.Location = New System.Drawing.Point(80, 140)
+        Me.TextBox_Cylinder_w03.Name = "TextBox_Cylinder_w03"
+        Me.TextBox_Cylinder_w03.ReadOnly = True
+        Me.TextBox_Cylinder_w03.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w03.TabIndex = 24
+        Me.TextBox_Cylinder_w03.Text = "上升到位"
+        '
+        'TextBox_Cylinder_w06
+        '
+        Me.TextBox_Cylinder_w06.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.TextBox_Cylinder_w06.Location = New System.Drawing.Point(540, 246)
+        Me.TextBox_Cylinder_w06.Name = "TextBox_Cylinder_w06"
+        Me.TextBox_Cylinder_w06.ReadOnly = True
+        Me.TextBox_Cylinder_w06.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w06.TabIndex = 24
+        Me.TextBox_Cylinder_w06.Text = "前进到位"
+        '
+        'TextBox_Cylinder_w02
+        '
+        Me.TextBox_Cylinder_w02.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w02.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.TextBox_Cylinder_w02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w02.Location = New System.Drawing.Point(540, 21)
+        Me.TextBox_Cylinder_w02.Name = "TextBox_Cylinder_w02"
+        Me.TextBox_Cylinder_w02.ReadOnly = True
+        Me.TextBox_Cylinder_w02.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w02.TabIndex = 24
+        Me.TextBox_Cylinder_w02.Text = "前进到位"
+        '
+        'TextBox_Cylinder_w01
+        '
+        Me.TextBox_Cylinder_w01.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox_Cylinder_w01.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox_Cylinder_w01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.TextBox_Cylinder_w01.Location = New System.Drawing.Point(80, 21)
+        Me.TextBox_Cylinder_w01.Name = "TextBox_Cylinder_w01"
+        Me.TextBox_Cylinder_w01.ReadOnly = True
+        Me.TextBox_Cylinder_w01.Size = New System.Drawing.Size(62, 14)
+        Me.TextBox_Cylinder_w01.TabIndex = 24
+        Me.TextBox_Cylinder_w01.Text = "夹紧到位"
+        '
         'Button16
         '
         Me.Button16.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
@@ -396,161 +556,23 @@ Partial Class Handtest
         Me.Button15.Text = "壳体夹紧气缸二  夹紧"
         Me.Button15.UseVisualStyleBackColor = True
         '
-        'TextBox_Cylinder_w01
+        'Label17
         '
-        Me.TextBox_Cylinder_w01.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox_Cylinder_w01.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w01.Location = New System.Drawing.Point(80, 21)
-        Me.TextBox_Cylinder_w01.Name = "TextBox_Cylinder_w01"
-        Me.TextBox_Cylinder_w01.ReadOnly = True
-        Me.TextBox_Cylinder_w01.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w01.TabIndex = 24
-        Me.TextBox_Cylinder_w01.Text = "夹紧到位"
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Label17.Location = New System.Drawing.Point(51, 190)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(112, 16)
+        Me.Label17.TabIndex = 43
+        Me.Label17.Text = "当前位移(mm):"
         '
-        'TextBox_Cylinder_h01
+        'Textwy_mm
         '
-        Me.TextBox_Cylinder_h01.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h01.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h01.Location = New System.Drawing.Point(313, 21)
-        Me.TextBox_Cylinder_h01.Name = "TextBox_Cylinder_h01"
-        Me.TextBox_Cylinder_h01.ReadOnly = True
-        Me.TextBox_Cylinder_h01.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h01.TabIndex = 24
-        Me.TextBox_Cylinder_h01.Text = "松开到位"
-        '
-        'TextBox_Cylinder_w02
-        '
-        Me.TextBox_Cylinder_w02.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w02.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.TextBox_Cylinder_w02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w02.Location = New System.Drawing.Point(540, 21)
-        Me.TextBox_Cylinder_w02.Name = "TextBox_Cylinder_w02"
-        Me.TextBox_Cylinder_w02.ReadOnly = True
-        Me.TextBox_Cylinder_w02.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w02.TabIndex = 24
-        Me.TextBox_Cylinder_w02.Text = "前进到位"
-        '
-        'TextBox_Cylinder_h02
-        '
-        Me.TextBox_Cylinder_h02.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h02.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h02.Location = New System.Drawing.Point(773, 21)
-        Me.TextBox_Cylinder_h02.Name = "TextBox_Cylinder_h02"
-        Me.TextBox_Cylinder_h02.ReadOnly = True
-        Me.TextBox_Cylinder_h02.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h02.TabIndex = 24
-        Me.TextBox_Cylinder_h02.Text = "后退到位"
-        '
-        'TextBox_Cylinder_w03
-        '
-        Me.TextBox_Cylinder_w03.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w03.Location = New System.Drawing.Point(80, 140)
-        Me.TextBox_Cylinder_w03.Name = "TextBox_Cylinder_w03"
-        Me.TextBox_Cylinder_w03.ReadOnly = True
-        Me.TextBox_Cylinder_w03.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w03.TabIndex = 24
-        Me.TextBox_Cylinder_w03.Text = "上升到位"
-        '
-        'TextBox_Cylinder_h03
-        '
-        Me.TextBox_Cylinder_h03.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h03.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h03.Location = New System.Drawing.Point(313, 140)
-        Me.TextBox_Cylinder_h03.Name = "TextBox_Cylinder_h03"
-        Me.TextBox_Cylinder_h03.ReadOnly = True
-        Me.TextBox_Cylinder_h03.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h03.TabIndex = 24
-        Me.TextBox_Cylinder_h03.Text = "下降到位"
-        '
-        'TextBox_Cylinder_w07
-        '
-        Me.TextBox_Cylinder_w07.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w07.Location = New System.Drawing.Point(80, 351)
-        Me.TextBox_Cylinder_w07.Name = "TextBox_Cylinder_w07"
-        Me.TextBox_Cylinder_w07.ReadOnly = True
-        Me.TextBox_Cylinder_w07.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w07.TabIndex = 24
-        Me.TextBox_Cylinder_w07.Text = "夹紧到位"
-        '
-        'TextBox_Cylinder_h07
-        '
-        Me.TextBox_Cylinder_h07.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h07.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h07.Location = New System.Drawing.Point(313, 351)
-        Me.TextBox_Cylinder_h07.Name = "TextBox_Cylinder_h07"
-        Me.TextBox_Cylinder_h07.ReadOnly = True
-        Me.TextBox_Cylinder_h07.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h07.TabIndex = 24
-        Me.TextBox_Cylinder_h07.Text = "松开到位"
-        '
-        'TextBox_Cylinder_w05
-        '
-        Me.TextBox_Cylinder_w05.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w05.Location = New System.Drawing.Point(80, 246)
-        Me.TextBox_Cylinder_w05.Name = "TextBox_Cylinder_w05"
-        Me.TextBox_Cylinder_w05.ReadOnly = True
-        Me.TextBox_Cylinder_w05.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w05.TabIndex = 24
-        Me.TextBox_Cylinder_w05.Text = "上升到位"
-        '
-        'TextBox_Cylinder_h05
-        '
-        Me.TextBox_Cylinder_h05.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h05.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h05.Location = New System.Drawing.Point(313, 246)
-        Me.TextBox_Cylinder_h05.Name = "TextBox_Cylinder_h05"
-        Me.TextBox_Cylinder_h05.ReadOnly = True
-        Me.TextBox_Cylinder_h05.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h05.TabIndex = 24
-        Me.TextBox_Cylinder_h05.Text = "下降到位"
-        '
-        'TextBox_Cylinder_w04
-        '
-        Me.TextBox_Cylinder_w04.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_w04.Location = New System.Drawing.Point(540, 140)
-        Me.TextBox_Cylinder_w04.Name = "TextBox_Cylinder_w04"
-        Me.TextBox_Cylinder_w04.ReadOnly = True
-        Me.TextBox_Cylinder_w04.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w04.TabIndex = 24
-        Me.TextBox_Cylinder_w04.Text = "上升到位"
-        '
-        'TextBox_Cylinder_h04
-        '
-        Me.TextBox_Cylinder_h04.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h04.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h04.Location = New System.Drawing.Point(773, 140)
-        Me.TextBox_Cylinder_h04.Name = "TextBox_Cylinder_h04"
-        Me.TextBox_Cylinder_h04.ReadOnly = True
-        Me.TextBox_Cylinder_h04.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h04.TabIndex = 24
-        Me.TextBox_Cylinder_h04.Text = "下降到位"
-        '
-        'TextBox_Cylinder_w06
-        '
-        Me.TextBox_Cylinder_w06.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_w06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.TextBox_Cylinder_w06.Location = New System.Drawing.Point(540, 246)
-        Me.TextBox_Cylinder_w06.Name = "TextBox_Cylinder_w06"
-        Me.TextBox_Cylinder_w06.ReadOnly = True
-        Me.TextBox_Cylinder_w06.Size = New System.Drawing.Size(62, 14)
-        Me.TextBox_Cylinder_w06.TabIndex = 24
-        Me.TextBox_Cylinder_w06.Text = "前进到位"
-        '
-        'TextBox_Cylinder_h06
-        '
-        Me.TextBox_Cylinder_h06.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox_Cylinder_h06.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextBox_Cylinder_h06.Location = New System.Drawing.Point(773, 246)
-        Me.TextBox_Cylinder_h06.Name = "TextBox_Cylinder_h06"
-        Me.TextBox_Cylinder_h06.ReadOnly = True
-        Me.TextBox_Cylinder_h06.Size = New System.Drawing.Size(56, 14)
-        Me.TextBox_Cylinder_h06.TabIndex = 24
-        Me.TextBox_Cylinder_h06.Text = "后退到位"
+        Me.Textwy_mm.Font = New System.Drawing.Font("宋体", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.Textwy_mm.Location = New System.Drawing.Point(199, 187)
+        Me.Textwy_mm.Name = "Textwy_mm"
+        Me.Textwy_mm.Size = New System.Drawing.Size(173, 26)
+        Me.Textwy_mm.TabIndex = 44
         '
         'Handtest
         '
@@ -616,4 +638,6 @@ Partial Class Handtest
     Friend WithEvents TextBox_Cylinder_w04 As TextBox
     Friend WithEvents TextBox_Cylinder_w05 As TextBox
     Friend WithEvents TextBox_Cylinder_w06 As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Textwy_mm As TextBox
 End Class

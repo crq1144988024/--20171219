@@ -58,7 +58,7 @@ Public Class frmMain
     Dim s As Socket = Nothing
     Dim barcode(27) As Byte '读取条码
     Dim barcodestr As String '条码
-    Dim volwy As Double '位移电压值
+    Public volwy As Double '位移电压值
 
     Dim backzero As Integer = 0 '归零位信号
     Dim zeroflag As Integer = 0 '保证到归零位后只置为一次
@@ -789,6 +789,7 @@ netlis:
         Application.DoEvents()
 
 
+
         If TimlvbofTickenable Then
             monitor_left_right() '左右监控以及  PLC链接状态监控
             Application.DoEvents()
@@ -1288,7 +1289,8 @@ netlis:
                     moveflag = 9
                 Case 9
 
-                    If (vdatawy + clearwy) < Val(paranew(33)) + 0.5 And ordersend24 = 0 Then '33零位判断基准电压
+                    '  If (vdatawy + clearwy) < Val(paranew(33)) + 0.5 And ordersend24 = 0 Then '33零位判断基准电压
+                    If Val(Format(volwy * Val(paranew(23)), "0.00")) <= Val(paranew(42)) + 5 And ordersend24 = 0 Then '33零位判断基准电压
                         Call changespeed() '回中速度改变
                         ordersend24 = 1
                     End If
@@ -1519,6 +1521,9 @@ netlis:
         If bytesrecd(72) = 1 Or bytesrecd(80) = 1 Or bytesrecd(56) = 1 Then '02
             d2210_imd_stop(0) '停止运动
         End If
+
+
+
     End Sub
     '数据处理 另开线程一直监控
     Public alarm_auto As Boolean
@@ -1532,7 +1537,7 @@ netlis:
             plccomsstate.BackColor = Color.Red
         End If
 
-
+        Call singletobin(Val(Format(volwy * Val(paranew(23)), "0.00")), 50, 51, 52, 53) '把位移传感器位置传到PLC
 
         volwy = Format(DAQwy.Read, "000.00")
         'If Val(Format(volwy * Val(paranew(23)), "0.00")) <= Val(paranew(42) + 0.5) And Val(Format(volwy * Val(paranew(23)), "0.00")) >= Val(paranew(42) - 0.5) Then
@@ -2406,8 +2411,15 @@ netlis:
     '为保证一致性，必须先运动到归零位处再运动到零位！
     '应该考虑到可能回到中位后没停住，需要向相反方向运动继续，直到回零
     Private Sub ToolStripButton7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton7.Click
+
+        If bytesrecd(72) = 1 Or bytesrecd(80) = 1 Or bytesrecd(56) = 1 Then '02
+            d2210_imd_stop(0) '停止运动
+            MsgBox("请先把横移气缸缩回！", vbOKOnly, "Err")
+            Return
+        End If
+
         If bytesrecd(1) = 0 Then '无工件可归零
-            volwy = Format(DAQwy.Read, "0.00")
+            'volwy = Format(DAQwy.Read, "0.00")
             volzerowy = Val(paranew(33))
             If volwy > volzerowy Then moveleft = 1 '在中位右侧需向左运动
             If volwy < volzerowy Then moveright = 1 '在中位左侧需向右运动
@@ -2419,7 +2431,7 @@ netlis:
 
     Private Sub Timzero_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timzero.Tick
 
-        volwy = Format(DAQwy.Read, "0.00")
+        ' volwy = Format(DAQwy.Read, "0.00")
         '现采用机械上绝对零位，即零位位移传感器电压是绝对值
         If moveleft = 1 Then '在中位右侧需向左运动
             If zeromoveflag = 0 Then

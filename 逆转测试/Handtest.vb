@@ -172,6 +172,10 @@ Public Class Handtest
         'If (100 >= jxwy_temp >= 0) Then
         TextBox1.Text = jxwy_temp
         'End If
+
+
+
+        Textwy_mm.Text = Val(Format(frmMain.volwy * (paranew(23)), "0.00"))
         If bytesrecd(70) = 1 Then '01
             TextBox_Cylinder_w01.BackColor = Color.YellowGreen
         Else
@@ -309,7 +313,7 @@ Public Class Handtest
     End Sub
 
     Private Sub postiverun_MouseUp(sender As Object, e As MouseEventArgs) Handles postiverun.MouseUp
-        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+        d2210_imd_stop(0) '停止运动
     End Sub
 
     Private Sub negativerun_MouseDown(sender As Object, e As MouseEventArgs) Handles negativerun.MouseDown
@@ -318,6 +322,6 @@ Public Class Handtest
     End Sub
 
     Private Sub negativerun_MouseUp(sender As Object, e As MouseEventArgs) Handles negativerun.MouseUp
-        d2210_decel_stop(m_UseAxis, 0.1) '停止运动
+        d2210_imd_stop(0) '停止运动
     End Sub
 End Class
