@@ -105,7 +105,6 @@ Partial Class frmMain
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -867,16 +866,10 @@ Partial Class frmMain
         Me.SerialPort1.PortName = "COM8"
         Me.SerialPort1.ReadBufferSize = 500
         '
-        'TextBox4
-        '
-        resources.ApplyResources(Me.TextBox4, "TextBox4")
-        Me.TextBox4.Name = "TextBox4"
-        '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -985,7 +978,6 @@ Partial Class frmMain
     Friend WithEvents Label19 As Label
     Friend WithEvents Label18 As Label
     Friend WithEvents TextBOX_num_state As TextBox
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents ToolStripButton8 As ToolStripButton
     Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
 End Class

@@ -278,7 +278,7 @@ Public Class frmMain
 
         set_piecepara_now() '设置当前产品型号
         clearwy = Val(paranew(33)） '位移零位
-        TextBox4.Text = clearwy
+        'TextBox4.Text = clearwy
         ' Return
         ComboBox1.Enabled = False                  '在线离线控件使能关闭
         PortOpen()                                  '打开串口
