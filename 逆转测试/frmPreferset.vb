@@ -723,4 +723,8 @@ Public Class frmPreferset
     Private Sub GroupBox2_Enter(sender As Object, e As EventArgs) Handles GroupBox2.Enter
 
     End Sub
+
+    Private Sub ComboBox6_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

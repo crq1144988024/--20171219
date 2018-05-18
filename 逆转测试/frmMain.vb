@@ -237,7 +237,7 @@ Public Class frmMain
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         SystemInitialization.ShowDialog()
-        frmPreferset.ComboBox6.SelectedIndex = 0 '是否返工设置
+        ReworkPermit.ComboBox1.SelectedIndex = 0 '是否返工设置
 
         添加用户ToolStripMenuItem.Enabled = False
         删除用户ToolStripMenuItem.Enabled = False
@@ -1422,7 +1422,7 @@ netlis:
                     bytessend(21) = 1 '反驱结束，需复位
                     movetestflag = 1
 
-                    frmPreferset.ComboBox6.SelectedIndex = 0 '返工设置选择
+                    ReworkPermit.ComboBox1.SelectedIndex = 0 '返工设置选择
                     moveflag = 0
                     bytessend(697) = 0
                     countAflag = 0
@@ -1509,7 +1509,7 @@ netlis:
 
         End If
 
-        bytessend(18) = frmPreferset.ComboBox6.SelectedIndex '返工设置选择
+        bytessend(18) = ReworkPermit.ComboBox1.SelectedIndex '返工设置选择
         Application.DoEvents()
 
 
@@ -1902,6 +1902,7 @@ netlis:
     '实验结果保存
     Public Sub datasave(ByVal ogcount As Integer) '输入的参数是  合格或者不合格的数量
         Dim counttemp As String
+        ''ReworkPermit.ComboBox1.SelectedIndex = 0
 
         If ngflag = 1 Then
             counttemp = Now.ToString("yyyyMMddHHmmss") & Format(ogcount, "00000")
@@ -2646,5 +2647,13 @@ netlis:
 
     Private Sub ToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem4.Click
         Login.ShowDialog()   '加载登录对话框
+    End Sub
+    ''' <summary>
+    ''' 工件重做窗口
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
+        ReworkPermit.ShowDialog()
     End Sub
 End Class

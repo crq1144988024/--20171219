@@ -179,6 +179,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReworkPermit.Designer.vb">
+      <DependentUpon>ReworkPermit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReworkPermit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SQL\LINGTOSQL\DataClasses_PIECEDATASAVE.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -284,6 +290,9 @@
     <None Include="SQL\LINGTOSQL\DataClasses_piecepara.dbml.layout">
       <DependentUpon>DataClasses_piecepara.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="ReworkPermit.resx">
+      <DependentUpon>ReworkPermit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SystemInitialization.resx">
       <DependentUpon>SystemInitialization.vb</DependentUpon>
     </EmbeddedResource>

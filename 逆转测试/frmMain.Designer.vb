@@ -105,6 +105,7 @@ Partial Class frmMain
         Me.Timlvbof = New System.Windows.Forms.Timer(Me.components)
         Me.Timtest = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -125,7 +126,7 @@ Partial Class frmMain
         '
         Me.ToolStrip1.BackColor = System.Drawing.SystemColors.MenuBar
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(50, 50)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton8})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton5, Me.ToolStripButton8, Me.ToolStripButton9})
         resources.ApplyResources(Me.ToolStrip1, "ToolStrip1")
         Me.ToolStrip1.Name = "ToolStrip1"
         '
@@ -866,6 +867,12 @@ Partial Class frmMain
         Me.SerialPort1.PortName = "COM8"
         Me.SerialPort1.ReadBufferSize = 500
         '
+        'ToolStripButton9
+        '
+        Me.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.ToolStripButton9, "ToolStripButton9")
+        Me.ToolStripButton9.Name = "ToolStripButton9"
+        '
         'frmMain
         '
         resources.ApplyResources(Me, "$this")
@@ -980,4 +987,5 @@ Partial Class frmMain
     Friend WithEvents TextBOX_num_state As TextBox
     Friend WithEvents ToolStripButton8 As ToolStripButton
     Friend WithEvents ToolStripMenuItem4 As ToolStripMenuItem
+    Friend WithEvents ToolStripButton9 As ToolStripButton
 End Class

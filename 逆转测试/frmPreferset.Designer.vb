@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmPreferset
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,11 +20,9 @@ Partial Class frmPreferset
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
-        Me.Label48 = New System.Windows.Forms.Label()
         Me.Addnew = New System.Windows.Forms.Button()
         Me.Delete = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -125,8 +123,6 @@ Partial Class frmPreferset
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.ComboBox6)
-        Me.GroupBox1.Controls.Add(Me.Label48)
         Me.GroupBox1.Controls.Add(Me.Addnew)
         Me.GroupBox1.Controls.Add(Me.Delete)
         Me.GroupBox1.Controls.Add(Me.TextBox1)
@@ -141,24 +137,6 @@ Partial Class frmPreferset
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "型号设置"
-        '
-        'ComboBox6
-        '
-        Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Items.AddRange(New Object() {"禁用", "启用"})
-        Me.ComboBox6.Location = New System.Drawing.Point(117, 153)
-        Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(72, 20)
-        Me.ComboBox6.TabIndex = 19
-        '
-        'Label48
-        '
-        Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(10, 158)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(65, 12)
-        Me.Label48.TabIndex = 18
-        Me.Label48.Text = "允许返工："
         '
         'Addnew
         '
@@ -1205,6 +1183,4 @@ Partial Class frmPreferset
     Friend WithEvents TextBox18 As System.Windows.Forms.TextBox
     Friend WithEvents Label47 As System.Windows.Forms.Label
     Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents ComboBox6 As ComboBox
-    Friend WithEvents Label48 As Label
 End Class
